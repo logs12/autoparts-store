@@ -1,0 +1,7 @@
+/* Change the layout__content class to Flex (instead of inline-block) to allow spacer to work. */
+.mdl-layout__content {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
