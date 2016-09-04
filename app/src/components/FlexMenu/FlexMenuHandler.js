@@ -16,7 +16,7 @@ export default class FlexMenuHandler {
     };
 
     // A handler for click on toggle button
-    collapseClickHandler = function(event) {
+    collapseClickHandler = (event) => {
         var triggerEl = this.getTriggerElement(event.target);
         // If trigger element does not exist
         if (triggerEl === undefined) {

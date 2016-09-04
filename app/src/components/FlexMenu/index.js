@@ -18,6 +18,11 @@ export default class FlexMenu extends Component {
                 <div className="navbar area">
                     {/* Логотип */}
                     <a href="#" className="brand">Brand</a>
+                    {/* Кнопка для мобильных */}
+                    <button data-collapse data-target="#navigation" className="toggle">
+                        {/* Здесь будет иконка гамбургера */}
+                        <span className="icon"></span>
+                    </button>
                     {/* Список ссылок */}
                     <nav role="navigation" id="navigation" className="list">
                         <a href="#" className="item -link">Home</a>
@@ -30,11 +35,7 @@ export default class FlexMenu extends Component {
                             <i className="fa fa-search"></i>
                         </span>
                     </nav>
-                    {/* Кнопка для мобильных */}
-                    <button data-collapse data-target="#navigation" className="toggle">
-                        {/* Здесь будет иконка гамбургера */}
-                        <span className="icon"></span>
-                    </button>
+                   
                 </div>
             </div>
         )
