@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import  MainLayout  from '../../layouts/main';
 
 // Components
-import Home from '../Home';
+import Home from '../../pages/Home';
 import NotFound from '../NotFound';
 
 export const Routes = (
