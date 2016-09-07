@@ -1,4 +1,4 @@
-import "./style.scss";
+import "./styles/style.scss";
 import React, {Component} from "react";
 
 export default class Search extends Component {
@@ -14,7 +14,6 @@ export default class Search extends Component {
                     <button className="search-form__button"><i className="material-icons">search</i></button>
                 </form>
             </div>
-
         )
     }
 }

@@ -1,15 +1,40 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+use yii\helpers\ArrayHelper;
+
+// слияние глобальных и локальных параметров
+$params = file_exists(__DIR__ . 'params.local.php')
+    ? ArrayHelper::merge(require(__DIR__ . 'params.php'), require(__DIR__ . 'params.local.php'))
+    : require(__DIR__ . 'params.php');
+
+// Слияние глобальных и локальных парамертов БД
+$db = file_exists(__DIR__ . '/db.local.php')
+    ? ArrayHelper::merge(require(__DIR__ . '/db.php'), require(__DIR__ . '/db.local.php'))
+    : require(__DIR__ . '/db.php');
+
+
+/**
+ * КОНФИГУРАЦИЯ ОСНОВНАЯ
+ */
 
 $config = [
-    'id' => 'basic',
+    'id' => 'autoparts-store',
+    'language' => 'ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'E2zOyK9QPZMxwTO4uyX7KGc1Lg94O5Oy',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
+        ],
+        'response' => [
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'formatters' => [
+                'json' => 'app\components\formatters\JsonResponseFormatter',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -37,7 +62,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        'db' => $db,
 
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -48,6 +73,13 @@ $config = [
     'params' => $params,
 ];
 
+/*
+ * КОНФИГУРАЦИЯ DEVELOPMENT
+ * Здесь можно добавить или убавить элементы основной конфигурации
+ *
+ * $config['id'] = 'development-web';
+ * unset $config['bootstrap'];
+ */
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';

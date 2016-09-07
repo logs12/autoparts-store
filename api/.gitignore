@@ -33,4 +33,7 @@ composer.lock
 auth.json
 
 # local configure
+config/params.local.php
+
+# local configure
 config/db.local.php

@@ -1,4 +1,4 @@
-import './style.scss';
+import './styles/style.scss';
 
 import React, { Component } from 'react';
 import FlexMenuHandler from './FlexMenuHandler';
