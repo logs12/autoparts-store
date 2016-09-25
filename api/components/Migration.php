@@ -1,18 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vasil
- * Date: 07.09.2016
- * Time: 20:05
- */
-
 namespace app\components;
 
 use yii;
 use yii\db\Migration as BaseMigration;
 use yii\helpers\Console;
 
-class Migration
+class Migration extends BaseMigration
 {
     public $operations = [];
 
@@ -85,4 +78,5 @@ class Migration
 
         return $tableOptions;
     }
+
 }

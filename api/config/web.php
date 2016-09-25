@@ -2,10 +2,11 @@
 
 use yii\helpers\ArrayHelper;
 
-// слияние глобальных и локальных параметров
-$params = file_exists(__DIR__ . 'params.local.php')
-    ? ArrayHelper::merge(require(__DIR__ . 'params.php'), require(__DIR__ . 'params.local.php'))
-    : require(__DIR__ . 'params.php');
+// Слияние глобальных и локальных парамертов
+$params = file_exists(__DIR__ . '/params.local.php')
+    ? ArrayHelper::merge(require(__DIR__ . '/params.php'), require(__DIR__ . '/params.local.php'))
+    : require(__DIR__ . '/params.php');
+
 
 // Слияние глобальных и локальных парамертов БД
 $db = file_exists(__DIR__ . '/db.local.php')
@@ -63,11 +64,10 @@ $config = [
             ],
         ],
         'db' => $db,
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => require(__DIR__ . '/rules.php'),
+            'rules' => require(__DIR__ . '/rules.php')
         ],
     ],
     'params' => $params,

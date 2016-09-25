@@ -11,7 +11,7 @@ trait BaseControllerTrait
 {
     public function behaviors()
     {
-        $behaviours['access'] = [
+        /*$behaviours['access'] = [
             'class' => AccessControl::className(),
             'rules' => [
                 [
@@ -19,17 +19,18 @@ trait BaseControllerTrait
                     'roles' => ['@'],
                 ],
             ],
-        ];
+        ];*/
 
         // Указание делать вывод в формате JSON
         $behaviours['contentNegotiator']['formats'] = [
             'application/json' => Response::FORMAT_JSON,
         ];
+        $behaviours = [];
 
         return $behaviours;
     }
 
-    public function checkAccess($action, $model = null, $params = [])
+   /* public function checkAccess($action, $model = null, $params = [])
     {
         if (Yii::$app->user->isGuest) {
             throw new ForbiddenHttpException('Необходимо выполнить авторизацию');
@@ -51,5 +52,5 @@ trait BaseControllerTrait
         }
 
         return true;
-    }
+    }*/
 }
