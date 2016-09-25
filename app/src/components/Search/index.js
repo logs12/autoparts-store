@@ -1,9 +1,19 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
+import { connect } from 'react-redux';
+
 export default class Search extends Component {
 
-    render () {
+    constructor() {
+        super();
+    }
+
+    handleClick() {
+        
+    }
+
+    render() {
         return (
             <div className="search">
                 <form className="search-form" action="" method="get">
@@ -11,7 +21,10 @@ export default class Search extends Component {
                             type="text"
                             name="search_text"
                             placeholder="Поиск по артикулу" />
-                    <button className="search-form__button"><i className="material-icons">search</i></button>
+                    <button className="search-form__button"
+                            onClick={this.handleClick}>
+                        <i className="material-icons">search</i>
+                    </button>
                 </form>
             </div>
         )

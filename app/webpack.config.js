@@ -9,7 +9,7 @@ module.exports = {
     entry: [
         // Set up an ES6-ish environment
         'babel-polyfill',
-        "./src/app.js"
+        "./src/index.js"
     ],
 
     // то, что получим на выходе
