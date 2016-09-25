@@ -6,7 +6,7 @@ export default function configureStore(initialState) {
     const store = createStore( 
             rootReducer,
             initialState,
-            applyMiddleware( promiseMiddleware )
+            applyMiddleware( PromiseMiddleware )
         );
 
     return store;

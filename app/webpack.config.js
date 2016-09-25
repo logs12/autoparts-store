@@ -19,7 +19,7 @@ module.exports = {
         publicPath: '/build/',
         chunkFilename: "[id].bundle.js"
     },
-    devtool: '#source-map',
+    devtool: '#eval-source-map',
     module: {
         loaders: [
             {

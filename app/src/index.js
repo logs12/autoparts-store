@@ -27,5 +27,5 @@ render(
     <Provider store={store}>
         <Home />
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('root')
 );

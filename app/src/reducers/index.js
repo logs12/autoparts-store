@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import SearchArticul from './SearchArticul';
+import SearchForArticul from './SearchForArticul';
 
 export default combineReducers({
-    SearchArticul
+    SearchForArticul
 })

@@ -2,7 +2,7 @@ import {
     GET_PRODUCTS_REQUEST,
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_FAILURE
-} from '../constants/SearchArticul';
+} from '../constants/SearchForArticul';
 
 
 
@@ -13,7 +13,7 @@ import {
             .then(json => dispatch(receivePosts(reddit, json)));
 }*/
 
-export function fetchProducts(articul) {
+export function getProducts(articul) {
     return {
         types: [
             GET_PRODUCTS_REQUEST,
@@ -27,7 +27,7 @@ export function fetchProducts(articul) {
                     url: `api/web-service/get-items`,
                     data: {articul: articul},
                     success: (result) => {
-                        resolve(result);
+                        resolve({products:result});
                     },
                     error: (errorMessage) => {
                         reject(new Error(errorMessage));
