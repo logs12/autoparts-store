@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import * as SearchForArticulActions
     from '../../actions/SearchForArticulActions';
+import ProgressBar from '../../widgets/ProgressBar';
 
 export class Search extends Component {
 
@@ -11,7 +12,8 @@ export class Search extends Component {
         super(props);
         this.state = {
             searchValue: ''
-        }
+        };
+
     }
 
     /**
@@ -30,15 +32,28 @@ export class Search extends Component {
         this.props.dispatch(
             SearchForArticulActions.getProducts(this.state.searchValue)
         );
+        this.pending = this.props.pending;
+        this.action = this.props.action;
+        this.reduxState = this.props.reduxState;
+    }
+
+    pendingAnimate() {
+        console.log('this.props = ',this.props);
+        if (this.pending) {
+            return <ProgressBar />;
+        }
+
     }
 
     render() {
-        let {pending, action, reduxState} = this.props;
-
+        let {pending,action,reduxState} = this.props;
         let stateButton = {};
+        let ProgressBar = {};
         if (pending) {
-            stateButton = {disabled : true}
+            stateButton = {disabled : true};
         }
+
+        console.log('this.props = ',this.props);
         return (
             <div className="search">
                 <form className="search-form" action="" method="get">
@@ -55,6 +70,7 @@ export class Search extends Component {
                         <i className="material-icons">search</i>
                     </button>
                 </form>
+                {this.pendingAnimate()}
             </div>
         )
     }

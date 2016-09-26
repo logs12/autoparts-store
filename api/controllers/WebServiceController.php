@@ -4,7 +4,9 @@ namespace app\controllers;
 use app\components\controllers\BaseActiveController;
 use app\components\XmlService;
 use app\models\WebServiceSearch;
+use yii\base\UserException;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 class WebServiceController extends BaseActiveController
 {
@@ -36,12 +38,16 @@ class WebServiceController extends BaseActiveController
     public function actionGetItems()
     {
         $service = 'PartKom';
-        $articul = 'OP570';
+
+        $params = \Yii::$app->getRequest()->getBodyParams();
+        if (!$articul = ArrayHelper::getValue($params, 'articul')) {
+            throw new UserException('Не переданы артикул товара');
+        }
+
         $curl = curl_init('http://skladapi.automig.ru/connect-web-services/web-service?service='.$service);
 
         $user = "api";
         $password = "SweerEjhys";
-
 
         curl_setopt($curl,CURLOPT_USERPWD,$user . ":" . $password);
         curl_setopt($curl,CURLOPT_RETURNTRANSFER, 1);
@@ -51,11 +57,7 @@ class WebServiceController extends BaseActiveController
 
         $result = curl_exec($curl);
         curl_close($curl);
-
         $offers = XmlService::xmlToArray($result);
-        echo $offers;
-        //echo $result;
-        //$return = str_replace(['"'], '', $result);
-        //echo stripslashes($return);
+        return $offers;
     }
 }
