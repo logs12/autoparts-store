@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory} from 'react-router';
-import { Routes } from './components/Routes';
+import { routes } from './routes';
 import Home from './pages/Home';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -15,17 +15,18 @@ injectTapEventPlugin();
 
 const store = configureStore();
 
-/*render(
- <Provider store={store}>
- <Router history={browserHistory} routes={ MainMenu }  />,
- </Provider>,
- document.getElementById('app')
- );*/
+render(
+    <Provider store={store}>
+        <Router history={browserHistory} routes={routes} />
+    </Provider>,
+    document.getElementById('root')
+);
 
 
+/*
 render(
     <Provider store={store}>
         <Home />
     </Provider>,
     document.getElementById('root')
-);
+);*/
