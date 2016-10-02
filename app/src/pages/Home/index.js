@@ -3,7 +3,7 @@ import './style.scss';
 import React, { Component } from 'react';
 
 //components
-import Search from '../../components/Search';
+import Search from '../../containers/Search';
 
 export default class Home extends Component{
 

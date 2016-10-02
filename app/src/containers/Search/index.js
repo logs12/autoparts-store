@@ -39,6 +39,7 @@ export class Search extends Component {
 
     pendingAnimate() {
         console.log('this.props = ',this.props);
+        console.log('this.pending = ',this.pending);
         if (this.pending) {
             return <ProgressBar />;
         }
@@ -48,11 +49,10 @@ export class Search extends Component {
     render() {
         let {pending,action,reduxState} = this.props;
         let stateButton = {};
-        let ProgressBar = {};
+        let progressBar;
         if (pending) {
             stateButton = {disabled : true};
         }
-
         console.log('this.props = ',this.props);
         return (
             <div className="search">
@@ -70,7 +70,7 @@ export class Search extends Component {
                         <i className="material-icons">search</i>
                     </button>
                 </form>
-                {this.pendingAnimate()}
+                {pending ? <ProgressBar /> : false}
             </div>
         )
     }

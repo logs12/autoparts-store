@@ -18,17 +18,13 @@ export default class FlexMenuHandler {
     // A handler for click on toggle button
     collapseClickHandler = (event) => {
         var triggerEl = this.getTriggerElement(event.target);
-        // If trigger element does not exist
-        if (triggerEl === undefined) {
-            event.preventDefault();
-            return false;
-        }
-
         // If the target element exists
-        var targetEl = document.querySelector(triggerEl.getAttribute('data-target'));
-        if (targetEl) {
-            triggerEl.classList.toggle('-active');
-            targetEl.classList.toggle('-on');
+        if (triggerEl !== undefined) {
+            var targetEl = document.querySelector(triggerEl.getAttribute('data-target'));
+            if (targetEl) {
+                triggerEl.classList.toggle('-active');
+                targetEl.classList.toggle('-on');
+            }
         }
     };
 

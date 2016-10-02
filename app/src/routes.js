@@ -4,7 +4,6 @@ import { render } from 'react-dom';
 
 // Layouts
 import  MainLayout  from './layouts/main';
-import  MainMenu  from './containers/MainMenu';
 
 // Components
 import Home from './pages/Home';
@@ -15,7 +14,7 @@ export const routes = (
     <div>
         <Route path='/' component={MainLayout}>
             <IndexRoute component={Home}/>
-            <Route component={Test}/>
+            <Route path="test" component={Test}/>
         </Route>
 
         <Route path='*' component={NotFound}/>
