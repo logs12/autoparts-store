@@ -9,9 +9,14 @@ export default class ProgressBar extends Component {
         componentHandler.upgradeDom();
     }
 
+    componentDidUpdate() {
+        componentHandler.upgradeDom();
+    }
+
     render() {
         return (
-            <div id="p2" className="progress-bar mdl-progress mdl-js-progress mdl-progress__indeterminate">
+            <div
+                className="progress-bar mdl-progress mdl-js-progress mdl-progress__indeterminate">
             </div>
         )
     }

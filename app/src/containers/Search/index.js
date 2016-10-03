@@ -37,19 +37,17 @@ export class Search extends Component {
         this.reduxState = this.props.reduxState;
     }
 
-    pendingAnimate() {
-        console.log('this.props = ',this.props);
-        console.log('this.pending = ',this.pending);
-        if (this.pending) {
-            return <ProgressBar />;
-        }
-
+    /**
+     * Привязываем обработчики mdl компонентов
+     */
+    componentDidUpdate() {
+        componentHandler.upgradeDom();
     }
 
     render() {
         let {pending,action,reduxState} = this.props;
         let stateButton = {};
-        let progressBar;
+        
         if (pending) {
             stateButton = {disabled : true};
         }

@@ -21,12 +21,3 @@ render(
     </Provider>,
     document.getElementById('root')
 );
-
-
-/*
-render(
-    <Provider store={store}>
-        <Home />
-    </Provider>,
-    document.getElementById('root')
-);*/

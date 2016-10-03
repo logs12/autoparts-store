@@ -58,7 +58,6 @@ class WebServiceController extends BaseActiveController
         $result = curl_exec($curl);
         curl_close($curl);
         $offers = XmlService::xmlToArray($result);
-        sleep(1000);
         return $offers;
     }
 }
