@@ -3,7 +3,7 @@ import React, {Component} from "react";
 
 import ProgressBar from '../../widgets/ProgressBar';
 
-export class SearchForArticle extends Component {
+export class SearchInterface extends Component {
 
     constructor(props) {
         super(props);
@@ -30,13 +30,13 @@ export class SearchForArticle extends Component {
                     />
                     <button className="search-for-article__button"
                             onClick={event => onClickButton(event.target.value)}
-                            {stateButton}>
+                           >
                         <i className="material-icons">search</i>
                     </button>
                 </div>
                 {pending ? <ProgressBar /> : false}
             </div>
-        )
+        ) 
     }
 }
 

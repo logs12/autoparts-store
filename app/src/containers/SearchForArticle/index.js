@@ -1,5 +1,6 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
+import SearchInterface from "../../components/SearchInterface";
 
 import { connect } from 'react-redux';
 import * as SearchForArticulActions
@@ -53,7 +54,7 @@ export class SearchForArticle extends Component {
         console.log('this.props = ',this.props);
         return (
             <div className="search">
-                <SearchForArticle
+                <SearchInterface
                     value={this.state.searchValue}
                     onChangeInput={this.handleChangeSearchValue.bind(this)}
                     onClickButton={this.handleClick.bind(this)}
