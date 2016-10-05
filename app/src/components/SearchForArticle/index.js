@@ -1,9 +1,6 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
-import { connect } from 'react-redux';
-import * as SearchForArticulActions
-    from '../../actions/SearchForArticulActions';
 import ProgressBar from '../../widgets/ProgressBar';
 
 export class SearchForArticle extends Component {
@@ -18,7 +15,7 @@ export class SearchForArticle extends Component {
 
     render() {
 
-        const {value, onChangeInput, onChangeInput, stateButton} = this.props;
+        const {value, onChangeInput, onClickButton, stateButton, pending} = this.props;
 
 
         return (
@@ -28,12 +25,12 @@ export class SearchForArticle extends Component {
                             type="text"
                             name="search_text"
                             placeholder="Поиск по артикулу"
-                            value={this.state.searchValue}
-                            onChange={e => onChangeInput(e.target.value)}
+                            value={value}
+                            onChange={event => onChangeInput(event.target.value)}
                     />
                     <button className="search-for-article__button"
-                            onClick={this.handleClick.bind(this)}
-                            {...stateButton}>
+                            onClick={event => onClickButton(event.target.value)}
+                            {stateButton}>
                         <i className="material-icons">search</i>
                     </button>
                 </div>

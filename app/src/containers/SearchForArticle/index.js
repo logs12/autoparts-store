@@ -57,8 +57,8 @@ export class SearchForArticle extends Component {
                     value={this.state.searchValue}
                     onChangeInput={this.handleChangeSearchValue.bind(this)}
                     onClickButton={this.handleClick.bind(this)}
-                    stateButton={...stateButton}/>
-                <SearchResultsForArticle />
+                    stateButton={stateButton}
+                    pending={pending}/>
             </div>
         )
     }
