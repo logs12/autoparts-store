@@ -4,9 +4,8 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import * as SearchForArticulActions
     from '../../actions/SearchForArticulActions';
-import ProgressBar from '../../widgets/ProgressBar';
 
-export class Search extends Component {
+export class SearchForArticle extends Component {
 
     constructor(props) {
         super(props);
@@ -54,21 +53,12 @@ export class Search extends Component {
         console.log('this.props = ',this.props);
         return (
             <div className="search">
-                <form className="search-form" action="" method="get">
-                    <input  className="search-form__text"
-                            type="text"
-                            name="search_text"
-                            placeholder="Поиск по артикулу"
-                            value={this.state.searchValue}
-                            onChange={this.handleChangeSearchValue.bind(this)}
-                    />
-                    <button className="search-form__button"
-                            onClick={this.handleClick.bind(this)}
-                            {...stateButton}>
-                        <i className="material-icons">search</i>
-                    </button>
-                </form>
-                {pending ? <ProgressBar /> : false}
+                <SearchForArticle
+                    value={this.state.searchValue}
+                    onChangeInput={this.handleChangeSearchValue.bind(this)}
+                    onClickButton={this.handleClick.bind(this)}
+                    stateButton={...stateButton}/>
+                <SearchResultsForArticle />
             </div>
         )
     }
@@ -82,7 +72,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const ConnectedHome = connect(mapStateToProps)(Search);
+const ConnectedHome = connect(mapStateToProps)(SearchForArticle);
 
 export default ConnectedHome;
 

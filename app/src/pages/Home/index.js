@@ -3,7 +3,7 @@ import './style.scss';
 import React, { Component } from 'react';
 
 //components
-import Search from '../../containers/Search';
+import SearchForArticle from '../../containers/SearchForArticle';
 
 export default class Home extends Component{
 
@@ -11,7 +11,7 @@ export default class Home extends Component{
 
         return (
             <div id="home" >
-                <Search />
+                <SearchForArticle />
             </div>
         )
     }
