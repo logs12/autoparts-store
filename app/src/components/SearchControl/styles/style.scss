@@ -1,12 +1,12 @@
 @import '_mixin.scss';
 
-.search {
+.search-control {
 	margin: 4px;
-	.search-form{
+	.search-control__input-container{
 		@include display(flex);
 		justify-content:flex-start;
 
-		.search-form__text{
+		.search-control__text{
 			width: 100%;
 			padding: 15px 0 15px 20px;
 			font-size: 18px;
@@ -22,10 +22,10 @@
 
 		@include input-placeholder (white);
 
-		.search-form__text:focus {
+		.search-control__text:focus {
 			background: rgb(64, 151, 119);
 		}
-		.search-form__button {
+		.search-control__button {
 			border: 0 none;
 			width: 60px;
 			padding: 0;

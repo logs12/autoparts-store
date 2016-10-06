@@ -1,6 +1,6 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
-import SearchInterface from "../../components/SearchInterface";
+import SearchControl from "../../components/SearchControl";
 
 import { connect } from 'react-redux';
 import * as SearchForArticulActions
@@ -13,25 +13,21 @@ export class SearchForArticle extends Component {
         this.state = {
             searchValue: ''
         };
-
-    }
-
-    /**
-     * Обработчик изменения состояния в input
-     * @param event
-     */
-    handleChangeSearchValue(event) {
-        this.setState({searchValue: event.target.value});
+        this.onClickButton = this.onClickButton.bind(this);
     }
 
     /**
      * Обработчик кнопки поиска, отправка введеного значения в store
      */
-    handleClick(event) {
+    onClickButton(event) {
+
         event.preventDefault();
+
+        // Передаем в редьюсер артикул детали для поиска
         this.props.dispatch(
-            SearchForArticulActions.getProducts(this.state.searchValue)
+            SearchForArticulActions.getProducts(event.target.value)
         );
+
         this.pending = this.props.pending;
         this.action = this.props.action;
         this.reduxState = this.props.reduxState;
@@ -45,19 +41,18 @@ export class SearchForArticle extends Component {
     }
 
     render() {
-        let {pending,action,reduxState} = this.props;
+        let {pending} = this.props;
         let stateButton = {};
         
         if (pending) {
             stateButton = {disabled : true};
         }
-        console.log('this.props = ',this.props);
+
         return (
             <div className="search">
-                <SearchInterface
-                    value={this.state.searchValue}
-                    onChangeInput={this.handleChangeSearchValue.bind(this)}
-                    onClickButton={this.handleClick.bind(this)}
+                <SearchControl
+                    placeholder="Поиск по артикулу"
+                    onClickButton={this.onClickButton}
                     stateButton={stateButton}
                     pending={pending}/>
             </div>
