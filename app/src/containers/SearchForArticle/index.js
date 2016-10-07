@@ -1,6 +1,7 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 import SearchControl from "../../components/SearchControl";
+import SearchResult from "../../components/SearchResult";
 
 import { connect } from 'react-redux';
 import * as SearchForArticulActions
@@ -41,7 +42,7 @@ export class SearchForArticle extends Component {
     }
 
     render() {
-        let {pending} = this.props;
+        let {pending, products} = this.props;
         let stateButton = {};
         
         if (pending) {
@@ -55,6 +56,9 @@ export class SearchForArticle extends Component {
                     onClickButton={this.onClickButton}
                     stateButton={stateButton}
                     pending={pending}/>
+                <SearchResult
+                    data={products}
+                />
             </div>
         )
     }
