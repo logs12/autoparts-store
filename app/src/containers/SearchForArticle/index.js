@@ -41,12 +41,22 @@ export class SearchForArticle extends Component {
         componentHandler.upgradeDom();
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('nextProps = ',nextProps);
+    }
+
     render() {
         let {pending, products} = this.props;
         let stateButton = {};
-        
+
         if (pending) {
             stateButton = {disabled : true};
+        }
+
+        // Если процесс поиска завершен, то показываем компонент результата
+        let searchResult;
+        if (pending == false) {
+            searchResult = <SearchResult data={products.item} />;
         }
 
         return (
@@ -56,9 +66,7 @@ export class SearchForArticle extends Component {
                     onClickButton={this.onClickButton}
                     stateButton={stateButton}
                     pending={pending}/>
-                <SearchResult
-                    data={products}
-                />
+                {searchResult}
             </div>
         )
     }
