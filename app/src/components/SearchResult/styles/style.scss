@@ -1,0 +1,10 @@
+.search-result__row {
+	width:100%;
+	display:flex;
+	justify-content:center;
+	
+	.search-result__col {
+		width:20%;
+		text-align: center;
+	}
+}
