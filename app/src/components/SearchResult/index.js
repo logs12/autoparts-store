@@ -2,6 +2,8 @@ import './styles/style.scss';
 
 
 import React, {Component} from "react";
+import DialogCallback from "../../components/DialogCallback";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class SearchResult extends Component {
     constructor(props) {
@@ -30,6 +32,9 @@ export default class SearchResult extends Component {
                         </div>
                         <div className="search-result__col">
                             {item.price} руб.
+                            <MuiThemeProvider>
+                                <DialogCallback />
+                            </MuiThemeProvider>
                         </div>
                     </div>
                 );
@@ -42,7 +47,7 @@ export default class SearchResult extends Component {
         return(
             <div className="search-result">
                 <div className="search-result__header">
-                    <div className="search-result__row">
+                    <div className="search-result__row ">
                         <div className="search-result__col">ПРОИЗВОДИТЕЛИ</div>
                         <div className="search-result__col">НАИМЕНОВАНИЕ</div>
                         <div className="search-result__col">В НАЛИЧИИ</div>
@@ -57,3 +62,4 @@ export default class SearchResult extends Component {
         )
     }
 }
+

@@ -55,9 +55,132 @@ export class SearchForArticle extends Component {
 
         // Если процесс поиска завершен, то показываем компонент результата
         let searchResult;
-        if (pending == false) {
+        /*if (pending == false) {
             searchResult = <SearchResult data={products.item} />;
-        }
+        }*/
+
+        products =[
+                {
+                    articul: "OP570",
+                    group: "Original",
+                    groupMatching: "1",
+                    manufacturer: "AL-CO",
+                    name: "OP570",
+                    num: "2",
+                    price: "156",
+                    provider_id: "1429",
+                    provider_name: "МСК склад",
+                    term: "8",
+                    web_service: "ПартКом"
+                },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "Original",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            
+            ];
+
+        searchResult = <SearchResult data={products} />;
 
         return (
             <div className="search">
