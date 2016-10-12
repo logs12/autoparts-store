@@ -1,29 +1,29 @@
-.search-result__header {
-	background-color: #c5f7bb;
-	.search-result__row{
-		width:100%;
-		padding: 5px 10px;
-		display:flex;
-		justify-content:center;
+@import '../../../../general-styles/_mixin.scss';
+
+@mixin search-result__grid() {
+	align-items:center;
+	justify-content:center;
+	word-break: break-all;
+	text-align: center;
+}
+
+.search-result{
+	.search-result__header {
+		background-color: #c5f7bb;
+		.mdl-grid {
+			@include search-result__grid();
+		}
 	}
-	.search-result__col {
-		width:20%;
-		text-align: center;
+	
+	.search-result__container {
+		.mdl-grid {
+			@include search-result__grid();
+			border-top: 1px solid rgba(0,0,0,.1);
+			&:hover {
+				background-color: #D3F7DC;
+			}
+		}
 	}
 }
 
-.search-result__container {
-	.search-result__row {
-		width:100%;
-		padding: 5px 10px;
-		display:flex;
-		justify-content:center;
-		&:hover {
-			background-color: #D3F7DC;
-		}
-		.search-result__col {
-			width:20%;
-			text-align: center;
-		}
-	}
-}
+

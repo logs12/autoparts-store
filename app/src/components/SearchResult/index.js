@@ -5,6 +5,8 @@ import React, {Component} from "react";
 import DialogCallback from "../../components/DialogCallback";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import Paper from 'material-ui/Paper';
+
 export default class SearchResult extends Component {
     constructor(props) {
         super(props);
@@ -17,24 +19,24 @@ export default class SearchResult extends Component {
         let originalProducts = props.data.map((item, index) => {
             if (item.group == 'Original') {
                 return (
-                    <div className="search-result__row" key={index}>
-                        <div className="search-result__col">
+                    <div className="content-grid mdl-grid" key={index}>
+                        <div className="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">
                             {item.manufacturer} {item.articul}
                         </div>
-                        <div className="search-result__col">
+                        <div className="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">
                             {item.name}
                         </div>
-                        <div className="search-result__col">
+                        <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">
                             {item.num} шт.
                         </div>
-                        <div className="search-result__col">
+                        <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">
                             {item.term} дн.
                         </div>
-                        <div className="search-result__col">
+                        <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">
                             {item.price} руб.
-                            <MuiThemeProvider>
-                                <DialogCallback />
-                            </MuiThemeProvider>
+                        </div>
+                        <div className="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet">
+                            <DialogCallback />
                         </div>
                     </div>
                 );
@@ -44,21 +46,30 @@ export default class SearchResult extends Component {
     }
 
     render() {
+        const style = {
+            margin: 4,
+            textAlign: 'center',
+        };
         return(
-            <div className="search-result">
-                <div className="search-result__header">
-                    <div className="search-result__row ">
-                        <div className="search-result__col">ПРОИЗВОДИТЕЛИ</div>
-                        <div className="search-result__col">НАИМЕНОВАНИЕ</div>
-                        <div className="search-result__col">В НАЛИЧИИ</div>
-                        <div className="search-result__col">СРОК ОЖИДАНИЯ</div>
-                        <div className="search-result__col">ЦЕНА</div>
-                    </div>
+            <MuiThemeProvider>
+                <div className="search-result">
+                        <Paper style={style} zDepth={1} >
+                            <div className="search-result__header">
+                                <div className="content-grid mdl-grid">
+                                    <div className="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet">ПРОИЗВОДИТЕЛИ</div>
+                                    <div className="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">НАИМЕНОВАНИЕ</div>
+                                    <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">В НАЛИЧИИ</div>
+                                    <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">СРОК ОЖИДАНИЯ</div>
+                                    <div className="mdl-cell mdl-cell--2-col mdl-cell--1-col-tablet">ЦЕНА</div>
+                                    <div className="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet"></div>
+                                </div>
+                            </div>
+                            <div className="search-result__container">
+                                {this.renderContentOriginal(this.props)}
+                            </div>
+                        </Paper>
                 </div>
-                <div className="search-result__container">
-                    {this.renderContentOriginal(this.props)}
-                </div>
-            </div>
+            </MuiThemeProvider>
         )
     }
 }
