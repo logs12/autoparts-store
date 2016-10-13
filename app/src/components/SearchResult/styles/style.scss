@@ -7,6 +7,11 @@
 	text-align: center;
 }
 
+// Прячем шабку таблицы результатов при маленьком разрешении
+@media (max-width: 479px) {
+	.search-result__header { display: none;}
+}
+
 .search-result{
 	.search-result__header {
 		background-color: #c5f7bb;
