@@ -1,7 +1,7 @@
 import './styles/style.scss';
 
-
 import React, {Component} from "react";
+import ReactDOM from 'react-dom';
 import DialogCallback from "../../components/DialogCallback";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -15,11 +15,20 @@ export default class SearchResult extends Component {
 
     }
 
-    renderContentOriginal(props) {
-        let originalProducts = props.data.map((item, index) => {
-            if (item.group == 'Original') {
+    renderContent(props, typeProduct, title) {
+
+        const content = [
+            <div key = {0}
+                 className="search-result__title"
+                ref={(c) => this.title = c}>
+                {title}
+            </div>
+        ];
+
+        const products = props.data.map((item, index) => {
+            if (item.group == typeProduct) {
                 return (
-                    <div className="content-grid mdl-grid" key={index}>
+                    <div className="search-result__content mdl-grid" key={index + 1}>
                         <div className="mdl-cell mdl-cell--3-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
                             {item.manufacturer} {item.articul}
                         </div>
@@ -42,7 +51,34 @@ export default class SearchResult extends Component {
                 );
             }
         });
-        return originalProducts;
+
+        return <div className="search-result__container-item">{content.concat(products)}</div>;
+    }
+
+    componentDidMount() {
+
+
+
+        let title = $('.search-result__title');
+        console.log('title = ',$(window));
+        title.each((index, value) => {
+            let top = $(value).offset().top;
+            $('main').on('scroll', function(event){
+                // берем координаты окна, решаем, нужно ли отображать/скрывать
+                // анимируем позиционирование отображения (или скрываем)
+
+
+                console.log('scrollTop = ',$('main').scrollTop());
+            });
+            console.log('top = ',top);
+        });
+
+
+
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     render() {
@@ -52,7 +88,7 @@ export default class SearchResult extends Component {
         };
         return(
             <MuiThemeProvider>
-                <div className="search-result">
+                <div className="search-result" >
                         <Paper style={style} zDepth={1} >
                             <div className="search-result__header">
                                 <div className="content-grid mdl-grid">
@@ -65,8 +101,21 @@ export default class SearchResult extends Component {
                                 </div>
                             </div>
                             <div className="search-result__container">
-                                <div>ПРЕДЛОЖЕНИЯ ПО ОРИГИНАЛЬНЫМ ПРОИЗВОДИТЕЛЯМ</div>
-                                {this.renderContentOriginal(this.props)}
+                                {this.renderContent(
+                                    this.props,
+                                    'Original',
+                                    'ПРЕДЛОЖЕНИЯ ПО ОРИГИНАЛЬНЫМ ПРОИЗВОДИТЕЛЯМ'
+                                )}
+                                {this.renderContent(
+                                    this.props,
+                                    'ReplacementOriginal',
+                                    'ПРЕДЛОЖЕНИЯ ПО ОРИГИНАЛЬНЫМ ЗАМЕНАМ'
+                                )}
+                                {this.renderContent(
+                                    this.props,
+                                    'ReplacementNonOriginal',
+                                    'ПРЕДЛОЖЕНИЯ ПО НЕОРИГИНАЛЬНЫМ ЗАМЕНАМ'
+                                )}
                             </div>
                         </Paper>
                 </div>

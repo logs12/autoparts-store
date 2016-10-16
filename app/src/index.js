@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory} from 'react-router';
 import { routes } from './routes';
-import Home from './pages/Home';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './store/configureStore';
