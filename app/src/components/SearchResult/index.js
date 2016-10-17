@@ -61,17 +61,31 @@ export default class SearchResult extends Component {
 
         let title = $('.search-result__title');
         console.log('title = ',$(window));
+        let top = [];
         title.each((index, value) => {
-            let top = $(value).offset().top;
-            $('main').on('scroll', function(event){
-                // берем координаты окна, решаем, нужно ли отображать/скрывать
-                // анимируем позиционирование отображения (или скрываем)
-
-
-                console.log('scrollTop = ',$('main').scrollTop());
+            top.push({
+                element: value,
+                top: $(value).offset().top
             });
-            console.log('top = ',top);
         });
+
+        console.log('top = ',top);
+        $('main').on('scroll', function(event){
+            // берем координаты окна, решаем, нужно ли отображать/скрывать
+            // анимируем позиционирование отображения (или скрываем)
+            top.forEach((titleElement, i, titleArr) => {
+
+                if ($('main').scrollTop() > titleElement.top) {
+                    console.log($('main').scrollTop() , ' = ',titleElement.top);
+                    $(titleElement.element).addClass('search-result__title--fixed');
+                } else if ($('main').scrollTop() > titleElement.top){
+                    $(titleElement.element).removeClass('search-result__title--fixed');
+                }
+            });
+
+            console.log('scrollTop = ',$('main').scrollTop());
+        });
+
 
 
 
