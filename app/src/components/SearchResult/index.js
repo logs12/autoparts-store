@@ -57,10 +57,7 @@ export default class SearchResult extends Component {
 
     componentDidMount() {
 
-
-
         let title = $('.search-result__title');
-        console.log('title = ',$(window));
         let top = [];
         title.each((index, value) => {
             top.push({
@@ -68,32 +65,19 @@ export default class SearchResult extends Component {
                 top: $(value).offset().top
             });
         });
-
-        console.log('top = ',top);
         $('main').on('scroll', function(event){
-            // берем координаты окна, решаем, нужно ли отображать/скрывать
-            // анимируем позиционирование отображения (или скрываем)
-            top.forEach((titleElement, i, titleArr) => {
-
+            top.forEach((titleElement) => {
                 if ($('main').scrollTop() > titleElement.top) {
-                    console.log($('main').scrollTop() , ' = ',titleElement.top);
+                    $('.search-result__title').removeClass('search-result__title--fixed');
                     $(titleElement.element).addClass('search-result__title--fixed');
-                } else if ($('main').scrollTop() > titleElement.top){
+                } else if ($('main').scrollTop() < titleElement.top){
                     $(titleElement.element).removeClass('search-result__title--fixed');
                 }
             });
-
-            console.log('scrollTop = ',$('main').scrollTop());
         });
-
-
-
-
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
+    fixed
 
     render() {
         const style = {

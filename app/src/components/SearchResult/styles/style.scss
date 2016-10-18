@@ -31,9 +31,17 @@
 	}
 }
 
+.search-result__title{
+	padding: 10px 0;
+	background-color: #B0F7CF;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .search-result__title--fixed{
 	position: fixed;
 	top: 64px;
+	width:100%;
+	z-index: 1;
 }
 
 

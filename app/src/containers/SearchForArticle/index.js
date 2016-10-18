@@ -204,6 +204,104 @@ export class SearchForArticle extends Component {
                     term: "8",
                     web_service: "ПартКом"
                 },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+
+            {
+                articul: "OP570",
+                group: "ReplacementOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
                 {
                     articul: "OP570",
                     group: "ReplacementOriginal",
@@ -257,6 +355,58 @@ export class SearchForArticle extends Component {
                     term: "8",
                     web_service: "ПартКом"
                 },
+            {
+                articul: "OP570",
+                group: "ReplacementNonOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "ReplacementNonOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "ReplacementNonOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
+            {
+                articul: "OP570",
+                group: "ReplacementNonOriginal",
+                groupMatching: "1",
+                manufacturer: "AL-CO",
+                name: "OP570",
+                num: "2",
+                price: "156",
+                provider_id: "1429",
+                provider_name: "МСК склад",
+                term: "8",
+                web_service: "ПартКом"
+            },
             
             ];
 
