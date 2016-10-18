@@ -19,7 +19,6 @@ export function getProducts(articul) {
                     url: `api/web-service/get-items`,
                     data: {articul: articul},
                     success: (result) => {
-                        console.log('result = ',result);
                         resolve({products:result});
                     },
                     error: (errorMessage) => {

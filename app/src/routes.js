@@ -11,12 +11,12 @@ import Test from './pages/Test';
 import NotFound from './components/NotFound';
 
 export const routes = (
-    <div>
+    <Route>
         <Route path='/' component={MainLayout}>
             <IndexRoute component={Home}/>
             <Route path="test" component={Test}/>
         </Route>
 
         <Route path='*' component={NotFound}/>
-    </div>
+    </Route>
 );

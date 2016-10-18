@@ -8,7 +8,6 @@ import SearchForArticle from '../../containers/SearchForArticle';
 export default class Home extends Component{
 
     render()  {
-
         return (
             <div id="home" >
                 <SearchForArticle />

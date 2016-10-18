@@ -1,0 +1,47 @@
+@import '../../../../general-styles/_mixin.scss';
+
+@mixin search-result__grid() {
+	align-items:center;
+	justify-content:center;
+	word-break: break-all;
+	text-align: center;
+}
+
+// Прячем шабку таблицы результатов при маленьком разрешении
+@media (max-width: 479px) {
+	.search-result__header { display: none;}
+}
+
+.search-result{
+	.search-result__header {
+		background-color: #c5f7bb;
+		.mdl-grid {
+			@include search-result__grid();
+		}
+	}
+	
+	.search-result__container {
+		.mdl-grid {
+			@include search-result__grid();
+			border-top: 1px solid rgba(0,0,0,.1);
+			&:hover {
+				background-color: #D3F7DC;
+			}
+		}
+	}
+}
+
+.search-result__title{
+	padding: 10px 0;
+	background-color: #B0F7CF;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-result__title--fixed{
+	position: fixed;
+	top: 64px;
+	width:100%;
+	z-index: 1;
+}
+
+
