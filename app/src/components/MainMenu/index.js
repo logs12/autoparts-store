@@ -21,6 +21,14 @@ export default class MainMenu extends Component {
                 url: '/test',
                 title: 'Тест'
             },
+            {
+                url: '/test',
+                title: 'Регистрация'
+            },
+            {
+                url: '/test',
+                title: 'Войти'
+            },
         ]
     }
 
