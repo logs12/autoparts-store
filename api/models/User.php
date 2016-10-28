@@ -2,103 +2,76 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property integer $id
+ * @property string $first_name
+ * @property string $second_name
+ * @property string $third_name
+ * @property string $email
+ * @property integer $file_id
+ * @property string $phone
+ * @property string $password_hash
+ * @property string $access_token
+ * @property integer $status_id
+ * @property string $created
+ * @property string $updated
+ * @property string $deleted
+ * @property string $role
+ */
+class User extends \yii\db\ActiveRecord
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public static function tableName()
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return 'user';
     }
 
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+    public function rules()
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return [
+            [['first_name', 'email', 'password_hash', 'status_id'], 'required'],
+            [['file_id', 'status_id'], 'integer'],
+            [['created', 'updated', 'deleted'], 'safe'],
+            [['first_name', 'second_name', 'third_name'], 'string', 'max' => 150],
+            [['email'], 'string', 'max' => 255],
+            [['phone'], 'string', 'max' => 25],
+            [['password_hash'], 'string', 'max' => 60],
+            [['access_token'], 'string', 'max' => 32],
+            [['role'], 'string', 'max' => 64],
+            [['file_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['file_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
+        ];
     }
 
     /**
      * @inheritdoc
      */
-    public function getId()
+    public function attributeLabels()
     {
-        return $this->id;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+        return [
+            'id' => 'ID',
+            'first_name' => 'First Name',
+            'second_name' => 'Second Name',
+            'third_name' => 'Third Name',
+            'email' => 'Email',
+            'file_id' => 'File ID',
+            'phone' => 'Phone',
+            'password_hash' => 'Password Hash',
+            'access_token' => 'Access Token',
+            'status_id' => 'Status ID',
+            'created' => 'Created',
+            'updated' => 'Updated',
+            'deleted' => 'Deleted',
+            'role' => 'Role',
+        ];
     }
 }

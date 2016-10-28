@@ -25,7 +25,7 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'app\components\rbac\AuthManager',
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
