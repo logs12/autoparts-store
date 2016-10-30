@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vasiliy
- * Date: 25.10.2016
- * Time: 23:08
- */
-
 namespace app\components\rbac;
 
 use app\models\User;

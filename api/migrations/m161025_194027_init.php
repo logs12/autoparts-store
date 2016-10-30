@@ -30,9 +30,9 @@ class m161025_194027_init extends Migration
                             'name' => $this->string(255)->notNull()->comment('Название файла в нашей файловой системе'),
                             'filename' => $this->string(255)->notNull()->comment('Оригинальное название файла'),
                             'extension' => $this->string(10)->notNull()->comment('Расширение файла'),
-                            'created' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP COMMENT "Дата добавления записи"',
-                            'updated' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Дата изменения записи"',
-                            'deleted' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "Дата удаления записи"',
+                            'created' => $this->integer(11)->comment('Дата добавления записи'),
+                            'updated' => $this->integer(11)->comment('Дата изменения записи'),
+                            'deleted' => $this->integer(11)->comment('Дата удаления записи'),
                         ], $this->getTableOptions('Файлы'));
                     },
                     'down' => function () {
@@ -53,9 +53,9 @@ class m161025_194027_init extends Migration
                             'password_hash' => $this->string(60)->notNull()->comment('Хэш пароля'),
                             'access_token' => $this->string(32)->comment('Токен досутпа к API'),
                             'status_id' => $this->integer()->unsigned()->notNull()->comment('Идентификатор статуса'),
-                            'created' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP COMMENT "Дата добавления записи"',
-                            'updated' => Schema::TYPE_TIMESTAMP . ' DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Дата изменения записи"',
-                            'deleted' => Schema::TYPE_TIMESTAMP . ' NULL COMMENT "Дата удаления записи"',
+                            'created' => $this->integer(11)->comment('Дата добавления записи'),
+                            'updated' => $this->integer(11)->comment('Дата изменения записи'),
+                            'deleted' => $this->integer(11)->comment('Дата удаления записи'),
                             'CONSTRAINT user_2_status FOREIGN KEY (status_id) REFERENCES status (id) ON DELETE CASCADE ON UPDATE CASCADE',
                             'CONSTRAINT user_2_file FOREIGN KEY (file_id) REFERENCES file (id) ON DELETE CASCADE ON UPDATE CASCADE',
                         ], $this->getTableOptions('Пользователи'));
@@ -64,7 +64,7 @@ class m161025_194027_init extends Migration
                         $this->dropTable('{{%user}}');
                     },
                     'transactional' => false,
-            ],
+                ]
         ];
     }
 }
