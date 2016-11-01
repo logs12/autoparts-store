@@ -2,6 +2,7 @@
 
 use app\models\WebService;
 use app\components\Migration;
+use app\models\User;
 
 class m160912_192623_seed_init extends Migration
 {
@@ -40,10 +41,21 @@ class m160912_192623_seed_init extends Migration
                     $brand1->saveOrError();
                     $brand2->saveOrError();
                     $brand3->saveOrError();
+
+                    $user = new User([
+                        'first_name' => 'www',
+                        'second_name' => 'Фамилия #',
+                        'third_name' => 'Отчество #',
+                        'email' => 'user-1@mail.ru',
+                        'phone' => '909123',
+                        'password' => '12345',
+                    ]);
+                    $user->saveOrError();
                 },
                 'down' => function () {
                     $webServiceName = ['PartKom'];
                     WebService::deleteAll(['name' => $webServiceName]);
+                    User::deleteAll();
                 },
                 'transactional' => true,
             ]

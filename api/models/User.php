@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\BaseActiveRecord;
 use Yii;
 
 /**
@@ -22,7 +23,7 @@ use Yii;
  * @property string $deleted
  * @property string $role
  */
-class User extends \yii\db\ActiveRecord
+class User extends BaseActiveRecord
 {
     /**
      * @inheritdoc
