@@ -4,7 +4,7 @@ use app\models\WebService;
 use app\components\Migration;
 use app\models\User;
 
-class m160912_192623_seed_init extends Migration
+class m161912_192623_seed_init extends Migration
 {
     public function init()
     {
@@ -53,8 +53,8 @@ class m160912_192623_seed_init extends Migration
                     $user->saveOrError();
                 },
                 'down' => function () {
-                    $webServiceName = ['PartKom'];
-                    WebService::deleteAll(['name' => $webServiceName]);
+                    //$webServiceName = ['PartKom'];
+                    //WebService::deleteAll(['name' => $webServiceName]);
                     User::deleteAll();
                 },
                 'transactional' => true,

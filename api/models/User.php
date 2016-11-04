@@ -3,7 +3,11 @@
 namespace app\models;
 
 use app\components\BaseActiveRecord;
+use app\components\validators\Phone;
 use Yii;
+use app\components\services\Cache;
+use yii\base\UserException;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "user".
@@ -25,12 +29,28 @@ use Yii;
  */
 class User extends BaseActiveRecord
 {
+    public $password;
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'user';
+        return '{{%user}}';
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($this->password) {
+//            $this->password_hash = '$2y$13$JXd1YdAt6rSKMImKgQmiCedLgrQWvjYwfR24KgjeOrRYN0EBKyqTW'; // ТОЛЬКО ПРИ РАЗРАБОТКЕ: для ускорения миграций. Пароль - 12345.
+            $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);
+        }
+
+        if ($this->isNewRecord) {
+            $this->access_token = Yii::$app->security->generateRandomString(19) . uniqid();
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -39,17 +59,42 @@ class User extends BaseActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'email', 'password_hash', 'status_id'], 'required'],
-            [['file_id', 'status_id'], 'integer'],
-            [['created', 'updated', 'deleted'], 'safe'],
-            [['first_name', 'second_name', 'third_name'], 'string', 'max' => 150],
-            [['email'], 'string', 'max' => 255],
-            [['phone'], 'string', 'max' => 25],
-            [['password_hash'], 'string', 'max' => 60],
-            [['access_token'], 'string', 'max' => 32],
-            [['role'], 'string', 'max' => 64],
-            [['file_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['file_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
+            ['first_name', 'trim'],
+            ['first_name', 'required'],
+            ['first_name', 'string', 'max' => 150,],
+            ['first_name', 'trim'],
+
+            ['second_name', 'trim'],
+            ['second_name', 'required'],
+            ['second_name', 'string', 'max' => 150,],
+            ['second_name', 'trim'],
+            ['second_name', 'default', 'value' => null],
+
+            ['third_name', 'trim'],
+            ['third_name', 'string', 'max' => 150,],
+            ['third_name', 'trim'],
+            ['third_name', 'default', 'value' => null],
+
+            ['phone', Phone::className()],
+            ['phone', 'unique'],
+
+            ['email', 'required'],
+            ['email', 'string', 'max' => 255,],
+            ['email', 'email',],
+            ['email', 'trim'],
+            ['email', 'default', 'value' => null],
+
+            ['password', 'required', 'when' => function ($model){
+                return $model->isNewRecord;
+            }],
+            ['password', 'string', 'min' => 5, 'max' => 25],
+
+            ['file_id', 'integer'],
+            ['file_id', 'exist', 'targetClass' => File::className(), 'targetAttribute' => 'id'],
+
+            ['status_id', 'integer'],
+            ['status_id', 'default', 'value' => Cache::getStatusByName(static::STATUS_ACTIVE)->id],
+            ['status_id', 'exist', 'targetClass' => Status::className(), 'targetAttribute' => 'id'],
         ];
     }
 
@@ -59,20 +104,72 @@ class User extends BaseActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'first_name' => 'First Name',
-            'second_name' => 'Second Name',
-            'third_name' => 'Third Name',
-            'email' => 'Email',
-            'file_id' => 'File ID',
-            'phone' => 'Phone',
-            'password_hash' => 'Password Hash',
-            'access_token' => 'Access Token',
-            'status_id' => 'Status ID',
-            'created' => 'Created',
-            'updated' => 'Updated',
-            'deleted' => 'Deleted',
-            'role' => 'Role',
+            'first_name' => 'Имя',
+            'second_name' => 'Фамилия',
+            'third_name' => 'Отчество',
+            'phone' => 'Телефон',
+            'email' => 'Почта',
+            'password' => 'Пароль',
+            'file_id' => 'Фотография',
+            'status_id' => 'Статус',
         ];
     }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
+    public static function findIdentity($id)
+    {
+        return (new ActiveQuery(get_called_class()))
+            ->where([static::field('id') => $id])
+            ->innerJoin(
+                Status::tableName(),
+                static::field('status_id') . ' = ' . Status::field('id') . ' AND ' . Status::field('name') . ' = :name',
+                [':name' => Status::STATUS_ACTIVE]
+            )
+            ->one();
+    }
+
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getAuthKey()
+    {
+        throw new UserException('Системная ошибка');
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        throw new UserException('Системная ошибка');
+    }
+
+/*    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        $user = static::find()
+            ->where([static::field('access_token') => $token])
+            ->innerJoin(Contractor::tableName(), Contractor::field('user_id') . '=' . static::field('id'))
+            ->one();
+        return $user;
+    }*/
+
+    public static function findByEmail($email)
+    {
+        /** @var User $user */
+        $user = (new ActiveQuery(get_called_class()))
+            ->where(['email' => $email])
+            ->innerJoin(
+                Status::tableName(),
+                User::field('status_id') . ' = ' . Status::field('id') . ' AND ' . Status::field('name') . ' = :name',
+                [':name' => Status::STATUS_ACTIVE]
+            )
+            ->one();
+
+        return $user;
+    }
+
+
 }

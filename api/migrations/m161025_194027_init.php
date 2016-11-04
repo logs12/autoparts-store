@@ -79,7 +79,21 @@ class m161025_194027_init extends Migration
                     $this->dropTable('{{%web_service}}');
                 },
                 'transactional' => true,
-            ]
+            ],
+            [
+                'up' => function () {
+                    $this->createTable('type', [
+                        'id' => $this->primaryKey()->unsigned()->comment('Идентификатор записи'),
+                        'title' => $this->string(255)->notNull()->comment('Название'),
+                        'name' => $this->string(255)->notNull()->comment('Системное название'),
+                        'UNIQUE KEY `type-name--unique` (`name`)',
+                    ], $this->getTableOptions('Все типы системы'));
+                },
+                'down' => function () {
+                    $this->dropTable('type');
+                },
+                'transactional' => false,
+            ],
         ];
     }
 }
