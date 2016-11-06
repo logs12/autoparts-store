@@ -10,7 +10,10 @@ $config = [
     'controllerNamespace' => 'app\commands',
     'components' => [
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'app\components\rbac\AuthManager',
+            'itemFile' => '@app/components/rbac/items.php', //Default path to items.php | NEW CONFIGURATIONS
+            'assignmentFile' => '@app/components/rbac/assignments.php', //Default path to assignments.php | NEW CONFIGURATIONS
+            'ruleFile' => '@app/components/rbac/rules.php', //Default path to rules.php | NEW CONFIGURATIONS
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

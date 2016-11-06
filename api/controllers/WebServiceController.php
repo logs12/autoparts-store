@@ -3,7 +3,7 @@ namespace app\controllers;
 
 use app\components\controllers\BaseActiveController;
 use app\components\XmlService;
-use app\models\WebServiceSearch;
+use app\models\search\WebService as WebServiceSearch;
 use yii\base\UserException;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;

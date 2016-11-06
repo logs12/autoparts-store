@@ -4,7 +4,7 @@ namespace app\commands;
 use Yii;
 use yii\console\Controller;
 
-class RbacController
+class RbacController extends Controller
 {
     public function actionInit()
     {
@@ -17,7 +17,7 @@ class RbacController
 
         $admin = $auth->createRole('admin');
         $admin->description = 'Admin';
-        $admin->add($admin);
+        $auth->add($admin);
 
         $auth->addChild($admin, $user);
 

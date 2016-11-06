@@ -20,12 +20,19 @@ $db = file_exists(__DIR__ . '/db.local.php')
 
 $config = [
     'id' => 'autoparts-store',
-    'language' => 'ru',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\modules\user\Bootstrap',
+    ],
     'components' => [
         'authManager' => [
             'class' => 'app\components\rbac\AuthManager',
+        ],
+        'user' => [
+            'identityClass' => 'app\modules\user\models\User',
+            'enableAutoLogin' => true,
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -42,10 +49,6 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -72,6 +75,12 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/rules.php')
         ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => 'app\modules\user\Module',
+            'controllerNamespace' => 'app\modules\user\controllers',
+        ]
     ],
     'params' => $params,
 ];

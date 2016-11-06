@@ -1,7 +1,4 @@
 <?php
-$_SERVER['REQUEST_URI'] = str_replace('api/', '', $_SERVER['REQUEST_URI']);
-//если apache
-$_SERVER['SCRIPT_NAME'] = str_replace('/api/web', '', $_SERVER['SCRIPT_NAME']);
 
 /*
  * Установка среды выполнения. Допустимые значения среды:

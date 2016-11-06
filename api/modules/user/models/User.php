@@ -1,13 +1,18 @@
 <?php
 
-namespace app\models;
+namespace app\modules\user\models;
 
 use app\components\BaseActiveRecord;
 use app\components\validators\Phone;
+use app\models\File;
+use app\models\Status;
+use app\components\services\User as UserService;
 use Yii;
 use app\components\services\Cache;
 use yii\base\UserException;
 use yii\db\ActiveQuery;
+use app\modules\user\Module;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -27,8 +32,10 @@ use yii\db\ActiveQuery;
  * @property string $deleted
  * @property string $role
  */
-class User extends BaseActiveRecord
+class User extends BaseActiveRecord implements IdentityInterface
 {
+    const FIELDS_USER_PERMISSIONS = 'FIELDS_USER_PERMISSIONS';
+
     public $password;
 
     /**
@@ -95,6 +102,8 @@ class User extends BaseActiveRecord
             ['status_id', 'integer'],
             ['status_id', 'default', 'value' => Cache::getStatusByName(static::STATUS_ACTIVE)->id],
             ['status_id', 'exist', 'targetClass' => Status::className(), 'targetAttribute' => 'id'],
+
+            ['role', 'string', 'max' => 64],
         ];
     }
 
@@ -112,6 +121,7 @@ class User extends BaseActiveRecord
             'password' => 'Пароль',
             'file_id' => 'Фотография',
             'status_id' => 'Статус',
+            'role' => Module::t('module', 'USER_ROLE')
         ];
     }
 
@@ -147,14 +157,14 @@ class User extends BaseActiveRecord
         throw new UserException('Системная ошибка');
     }
 
-/*    public static function findIdentityByAccessToken($token, $type = null)
+    public static function findIdentityByAccessToken($token, $type = null)
     {
         $user = static::find()
             ->where([static::field('access_token') => $token])
-            ->innerJoin(Contractor::tableName(), Contractor::field('user_id') . '=' . static::field('id'))
+            //->innerJoin(Contractor::tableName(), Contractor::field('user_id') . '=' . static::field('id'))
             ->one();
         return $user;
-    }*/
+    }
 
     public static function findByEmail($email)
     {
@@ -171,5 +181,18 @@ class User extends BaseActiveRecord
         return $user;
     }
 
+    public function getFio($withThirdName = false)
+    {
+        return UserService::getFio($this, $withThirdName);
+    }
 
+    public function getStatus()
+    {
+        return $this->hasOne(Status::className(), ['id' => 'status_id']);
+    }
+
+    public function getFile()
+    {
+        return $this->hasOne(File::className(), ['id' => 'file_id']);
+    }
 }
