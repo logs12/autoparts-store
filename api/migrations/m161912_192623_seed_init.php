@@ -2,7 +2,7 @@
 
 use app\models\WebService;
 use app\components\Migration;
-use app\models\User;
+use app\modules\user\models\User;
 use app\models\Status;
 
 class m161912_192623_seed_init extends Migration

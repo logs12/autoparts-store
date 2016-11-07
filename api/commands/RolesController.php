@@ -4,7 +4,7 @@ namespace app\commands;
 use Yii;
 use yii\console\Controller;
 use yii\console\Exception;
-use app\models\User;
+use app\modules\user\models\User;
 use yii\helpers\ArrayHelper;
 
 class RolesController extends Controller

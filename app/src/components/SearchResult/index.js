@@ -45,7 +45,7 @@ export default class SearchResult extends Component {
                             {item.price} руб.
                         </div>
                         <div className="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
-                            <DialogCallback />
+                            <DialogCallback  />
                         </div>
                     </div>
                 );

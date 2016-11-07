@@ -1,7 +1,7 @@
 <?php
 namespace app\components\rbac;
 
-use app\models\User;
+use app\modules\user\models\User;
 use yii\rbac\Assignment;
 use yii\rbac\PhpManager;
 use Yii;
