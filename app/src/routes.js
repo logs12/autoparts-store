@@ -3,12 +3,12 @@ import { Route, IndexRoute } from 'react-router';
 import { render } from 'react-dom';
 
 // Layouts
-import  MainLayout  from './layouts/main';
+import  MainLayout  from './frontend/layouts/main';
 
 // Components
-import Home from './pages/Home';
-import Test from './pages/Test';
-import NotFound from './components/NotFound';
+import Home from './frontend/pages/Home';
+import Test from './frontend/pages/Test';
+import NotFound from './frontend/components/NotFound';
 
 export const routes = (
     <Route>

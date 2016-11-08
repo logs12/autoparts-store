@@ -2,7 +2,7 @@ import { browserHistory } from 'react-router';
 
 import {
     ROUTING
-} from '../constants/Routing';
+} from '../frontend/constants/Routing';
 
 export const redirect = store => next => action => {
     if (action.type === ROUTING) {

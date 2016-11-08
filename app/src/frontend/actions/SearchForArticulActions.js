@@ -2,7 +2,7 @@ import {
     GET_PRODUCTS_REQUEST,
     GET_PRODUCTS_SUCCESS,
     GET_PRODUCTS_FAILURE
-} from '../constants/SearchForArticul';
+} from '../../frontend/constants/SearchForArticul';
 //import Promise from 'bluebird';
 
 export function getProducts(articul) {

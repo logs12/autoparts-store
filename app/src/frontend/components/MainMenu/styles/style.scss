@@ -1,0 +1,11 @@
+@import 'reset';
+@import 'variables';
+
+// Component skeleton
+.main-menu {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    background-color: $navbar-background;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}

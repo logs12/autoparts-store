@@ -2,7 +2,7 @@ import './styles/style.scss';
 
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
-import DialogCallback from "../../components/DialogCallback";
+import DialogCallback from "..//DialogCallback";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Paper from 'material-ui/Paper';

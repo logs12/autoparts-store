@@ -5,6 +5,7 @@
 .area {
 	// Объявляем этот блок flex-контейнером
 	display: flex;
+	justify-content: space-between;
 	// Центрируем
 	margin-right: auto;
 	margin-left: auto;
@@ -12,7 +13,7 @@
 	flex-flow: row wrap; // строка многострочный
 	// Расположение элементов относительно поперечной оси на строке
 	align-items: stretch; // растягиваются
-	
+
 	// Медиавыражения для типовых размеров экранов
 	@media (min-width: 768px) { width: 750px; }
 	@media (min-width: 992px) { width: 970px; }
@@ -20,19 +21,9 @@
 }
 
 
-
-// Component skeleton
-.navbar-component {
-	background-color: $navbar-background;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
-	
-	& > .navbar {
-		justify-content: space-between;
-	}
-}
-
 // Component
 .navbar {
+
 	// Brand
 	li {
 		list-style: none;
