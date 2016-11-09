@@ -19,25 +19,32 @@ export default class FlexMenu extends Component {
 
     render() {
         return (
-            <div className="navbar area">
-                {/* Класс `area` — это простой контейнер*/}
+            <div className="flex-menu">
                 {/* Логотип */}
-                <li><NavLink to={this.brand['url']} className="brand">{this.brand.title}</NavLink></li>
+                <li className="flex-menu__li">
+                    <NavLink
+                        to={this.brand['url']}
+                        className="flex-menu__a flex-menu__a--brand">
+                        {this.brand.title}
+                    </NavLink>
+                </li>
                 {/* Кнопка для мобильных */}
-                <button data-collapse data-target="#navigation" className="toggle">
+                <button data-collapse data-target="#navigation" className="flex-menu__button">
                     {/* Здесь будет иконка гамбургера */}
                     <span className="icon"></span>
                 </button>
                 {/* Список ссылок */}
-                <nav role="navigation" id="navigation" className="list">
+                <nav role="navigation" id="navigation" className="flex-menu__nav">
                     {this.links.map((link, index) => {
                         return (
-                            <NavLink key={index}
-                                onlyActiveOnIndex={true}
-                                to={link.url}
-                                className="item -link">
-                                {link.title}
-                            </NavLink>
+                            <li className="flex-menu__li">
+                                <NavLink key={index}
+                                    onlyActiveOnIndex={true}
+                                    to={link.url}
+                                    className="flex-menu__a flex-menu__a--link">
+                                    {link.title}
+                                </NavLink>
+                            </li>
                         )
                     })}
                 </nav>

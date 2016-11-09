@@ -39,10 +39,6 @@ export default class MainMenu extends Component {
                 url: '/test',
                 title: 'Тест'
             },
-            {
-                url: '/test',
-                title: 'Тест'
-            },
 
         ];
 
@@ -67,25 +63,28 @@ export default class MainMenu extends Component {
                     <FlexMenu brand = {this.brand} links = {this.links}/>
 
                     <nav className="authentication">
-                        <NavLink onlyActiveOnIndex={true}
-                                 to="#"
-                                 className="item -link">
-                            Регистрация
-                        </NavLink>
-                        <NavLink onlyActiveOnIndex={true}
-                                 to="#"
-                                 onClick={this.handleOpen}
-                                 className="item -link">
-                            <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>Вход
-                        </NavLink>
+                        <li className="main-menu__li">
+                            <NavLink onlyActiveOnIndex={true}
+                                     to="#"
+                                     className="item -link">
+                                <i className="fa fa-pencil fa-2x" aria-hidden="true"></i>Регистрация
+                            </NavLink>
+                        </li>
+                        <li className="main-menu__li">
+                            <NavLink onlyActiveOnIndex={true}
+                                     to="#"
+                                     onClick={this.handleOpen}
+                                     className="item -link">
+                                <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>Вход
+                            </NavLink>
+                        </li>
                         <Dialog
                             title="Вход"
                             //actions={actions}
                             modal={false}
                             open={this.state.open}
-                            onRequestClose={this.handleClose}
-                        >
-                            Личный кабинет
+                            onRequestClose={this.handleClose}>
+                                Личный кабинет
                         </Dialog>
                     </nav>
                 </div>

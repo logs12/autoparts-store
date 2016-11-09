@@ -1,8 +1,9 @@
 @import '_reset';
 @import '_variables';
 
-// Сетка
-.area {
+
+// Component
+.flex-menu {
 	// Объявляем этот блок flex-контейнером
 	display: flex;
 	justify-content: space-between;
@@ -14,30 +15,20 @@
 	// Расположение элементов относительно поперечной оси на строке
 	align-items: stretch; // растягиваются
 
-	// Медиавыражения для типовых размеров экранов
-	@media (min-width: 768px) { width: 750px; }
-	@media (min-width: 992px) { width: 970px; }
-	@media (min-width: 1200px) { width: 100%; }
-}
-
-
-// Component
-.navbar {
 
 	// Brand
-	li {
+	.flex-menu__li {
 		list-style: none;
-		.brand {
-			
-			display: block;
-			font-size: 16px;
-			color: #777;
-			margin: round(($navbar-height - 20) / 2);
-		}
 	}
-	
+	.flex-menu__a--brand {
+		display: block;
+		font-size: 16px !important;
+		color: #777;
+		margin: round(($navbar-height - 20) / 2);
+	}
+
 	// Toggle button
-	& > .toggle {
+	.flex-menu__button {
 		border: 0;
 		background-color: transparent;
 		outline: none;
@@ -56,8 +47,8 @@
 			display: none;
 		}
 	}
-	
-	& > .toggle > .icon {
+
+	.flex-menu__button > .icon {
 		position: relative;
 		margin-top: 8px;
 		margin-bottom: 8px;
@@ -76,8 +67,8 @@
 		&:before { top: -8px; }
 		&:after { top: 8px; }
 	}
-	
-	& > .toggle.-active > .icon {
+
+	.flex-menu__button .-active > .icon {
 		background-color: transparent;
 		
 		&:before { transform: translateY(8px) rotate(45deg); }
@@ -85,7 +76,7 @@
 	}
 	
 	// List of items
-	& > .list {
+	.flex-menu__nav {
 		display: none;
 		flex-flow: row nowrap;
 		align-items: center;
@@ -96,9 +87,9 @@
 		}
 		
 		@media (max-width: $navbar-collapse-breakpoint) {
-			/*position: fixed;
+			position: fixed;
 			top: $navbar-height;
-			left: 0;*/
+			left: 0;
 			width: 100%;
 			overflow-y: hidden;
 			overflow-x: auto;
@@ -110,8 +101,8 @@
 			display: flex;
 		}
 	}
-	
-	& > .list > .item {
+
+	.flex-menu__a {
 		display: block;
 		flex-shrink: 0;
 		height: $navbar-height;
@@ -122,8 +113,8 @@
 		color: $navbar-item-color;
 		font-size: $navbar-item-font-size;
 	}
-	
-	& > .list > .item.-link {
+
+	.flex-menu__a--link {
 		line-height: $navbar-height + $navbar-item-border-width;
 		color: $navbar-item-color;
 		border-bottom: $navbar-item-border-width solid $navbar-item-border;
