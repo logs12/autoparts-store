@@ -39,12 +39,29 @@ export default class MainMenu extends Component {
                 url: '/test',
                 title: 'Тест'
             },
+            {
+                url: '/test',
+                title: 'Тест'
+            },
+            {
+                url: '/test',
+                title: 'Тест'
+            },
+            {
+                url: '/test',
+                title: 'Тест'
+            },
+            {
+                url: '/test',
+                title: 'Тест'
+            },
 
         ];
 
         this.state = {
             open: false
         }
+
 
     }
 
@@ -60,22 +77,35 @@ export default class MainMenu extends Component {
         return (
             <MuiThemeProvider>
                 <div className="main-menu">
-                    <FlexMenu brand = {this.brand} links = {this.links}/>
-
-                    <nav className="authentication">
+                    {/* Логотип */}
+                    <nav>
                         <li className="main-menu__li">
-                            <NavLink onlyActiveOnIndex={true}
-                                     to="#"
-                                     className="item -link">
-                                <i className="fa fa-pencil fa-2x" aria-hidden="true"></i>Регистрация
+                            <NavLink
+                                to={this.brand['url']}
+                                className="main-menu__a main-menu__a--brand">
+                                {this.brand.title}
                             </NavLink>
                         </li>
-                        <li className="main-menu__li">
+                    </nav>
+
+                    <FlexMenu links = {this.links}/>
+
+                    <nav className="authorization">
+                        <li className="authorization__li">
+                            <i className="fa fa-pencil fa-2x" aria-hidden="true"></i>
                             <NavLink onlyActiveOnIndex={true}
                                      to="#"
-                                     onClick={this.handleOpen}
-                                     className="item -link">
-                                <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>Вход
+                                     className="authorization__a">
+                                Регистрация
+                            </NavLink>
+                        </li>
+                        <li className="authorization__li">
+                            <i className="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                            <NavLink onlyActiveOnIndex={true}
+                                     to="#"
+                                     className="authorization__a"
+                                     onClick={this.handleOpen}>
+                                Вход
                             </NavLink>
                         </li>
                         <Dialog

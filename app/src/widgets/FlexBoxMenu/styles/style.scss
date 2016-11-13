@@ -1,0 +1,135 @@
+@import '_reset';
+@import '_variables';
+
+
+// Component
+.flex-menu {
+	// Объявляем этот блок flex-контейнером
+	display: flex;
+	justify-content: space-between;
+	// Центрируем
+	margin-right: auto;
+	margin-left: auto;
+	// Устанавливаем главную ось и многострочность контейнера
+	flex-flow: row wrap; // строка многострочный
+	// Расположение элементов относительно поперечной оси на строке
+	align-items: stretch; // растягиваются
+
+	// Медиавыражения для типовых размеров экранов
+	/*  @media (min-width: 768px) { width: 85%  !important; }
+	  @media (min-width: 992px) { width: 85%  !important; }
+	  @media (min-width: 1200px) { width: 85% !important; }*/
+
+
+
+	// Brand
+	.flex-menu__li {
+		list-style: none;
+	}
+	.flex-menu__a--brand {
+		display: block;
+		font-size: 16px !important;
+		color: #777;
+		margin: round(($navbar-height - 20) / 2);
+	}
+
+	// Toggle button
+	.flex-menu__button {
+		border: 0;
+		background-color: transparent;
+		outline: none;
+		display: inline-block;
+		background-image: none;
+		vertical-align: middle;
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		// Напомню, что 20 — это значение line-height у body
+		padding: round(($navbar-height - 20) / 2);
+		
+		@media (min-width: $navbar-collapse-breakpoint) {
+			display: none;
+		}
+	}
+
+	.flex-menu__button > .icon {
+		position: relative;
+		margin-top: 8px;
+		margin-bottom: 8px;
+		
+		&,
+		&:before,
+		&:after {
+			display: block;
+			width: 24px;
+			height: 3px;
+			transition: background-color 0.3s linear, transform 0.3s linear;
+			background-color: #555555;
+		}
+		
+		&:before, &:after { position: absolute; content: ""; }
+		&:before { top: -8px; }
+		&:after { top: 8px; }
+	}
+
+	.flex-menu__button .-active > .icon {
+		background-color: transparent;
+		
+		&:before { transform: translateY(8px) rotate(45deg); }
+		&:after { transform: translateY(-8px) rotate(-45deg); }
+	}
+	
+	// List of items
+	.flex-menu__nav {
+		display: none;
+		flex-flow: row nowrap;
+		align-items: center;
+		white-space: nowrap;
+		
+		@media (min-width: $navbar-collapse-breakpoint) {
+			display: flex;
+		}
+		
+		@media (max-width: $navbar-collapse-breakpoint) {
+			position: fixed;
+			top: $navbar-height;
+			left: 0;
+			width: 100%;
+			overflow-y: hidden;
+			overflow-x: auto;
+			border-top: 1px solid $navbar-border;
+			background-color: $navbar-background;
+		}
+		
+		&.-on {
+			display: flex;
+		}
+	}
+
+	.flex-menu__a {
+		display: block;
+		flex-shrink: 0;
+		height: $navbar-height;
+		line-height: $navbar-height;
+		padding-left: round(($navbar-height - 20) / 2);
+		padding-right: round(($navbar-height - 20) / 2);
+		text-transform: uppercase;
+		color: $navbar-item-color;
+		font-size: $navbar-item-font-size;
+	}
+
+	.flex-menu__a--link {
+		line-height: $navbar-height + $navbar-item-border-width;
+		color: $navbar-item-color;
+		border-bottom: $navbar-item-border-width solid $navbar-item-border;
+		
+		&.-active,
+		&:hover,
+		&:focus {
+			color: $navbar-item-active-color;
+			border-bottom-color: $navbar-item-active-border;
+		}
+	}
+}

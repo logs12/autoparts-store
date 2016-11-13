@@ -77,8 +77,6 @@ export default class SearchResult extends Component {
         });
     }
 
-    fixed
-
     render() {
         const style = {
             margin: 4,
