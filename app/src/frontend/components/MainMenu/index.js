@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import FlexMenu from '../../../widgets/FlexMenu';
 import NavLink from '../NavLink';
 import Dialog from 'material-ui/Dialog';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import LoginForm from '../LoginForm';
 
 
 export default class MainMenu extends Component {
@@ -75,7 +75,6 @@ export default class MainMenu extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
                 <div className="main-menu">
                     {/* Логотип */}
                     <nav>
@@ -109,16 +108,15 @@ export default class MainMenu extends Component {
                             </NavLink>
                         </li>
                         <Dialog
-                            title="Вход"
+                            title="Вход в личный кабинет"
                             //actions={actions}
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}>
-                                Личный кабинет
+                                <LoginForm />
                         </Dialog>
                     </nav>
                 </div>
-            </MuiThemeProvider>
         )
     }
 }

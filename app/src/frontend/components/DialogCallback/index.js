@@ -43,6 +43,7 @@ export default class DialogCallback extends Component {
         ];
 
         return (
+        <MuiThemeProvider>
             <div>
                 <RaisedButton label="Заказать" onTouchTap={this.handleOpen} />
                 <Dialog
@@ -55,6 +56,7 @@ export default class DialogCallback extends Component {
                     The actions in this window were passed in as an array of React objects.
                 </Dialog>
             </div>
+        </MuiThemeProvider>
         );
     }
 }

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,

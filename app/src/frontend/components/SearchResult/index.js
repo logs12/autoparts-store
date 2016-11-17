@@ -3,7 +3,6 @@ import './styles/style.scss';
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import DialogCallback from "..//DialogCallback";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Paper from 'material-ui/Paper';
 
@@ -83,7 +82,6 @@ export default class SearchResult extends Component {
             textAlign: 'center',
         };
         return(
-            <MuiThemeProvider>
                 <div className="search-result" >
                         <Paper style={style} zDepth={1} >
                             <div className="search-result__header">
@@ -115,7 +113,6 @@ export default class SearchResult extends Component {
                             </div>
                         </Paper>
                 </div>
-            </MuiThemeProvider>
         )
     }
 }
