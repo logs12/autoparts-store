@@ -1,3 +1,5 @@
+import './styles/style.scss';
+
 import React, {Component} from "react";
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -6,18 +8,23 @@ export default class LoginForm extends Component {
 
     render () {
         return (
-            <form >
+            <form className="login-form">
                 <TextField
                     hintText="Логин"
                     floatingLabelText="Логин"
-                    floatingLabelFixed={true}
+                    fullWidth={true}
                 />
                 <TextField
                     hintText="Пароль"
                     floatingLabelText="Пароль"
                     type="password"
+                    fullWidth={true}
                 />
-                <RaisedButton label="Default" />
+                <div className="login-form__button">
+                    <RaisedButton
+                        label="Войти"
+                    />
+                </div>
             </form>
         )
     }

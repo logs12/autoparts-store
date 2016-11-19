@@ -2,16 +2,26 @@ import './styles/style.scss';
 
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
-import DialogCallback from "..//DialogCallback";
-
+import Popup from "../Popup";
+import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
 export default class SearchResult extends Component {
+
+    state = {
+        openPopup: false
+    }
+
     constructor(props) {
         super(props);
         this.props = props;
         console.log('props!!!! = ',this.props);
 
+    }
+
+    handleOpenPopup() {
+        this.setState({openPopup: true});
+        console.log('this.setState.openPopup = ',this.state.openPopup);
     }
 
     renderContent(props, typeProduct, title) {
@@ -44,7 +54,10 @@ export default class SearchResult extends Component {
                             {item.price} руб.
                         </div>
                         <div className="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
-                            <DialogCallback  />
+                            <RaisedButton label="Заказать" onTouchTap={::this.handleOpenPopup} />
+                            <Popup
+                                open = {this.state.openPopup}>
+                            </Popup>
                         </div>
                     </div>
                 );

@@ -3,8 +3,8 @@ import './styles/style.scss';
 import React, { Component } from 'react';
 import FlexMenu from '../../../widgets/FlexMenu';
 import NavLink from '../NavLink';
-import Dialog from 'material-ui/Dialog';
 import LoginForm from '../LoginForm';
+import Popup from "../Popup";
 
 
 export default class MainMenu extends Component {
@@ -61,8 +61,7 @@ export default class MainMenu extends Component {
         this.state = {
             open: false
         }
-
-
+        
     }
 
     handleOpen = () => {
@@ -107,14 +106,14 @@ export default class MainMenu extends Component {
                                 Вход
                             </NavLink>
                         </li>
-                        <Dialog
-                            title="Вход в личный кабинет"
-                            //actions={actions}
+                        <Popup
+                            titleDialog="Вход в личный кабинет"
                             modal={false}
-                            open={this.state.open}
-                            onRequestClose={this.handleClose}>
+                            open={this.handleOpen}
+                            onRequestClose={this.handleClose}
+                            autoScrollBodyContent={true}>
                                 <LoginForm />
-                        </Dialog>
+                        </Popup>
                     </nav>
                 </div>
         )
