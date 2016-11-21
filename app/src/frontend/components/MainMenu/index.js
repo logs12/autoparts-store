@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import FlexMenu from '../../../widgets/FlexMenu';
 import NavLink from '../NavLink';
 import LoginForm from '../LoginForm';
-import Popup from "../Popup";
+import Dialog from 'material-ui/Dialog';
 
 
 export default class MainMenu extends Component {
@@ -106,14 +106,14 @@ export default class MainMenu extends Component {
                                 Вход
                             </NavLink>
                         </li>
-                        <Popup
-                            titleDialog="Вход в личный кабинет"
+                        <Dialog
+                            title="Вход в личный кабинет"
                             modal={false}
-                            open={this.handleOpen}
+                            open={this.state.open}
                             onRequestClose={this.handleClose}
                             autoScrollBodyContent={true}>
                                 <LoginForm />
-                        </Popup>
+                        </Dialog>
                     </nav>
                 </div>
         )

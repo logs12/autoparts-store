@@ -74,11 +74,11 @@ export class SearchForArticle extends Component {
                     web_service: "ПартКом"
                 },
                 {
-                    articul: "OP570",
+                    articul: "OP57011111",
                     group: "Original",
                     groupMatching: "1",
                     manufacturer: "AL-CO",
-                    name: "OP570",
+                    name: "OP57011111",
                     num: "2",
                     price: "156",
                     provider_id: "1429",

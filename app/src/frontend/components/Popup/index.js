@@ -42,12 +42,19 @@ export default class Popup extends Component {
 
     }
 
-    getInitialState () {
+    componentWillMount() {
         this.setState({open: this.props.open});
-        console.log('this.state.open = ',this.state.open);
-        console.log('this.props.open = ',this.props.open);
+        //console.log('this.state.open = ',this.state.open);
+        //console.log('this.props.open = ',this.props.open);
     }
 
+
+    handleOpen() {
+        console.log('this.props.open = ',this.props.open);
+        if(this.props.onOpen)
+            this.props.onOpen();
+        else return false;
+    }
     /**
      * Метод обработчик закрытия popup окна
      */
@@ -57,12 +64,13 @@ export default class Popup extends Component {
 
     render() {
 
+        console.log();
         return (
             <Dialog
                 title={this.props.titleDialog}
                 actions={this.props.actions}
                 modal={this.props.modal}
-                open={this.state.open}
+                open={(this.handleOpen()) ? this.handleOpen : this.state.open}
                 onRequestClose={this.handleClose}>
                     {this.props.children}
             </Dialog>
