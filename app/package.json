@@ -21,7 +21,8 @@
     "react-dom": "*",
     "react-redux": "*",
     "react-router": "*",
-    "react-tap-event-plugin": "*"
+    "react-tap-event-plugin": "*",
+    "redux-form": "^6.2.0"
   },
   "author": "*",
   "license": "*",
