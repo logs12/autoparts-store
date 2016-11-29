@@ -68,6 +68,7 @@ export default class Form extends Component {
     }
 
     render() {
+        debugger;
         return (
             <form>
                 {this.props.children}

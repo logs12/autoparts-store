@@ -1,29 +1,29 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
-import Form from './components/Form';
+import Form from './component';
 import * as actions from './actions';
 
-const SmartForm = connect(state => state, actions)(Form);
 
-const reduxMiddleware = applyMiddleware(thunk, createLogger());
-
-export default props => (
-        <Form {...props}/>
-);
-
-export {default as Text} from './components/Text';
-export {default as SubmitButton} from './components/SubmitButton';
-
-
+debugger;
 const mapStateToProps = (state) => {
     return {
-        pending: state.SearchForArticul.pending,
-        products: state.SearchForArticul.products,
+        values: state.SearchForArticul.products,
         reduxState: state
     }
 };
 
+
+//export default connect(mapStateToProps)(Form);
+
 /**
  * Подключаем выиджет Form к общему Store
  */
-export default connect(mapStateToProps)(Form);
+const SmartForm = connect(state => state, actions)(Form);
+
+export default props => (
+        <SmartForm {...props}/>
+);
+
+export {default as InputText} from '../InputText';
+export {default as SubmitButton} from '../SubmitButton';
+

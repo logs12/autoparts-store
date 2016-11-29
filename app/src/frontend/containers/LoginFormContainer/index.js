@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import Form from "../../../widgets/Form";
-import InputText from "../../../widgets/InputText";
-import SubmitButton from "../../../widgets/SubmitButton";
+import Form, {InputText, SubmitButton} from "../../../widgets/Form/container.js";
 
 import { connect } from 'react-redux';
 import * as AuthActions
