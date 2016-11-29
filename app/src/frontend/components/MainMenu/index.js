@@ -3,7 +3,7 @@ import './styles/style.scss';
 import React, { Component } from 'react';
 import FlexMenu from '../../../widgets/FlexMenu';
 import NavLink from '../NavLink';
-import LoginForm from '../LoginForm';
+import LoginForm from '../../containers/LoginFormContainer';
 import Dialog from 'material-ui/Dialog';
 
 

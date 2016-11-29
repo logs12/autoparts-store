@@ -4,7 +4,7 @@ const initialState = { //define initial state - an empty form
     values: {}
 };
 
-export default (state = initialState, action) => {
+export default function FormReducer(state = initialState, action) {
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 
