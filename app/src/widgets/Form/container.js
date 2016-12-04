@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Form from './component';
 import * as actions from './actions';
 
-
-debugger;
 const mapStateToProps = (state) => {
     return {
         values: state.SearchForArticul.products,
