@@ -29,10 +29,12 @@ export default class InputText extends Component {
      */
     state = {
         errors: []
-    }
+    };
 
     constructor (props) {
         super(props);
+
+        console.log('this.context = ',this.props.name);
     }
 
     /**
@@ -83,16 +85,12 @@ export default class InputText extends Component {
         return (
             <div>
                 <TextField
+                    name={this.props.name}
                     hintText={this.props.placeholder}
                     floatingLabelText={this.props.label}
-                    value={this.context.values[this.props.name]}
+                    value={this.props.value}
                     onChange={this.onChange}
-                    onBlur={this.onBlur}
-                    errorText={this.state.errors.length ? (
-                        <div>
-                            {this.state.errors.map((error, i) => <div key={i}>{error}</div>)}
-                        </div>
-                    ) : null}/>
+                    onBlur={this.onBlur}/>
             </div>
         );
     }

@@ -17,22 +17,17 @@ export class InputText extends Component {
     };
 
     /**
-     * Инициализируем контроль типов контекста
-     * @type {{update: *, values: *, registerValidation: *}}
-     */
-    static contextTypes = {
-        /*update: React.PropTypes.func.isRequired,
-        values: React.PropTypes.object.isRequired,
-        registerValidation: React.PropTypes.func.isRequired*/
-    };
-
-    /**
      * Инициализируем состояния
      * @type {{errors: Array}}
      */
     state = {
         errors: []
     };
+
+    constructor(props) {
+        super(props);
+        this.onChange = this.onChange.bind(this);
+    }
 
     /**
      * Обработчик события измнния input, отправка введеного значения в store
@@ -54,6 +49,7 @@ export class InputText extends Component {
     render () {
         return (
             <InputTextComponent
+                name = {this.props.name}
                 label = {this.props.label}
                 onChange = {this.onChange}
             />
