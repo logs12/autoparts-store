@@ -5,12 +5,12 @@ export default class InputText extends Component {
 
     /**
      * Инициализируем контроль типов свойств
-     * @type {{name: *, placeholder: *, label: *}}
+     * @type {{name: *, placeholder: *, onChange: *}}
      */
     static propTypes = {
         name: React.PropTypes.string.isRequired,
         placeholder: React.PropTypes.string,
-        label: React.PropTypes.string
+        onChange:React.PropTypes.func
     };
 
     render() {
@@ -18,7 +18,7 @@ export default class InputText extends Component {
             <div>
                 <TextField
                     name = {this.props.name}
-                    hintText = {this.props.label}
+                    hintText = {this.props.placeholder}
                     onChange={this.props.onChange}
                 />
             </div>

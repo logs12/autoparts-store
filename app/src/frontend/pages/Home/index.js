@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 
 import Form from '../../../widgets/Form/container';
 import InputText from '../../../widgets/InputText/container';
-import SubmitButton from '../../../widgets/SubmitButton/container';
 
 //components
 import SearchForArticle from '../../containers/SearchForArticle';
@@ -18,13 +17,13 @@ export default class Home extends Component{
                 <Form>
                     <InputText
                         name = 'login'
-                        label = 'Логин'
+                        placeholder = 'Логин'
                     />
                     <InputText
                         name = 'Password'
-                        label = 'Пароль'
+                        placeholder = 'Пароль'
                     />
-                    <SubmitButton />
+                    <input type="submit" />
                 </Form>
 
                 

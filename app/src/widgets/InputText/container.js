@@ -12,8 +12,7 @@ export class InputText extends Component {
      */
     static propTypes = {
         name: React.PropTypes.string.isRequired,
-        placeholder: React.PropTypes.string,
-        label: React.PropTypes.string
+        placeholder: React.PropTypes.string
     };
 
     /**
@@ -50,7 +49,7 @@ export class InputText extends Component {
         return (
             <InputTextComponent
                 name = {this.props.name}
-                label = {this.props.label}
+                placeholder = {this.props.placeholder}
                 onChange = {this.onChange}
             />
         )

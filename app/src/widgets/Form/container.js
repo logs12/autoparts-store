@@ -1,27 +1,44 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import Form from './component';
+import FormComponent from './component';
 import * as actions from './actions';
 
-const mapStateToProps = (state) => {
-    return {
-        values: state.SearchForArticul.products,
-        reduxState: state
+
+export class Form extends Component {
+
+    constructor(props) {
+        super(props)
+        console.log('props = ', props);
+        this.onSubmit = this.onSubmit.bind(this);
     }
-};
 
+    onSubmit(event) {
+       debugger;
+        console.log(this.props);
+        event.preventDefault();
+    }
 
-//export default connect(mapStateToProps)(Form);
+    render () {
+        return (
+            <FormComponent onSubmit={this.onSubmit}>
+                {this.props.children}
+            </FormComponent>
+        )
+    }
+
+}
 
 /**
  * Подключаем выиджет Form к общему Store
  */
-const SmartForm = connect(state => state, actions)(Form);
 
-export default props => (
-        <SmartForm {...props}/>
-);
+const mapStateToProps = (state) => {
+    return {
+        inputTextValue: state.InputTextReducer.value,
+        state
+    }
+};
 
-export {default as InputText} from '../InputText';
-export {default as SubmitButton} from '../SubmitButton';
+const ConnectedForm = connect(mapStateToProps)(Form);
 
+export default ConnectedForm;
