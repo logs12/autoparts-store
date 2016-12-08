@@ -1,10 +1,10 @@
 import * as FORM from './constants';
 
-export function update(name, value) {
+export function update(formName, url) {
     return dispatch => dispatch({
         type: FORM.FORM_UPDATE_VALUE,
-        name,
-        value
+        formName,
+        url
     });
 }
 

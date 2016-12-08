@@ -14,13 +14,15 @@ export default class Home extends Component{
     render()  {
         return (
             <div id="home" >
-                <Form>
+                <Form
+                    formName="login"
+                    url="/login" >
                     <InputText
                         name = 'login'
                         placeholder = 'Логин'
                     />
                     <InputText
-                        name = 'Password'
+                        name = 'password'
                         placeholder = 'Пароль'
                     />
                     <input type="submit" />

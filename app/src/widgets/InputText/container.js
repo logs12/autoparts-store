@@ -60,9 +60,7 @@ export class InputText extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        pending: state.SearchForArticul.pending,
-        products: state.SearchForArticul.products,
-        reduxState: state
+        value: state.InputTextReducer.value,
     }
 };
 

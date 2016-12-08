@@ -1,20 +1,34 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import FormComponent from './component';
-import * as actions from './actions';
+import * as FormActions from './actions';
 
 
 export class Form extends Component {
 
+
+    /**
+     * Инициализируем контроль типов свойств
+     * @type {{url: *}}
+     */
+    static propTypes = {
+        formName: React.PropTypes.string.isRequired,
+        url: React.PropTypes.string.isRequired,
+    };
+
     constructor(props) {
-        super(props)
-        console.log('props = ', props);
+        super(props);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
     onSubmit(event) {
-       debugger;
         console.log(this.props);
+        // Передаем в редьюсер url для отправки данных формы
+        this.props.dispatch(
+            FormActions.update(
+                this.props.formName,
+                this.props.url,
+        ));
         event.preventDefault();
     }
 
@@ -34,7 +48,6 @@ export class Form extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        inputTextValue: state.InputTextReducer.value,
         state
     }
 };
