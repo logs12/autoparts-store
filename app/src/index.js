@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory} from 'react-router';
 import { routes } from './routes';
+import Root from './frontend/containers/Root';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './frontend/store/configureStore';
@@ -15,8 +16,6 @@ injectTapEventPlugin();
 const store = configureStore();
 
 render(
-    <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
-    </Provider>,
+    <Root store={store} history={browserHistory} />,
     document.getElementById('root')
 );
