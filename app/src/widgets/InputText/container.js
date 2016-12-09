@@ -34,6 +34,7 @@ export class InputText extends Component {
     onChange(event) {
         console.log('event = ',event.target.value);
         // Передаем в редьюсер артикул детали для поиска
+        //console.log('getState = ', this.props.getState());
         this.props.dispatch(
             InpitAction.update(
                 this.props.name,

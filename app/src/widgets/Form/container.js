@@ -6,7 +6,6 @@ import * as FormActions from './actions';
 
 export class Form extends Component {
 
-
     /**
      * Инициализируем контроль типов свойств
      * @type {{url: *}}
