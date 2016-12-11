@@ -18,10 +18,29 @@ export class Form extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.props.dispatch(
+            FormActions.initForm(
+            this.props.formName,
+            { ...this.getInputNames() },
+            this.props.url
+        ));
+    }
+
+    /**
+     * Получаем список полей ввода формы
+     * @returns {{}}
+     */
+    getInputNames() {
+        for (var child of this.props.children) {
+            if (!child.props.name) {
+                continue
+            }
+            return child.props.name = {};
+        }
     }
 
     onSubmit(event) {
-        console.log(this.props);
         // Передаем в редьюсер url для отправки данных формы
         this.props.dispatch(
             FormActions.update(

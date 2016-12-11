@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import InputTextComponent from "./component";
 
 import { connect } from 'react-redux';
-import * as InpitAction from './actions';
+import * as FormAction from '../Form/actions';
 
 export class InputText extends Component {
 
@@ -36,14 +36,11 @@ export class InputText extends Component {
         // Передаем в редьюсер артикул детали для поиска
         //console.log('getState = ', this.props.getState());
         this.props.dispatch(
-            InpitAction.update(
+            FormAction.updateInputText(
+                'loginForm',
                 this.props.name,
                 event.target.value
         ));
-
-        this.pending = this.props.pending;
-        this.action = this.props.action;
-        this.reduxState = this.props.reduxState;
     }
 
     render () {
@@ -61,7 +58,7 @@ export class InputText extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.InputTextReducer.value,
+        value: state.FormReducer.value
     }
 };
 

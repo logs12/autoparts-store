@@ -15,7 +15,7 @@ export default class Home extends Component{
         return (
             <div id="home" >
                 <Form
-                    formName="login"
+                    formName="loginForm"
                     url="/login" >
                     <InputText
                         name = 'login'

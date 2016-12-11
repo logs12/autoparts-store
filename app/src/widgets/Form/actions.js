@@ -1,11 +1,23 @@
 import * as FORM from './constants';
+import * as INPUTTEXT from '../InputText/constants';
 
-export function update(formName, url) {
+export function initForm(formName, inputNames, url) {
     return dispatch => dispatch({
-        type: FORM.FORM_UPDATE_VALUE,
+        type: FORM.INIT_FORM,
         formName,
+        inputNames,
         url
     });
+}
+
+
+export function updateInputText(formName, inputName,value) {
+    return {
+        type: FORM.INPUT_TEXT_UPDATE_VALUE,
+        formName,
+        inputName,
+        value
+    }
 }
 
 export function reset() {

@@ -1,2 +1,4 @@
 export const FORM_UPDATE_VALUE = 'FORM_UPDATE_VALUE';
+export const INIT_FORM = 'INIT_FORM';
+export const INPUT_TEXT_UPDATE_VALUE = 'INPUT_TEXT_UPDATE_VALUE';
 export const FORM_RESET = 'FORM_RESET';
