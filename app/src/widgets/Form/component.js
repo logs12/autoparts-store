@@ -5,11 +5,8 @@ const noop = () => undefined;
 export default class Form extends Component {
 
     static propTypes = {
+        formName: React.PropTypes.string.isRequired,
         children: React.PropTypes.node,
-        values: React.PropTypes.object,
-        update: React.PropTypes.func,
-        reset: React.PropTypes.func,
-        onSubmit: React.PropTypes.func
     };
 
     static defaultProps = {
@@ -18,8 +15,19 @@ export default class Form extends Component {
 
     validations = [];
 
-    constructor (props) {
-        super(props);
+    static childContextTypes = {
+        formName: React.PropTypes.string
+    };
+
+    getChildContext() {
+        return {
+            formName: this.props.formName
+        };
+    }
+
+    constructor (props, context) {
+        super(props, context);
+        console.log('context = ',this);
     }
     
 

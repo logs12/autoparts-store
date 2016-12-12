@@ -16,6 +16,15 @@ export class InputText extends Component {
     };
 
     /**
+     * Инициализируем контроль типов свойств контекста
+     * @type {{url: *}}
+     */
+    static childContextTypes = {
+        formName: React.PropTypes.string
+    }
+
+
+    /**
      * Инициализируем состояния
      * @type {{errors: Array}}
      */
@@ -23,8 +32,9 @@ export class InputText extends Component {
         errors: []
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
+        console.log('this.props = ',this.context.formName);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -37,7 +47,7 @@ export class InputText extends Component {
         //console.log('getState = ', this.props.getState());
         this.props.dispatch(
             FormAction.updateInputText(
-                'loginForm',
+                this.context.formName,
                 this.props.name,
                 event.target.value
         ));
