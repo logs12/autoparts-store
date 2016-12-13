@@ -11,19 +11,18 @@ export default function FormReducer(state = initialState, action) {
         case FORM.INIT_FORM: {
             return {
                 ...state,
-                [action.formName]: action.inputNames
-
+                [action.formName]: {
+                    values: action.inputNames,
+                    errors: action.inputNames
+                }
             }
         }
 
         case FORM.INPUT_TEXT_UPDATE_VALUE:
         {
-            for(let inputName in state[action.formName]) {
+            for(let inputName in state[action.formName]['values']) {
                 if (inputName === action.inputName) {
-                    state[action.formName][inputName] = {
-                        value: action.value,
-                        error: action.error,
-                    }
+                    state[action.formName]['values'][action.inputName] =  action.value ? action.value : null;
                 }
             }
 
@@ -41,40 +40,13 @@ export default function FormReducer(state = initialState, action) {
     }
 }
 
-function inputTextUpdate(state = {},action) {
+function inputTextUpdate(state = {}, action) {
 
     return {
-    ...state,
+        ...state,
         [action.textInputName]: {
             value: action.value,
             error: action.error,
         }
-    }
-}
-
-function posts(state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: []
-}, action) {
-    switch (action.type) {
-        case INVALIDATE_SUBREDDIT:
-            return Object.assign({}, state, {
-                didInvalidate: true
-            })
-        case REQUEST_POSTS:
-            return Object.assign({}, state, {
-                isFetching: true,
-                didInvalidate: false
-            })
-        case RECEIVE_POSTS:
-            return Object.assign({}, state, {
-                isFetching: false,
-                didInvalidate: false,
-                items: action.posts,
-                lastUpdated: action.receivedAt
-            })
-        default:
-            return state
     }
 }

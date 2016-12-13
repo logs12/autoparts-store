@@ -1,36 +1,15 @@
 import React, { Component } from 'react';
 
-const noop = () => undefined;
-
 export default class Form extends Component {
 
     static propTypes = {
-        formName: React.PropTypes.string.isRequired,
-        children: React.PropTypes.node,
+        onSubmit: React.PropTypes.func.isRequired,
     };
 
-    static defaultProps = {
-        onSubmit: noop
-    };
-
-    validations = [];
-
-    static childContextTypes = {
-        formName: React.PropTypes.string
-    };
-
-    getChildContext() {
-        return {
-            formName: this.props.formName
-        };
-    }
-
-    constructor (props, context) {
-        super(props, context);
-        console.log('context = ',this);
+    constructor (props) {
+        super(props);
     }
     
-
     render() {
         return (
             <form onSubmit={this.props.onSubmit}>

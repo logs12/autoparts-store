@@ -29,12 +29,11 @@ export class Form extends Component {
         super(props, context);
         this.onSubmit = this.onSubmit.bind(this);
 
-        console.log('this.context = ',this);
         this.props.dispatch(
             FormActions.initForm(
-            this.props.formName,
-            this.getInputNames(),
-            this.props.url
+                this.props.formName,
+                this.getInputNames(),
+                this.props.url
         ));
     }
 
@@ -55,16 +54,19 @@ export class Form extends Component {
                 if (!child.props.name) {
                     continue;
                 }
-                inputNames[child.props.name] = {};
+                inputNames[child.props.name] = null;
             }
         }
         return  inputNames;
     }
 
     onSubmit(event) {
+
         // Передаем в редьюсер url для отправки данных формы
+        let data = this.props.state['FormReducer'][this.props.formName];
+        console.log('data = ',data);
         this.props.dispatch(
-            FormActions.update(
+            FormActions.submitForm(
                 this.props.formName,
                 this.props.url,
         ));
@@ -80,13 +82,11 @@ export class Form extends Component {
             </FormComponent>
         )
     }
-
 }
 
 /**
  * Подключаем выиджет Form к общему Store
  */
-
 const mapStateToProps = (state) => {
     return {
         state

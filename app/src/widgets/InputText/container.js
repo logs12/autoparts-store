@@ -19,8 +19,8 @@ export class InputText extends Component {
      * Инициализируем контроль типов свойств контекста
      * @type {{url: *}}
      */
-    static childContextTypes = {
-        formName: React.PropTypes.string
+    static contextTypes = {
+        formName: React.PropTypes.string.isRequired
     }
 
 
@@ -34,7 +34,6 @@ export class InputText extends Component {
 
     constructor(props, context) {
         super(props, context);
-        console.log('this.props = ',this.context.formName);
         this.onChange = this.onChange.bind(this);
     }
 

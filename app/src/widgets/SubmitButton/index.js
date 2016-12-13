@@ -8,11 +8,6 @@ export default class InputText extends Component {
         label: React.PropTypes.string
     }
 
-    static contextTypes =  {
-        isFormValid: React.PropTypes.func.isRequired,
-        submit: React.PropTypes.func.isRequired
-    }
-
     /**
      * Дефолтные свойства
      * @type {{}}
@@ -25,15 +20,19 @@ export default class InputText extends Component {
         super(props);
 
     }
+    
+    submit() {
+        
+    }
 
     render() {
         return (
             <div className={this.props.className}>
                 <RaisedButton
                     primary
-                    disabled={!this.context.isFormValid()}
+                    type="submit"
                     label={this.props.label}
-                    onTouchTap={this.context.submit}/>
+                    onTouchTap={this.submit} />
             </div>
         );
     }
