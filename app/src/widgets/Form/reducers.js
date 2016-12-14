@@ -18,16 +18,16 @@ export default function FormReducer(state = initialState, action) {
             }
         }
 
+        // Обновляем state формы при вводе данных
         case FORM.INPUT_TEXT_UPDATE_VALUE:
         {
             let values = {};
             for(let inputName in state[action.formName]['values']) {
                 if (inputName === action.inputName) {
-                      values[action.inputName] =  action.value ? action.value : null
+                    values[action.inputName] =  action.value ? action.value : null
                 } else {
                     values[inputName] =  state[action.formName]['values'][inputName];
                 }
-
             }
             return {
                 ...state,

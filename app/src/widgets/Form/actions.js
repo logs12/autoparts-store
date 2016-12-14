@@ -29,6 +29,7 @@ export function submitForm(data, url) {
         ],
         promise: () => {
             return new Promise(( resolve, reject ) => {
+                debugger;
                 $.ajax({
                     type: 'POST',
                     url: url,

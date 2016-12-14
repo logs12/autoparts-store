@@ -63,11 +63,11 @@ export class Form extends Component {
     onSubmit(event) {
 
         // Передаем в редьюсер url для отправки данных формы
-        let data = this.props.state['FormReducer'][this.props.formName];
+        let data = this.props.state['FormReducer'][this.props.formName].values;
         console.log('data = ',data);
         this.props.dispatch(
             FormActions.submitForm(
-                this.props.formName,
+                data,
                 this.props.url,
         ));
         event.preventDefault();
