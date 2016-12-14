@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import Form, {InputText, SubmitButton} from "../../../widgets/Form/container.js";
+import Form from '../../../widgets/Form/container';
+import InputText from '../../../widgets/InputText/container';
+import SubmitButton from '../../../widgets/SubmitButton';
 
 import { connect } from 'react-redux';
 import * as AuthActions
@@ -13,18 +15,22 @@ export default class LoginFormContainer extends Component {
 
     render() {
         return (
-            <Form onSubmit={data => console.log(data)}>
+            <Form
+                formName="loginForm"
+                url="/login" >
                 <InputText
-                    name="login"
-                    placeholder="Логин"
-                    label="Логин"/>
+                    name = 'login'
+                    placeholder = 'Логин'
+                />
                 <InputText
-                    name="password"
-                    placeholder="Пароль"
-                    label="Пароль"/>
-                <SubmitButton className="login-form__button" label="Войти"/>
+                    name = 'password'
+                    placeholder = 'Пароль'
+                />
+                <SubmitButton
+                    className="login-form__button"
+                    label="Войти"
+                />
             </Form>
         )
-
     }
 }

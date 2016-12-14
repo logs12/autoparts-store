@@ -32,20 +32,6 @@ export default class Home extends Component{
                 </Form>
                 
                 <SearchForArticle />
-
-                <Form
-                    formName="Callback"
-                    url="/callback" >
-                    <InputText
-                        name = 'name'
-                        placeholder = 'Имя'
-                    />
-                    <InputText
-                        name = 'phone'
-                        placeholder = 'Телефон'
-                    />
-                    <SubmitButton />
-                </Form>
             </div>
         )
     }
