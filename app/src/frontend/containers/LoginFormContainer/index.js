@@ -1,3 +1,5 @@
+import './style.scss';
+
 import React, {Component} from "react";
 import Form from '../../../widgets/Form/container';
 import InputText from '../../../widgets/InputText/container';

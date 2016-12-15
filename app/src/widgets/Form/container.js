@@ -27,8 +27,12 @@ export class Form extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this.onSubmit = this.onSubmit.bind(this);
+    }
 
+    /**
+     * Перед рендерингом инициализируем форму в store
+     */
+    componentWillMount() {
         this.props.dispatch(
             FormActions.initForm(
                 this.props.formName,
@@ -60,11 +64,14 @@ export class Form extends Component {
         return  inputNames;
     }
 
-    onSubmit(event) {
 
+    /**
+     * Отпрака данных
+     * @param event
+     */
+    submitHandle(event) {
         // Передаем в редьюсер url для отправки данных формы
         let data = this.props.state['FormReducer'][this.props.formName].values;
-        console.log('data = ',data);
         this.props.dispatch(
             FormActions.submitForm(
                 data,
@@ -77,7 +84,7 @@ export class Form extends Component {
         return (
             <FormComponent
                 formName={this.props.formName}
-                onSubmit={this.onSubmit}>
+                submitHandle={::this.submitHandle}>
                 {this.props.children}
             </FormComponent>
         )

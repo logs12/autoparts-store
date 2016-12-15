@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Form extends Component {
 
     static propTypes = {
-        onSubmit: React.PropTypes.func.isRequired,
+        submitHandle: React.PropTypes.func.isRequired,
     };
 
     constructor (props) {
@@ -12,7 +12,7 @@ export default class Form extends Component {
     
     render() {
         return (
-            <form onSubmit={this.props.onSubmit}>
+            <form onSubmit={this.props.submitHandle}>
                 {this.props.children}
             </form>
         );

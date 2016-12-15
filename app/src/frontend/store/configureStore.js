@@ -12,8 +12,8 @@ export default function configureStore() {
         applyMiddleware( promiseMiddleware ),
         applyMiddleware(createLogger()),
         applyMiddleware( redirect ),
-        //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-        DevTools.instrument()
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+        //DevTools.instrument()
     )(createStore)(rootReducer);
 
     return store;

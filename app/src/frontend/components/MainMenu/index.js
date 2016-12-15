@@ -76,17 +76,19 @@ export default class MainMenu extends Component {
         return (
                 <div className="main-menu">
                     {/* Логотип */}
-                    <nav>
-                        <li className="main-menu__li">
-                            <NavLink
-                                to={this.brand['url']}
-                                className="main-menu__a main-menu__a--brand">
-                                {this.brand.title}
-                            </NavLink>
-                        </li>
-                    </nav>
+                    <div className="ww">
+                        <nav>
+                            <li className="main-menu__li">
+                                <NavLink
+                                    to={this.brand['url']}
+                                    className="main-menu__a main-menu__a--brand">
+                                    {this.brand.title}
+                                </NavLink>
+                            </li>
+                        </nav>
 
-                    <FlexMenu links = {this.links}/>
+                        <FlexMenu links = {this.links}/>
+                    </div>
 
                     <nav className="authorization">
                         <li className="authorization__li">
@@ -102,15 +104,16 @@ export default class MainMenu extends Component {
                             <NavLink onlyActiveOnIndex={true}
                                      to="#"
                                      className="authorization__a"
-                                     onClick={this.handleOpen}>
+                                     onClick={::this.handleOpen}>
                                 Вход
                             </NavLink>
                         </li>
                         <Dialog
+                            contentClassName="login-form__dialog"
                             title="Вход в личный кабинет"
                             modal={false}
                             open={this.state.open}
-                            onRequestClose={this.handleClose}
+                            onRequestClose={::this.handleClose}
                             autoScrollBodyContent={true}>
                                 <LoginForm />
                         </Dialog>
