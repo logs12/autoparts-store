@@ -1,10 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from "redux";
 import FormComponent from './component';
-import * as FormActions from './actions';
+import * as actions from './actions';
 
 
-export class Form extends Component {
+@connect(
+    (state) => state, // mapStateToProps
+    (dispatch) => ({ // mapDispatchToProps
+        formActions: bindActionCreators(actions, dispatch)
+    })
+)
+
+export default class Form extends Component {
 
     /**
      * Инициализируем контроль типов свойств
@@ -33,12 +41,11 @@ export class Form extends Component {
      * Перед рендерингом инициализируем форму в store
      */
     componentWillMount() {
-        this.props.dispatch(
-            FormActions.initForm(
-                this.props.formName,
-                this.getInputNames(),
-                this.props.url
-        ));
+        this.props.formActions.initForm(
+            this.props.formName,
+            this.getInputNames(),
+            this.props.url
+        );
     }
 
     getChildContext() {
@@ -70,13 +77,16 @@ export class Form extends Component {
      * @param event
      */
     submitHandle(event) {
-        // Передаем в редьюсер url для отправки данных формы
-        let data = this.props.state['FormReducer'][this.props.formName].values;
-        this.props.dispatch(
-            FormActions.submitForm(
-                data,
-                this.props.url,
-        ));
+
+        // Собираем из store данные введенные в форму
+        let data = this.props.FormReducer[this.props.formName].values;
+
+        // Запускаем submit формы
+        this.props.formActions.submitForm(
+            data,
+            this.props.url,
+        );
+
         event.preventDefault();
     }
 
@@ -91,15 +101,3 @@ export class Form extends Component {
     }
 }
 
-/**
- * Подключаем выиджет Form к общему Store
- */
-const mapStateToProps = (state) => {
-    return {
-        state
-    }
-};
-
-const ConnectedForm = connect(mapStateToProps)(Form);
-
-export default ConnectedForm;
