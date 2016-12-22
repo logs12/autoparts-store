@@ -19,6 +19,7 @@ export default class Form extends Component {
      * @type {{url: *}}
      */
     static propTypes = {
+        actionName: React.PropTypes.string,
         formName: React.PropTypes.string.isRequired,
         url: React.PropTypes.string.isRequired,
     };
@@ -31,7 +32,13 @@ export default class Form extends Component {
         formName: React.PropTypes.string
     };
 
-
+    /**
+     * Устанавливаем свойства по дефолту
+     * @type {{actionName: string}}
+     */
+    static defaultProps = {
+        actionName: 'submitForm',
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -83,6 +90,7 @@ export default class Form extends Component {
 
         // Запускаем submit формы
         this.props.formActions.submitForm(
+            this.props.actionName,
             data,
             this.props.url,
         );

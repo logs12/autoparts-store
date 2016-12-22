@@ -6,7 +6,7 @@ import {
 } from '../../frontend/constants/Auth';
 //import Promise from 'bluebird';
 
-export function login(loginData) {
+export function authAction(loginData) {
     return {
         types: [
             LOGIN_REQUEST,
@@ -15,6 +15,7 @@ export function login(loginData) {
             LOGOUT_SUCCESS,
         ],
         promise: () => {
+            debugger;
             return new Promise(( resolve, reject ) => {
                 fetch('api/user/auth',{
                     method: 'POST',

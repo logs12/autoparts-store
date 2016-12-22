@@ -1,5 +1,6 @@
 import * as FORM from './constants';
 import * as INPUTTEXT from '../InputText/constants';
+import ActionsFactory from '../../services/ActionsFactory';
 
 export function initForm(formName, inputNames, url) {
     return dispatch => dispatch({
@@ -20,7 +21,11 @@ export function updateInputText(formName, inputName,value) {
     }
 }
 
-export function submitForm(data, url) {
+export function submitForm(actionName, data, url) {
+    debugger;
+    if (actionName !== 'submitForm') {
+        return ActionsFactory(actionName, data);
+    }
     return {
         types: [
             FORM.SUBMIT_REQUEST,
