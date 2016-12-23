@@ -6,8 +6,6 @@ import InputText from '../../../widgets/InputText/container';
 import SubmitButton from '../../../widgets/SubmitButton';
 
 import { connect } from 'react-redux';
-import * as AuthActions
-    from '../../actions/AuthActions';
 
 export default class LoginFormContainer extends Component {
 
@@ -18,6 +16,7 @@ export default class LoginFormContainer extends Component {
     render() {
         return (
             <Form
+                actionName="authAction"
                 formName="loginForm"
                 url="/login" >
                 <InputText

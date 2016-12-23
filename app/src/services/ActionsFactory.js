@@ -1,4 +1,4 @@
-import authAction from '../frontend/actions/AuthActions';
+import authAction from '../frontend/actions/AuthAction';
 
 const ListActions = {
     authAction: authAction,

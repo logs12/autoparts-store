@@ -4,7 +4,7 @@ namespace app\modules\user\models\search;
 use app\modules\user\models\User as UserModel;
 use yii\helpers\ArrayHelper;
 
-class User extends UserModel
+class UserSearch extends UserModel
 {
     public function search($params)
     {

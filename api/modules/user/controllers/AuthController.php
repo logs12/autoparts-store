@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\user\controllers;
 
 use app\components\controllers\BaseRestController;
 use app\components\filters\AccessControl;

@@ -1,7 +1,7 @@
 <?php
 return [
-    'login' => 'auth/login',
-    'logout' => 'auth/logout',
+    'login' => 'user/auth/login',
+    'logout' => 'user/auth/logout',
     [
         'class' => 'yii\rest\UrlRule',
         'controller' => [

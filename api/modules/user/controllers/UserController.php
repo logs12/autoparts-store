@@ -3,7 +3,7 @@
 namespace app\modules\user\controllers;
 
 use app\components\controllers\BaseActiveController;
-use app\modules\user\models\search\User as UserSearch;
+use app\modules\user\models\search\UserSearch;
 
 
 
