@@ -6,7 +6,7 @@ export default function PromiseMiddleware() {
             return next( action );
         }
 
-        const [REQUEST, SUCCESS, FAILURE] = types;
+        const [REQUEST, SUCCESS, ERROR] = types;
 
         next({ ...rest, type: REQUEST });
 
@@ -15,7 +15,7 @@ export default function PromiseMiddleware() {
                 next({ ...rest, result, type: SUCCESS });
             },
             (error) => {
-                next({ ...rest, error, type: FAILURE });
+                next({ ...rest, error, type: ERROR });
             }
         );
     }
