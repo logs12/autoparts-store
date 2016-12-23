@@ -4,6 +4,7 @@ return [
     'logout' => 'user/auth/logout',
     [
         'class' => 'yii\rest\UrlRule',
+        'pluralize' => false,
         'controller' => [
             'web-service',
             'user/user',

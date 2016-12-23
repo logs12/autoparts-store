@@ -15,7 +15,6 @@ const initialState = { //define initial state - an empty form
  * @constructor
  */
 export default function FormReducer(state = initialState, action) {
-    debugger;
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 

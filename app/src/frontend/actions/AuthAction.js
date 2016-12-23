@@ -1,7 +1,7 @@
 import {
     LOGIN_REQUEST,
-    LOGIN_ERROR,
     LOGIN_SUCCESS,
+    LOGIN_ERROR,
     LOGOUT_SUCCESS,
 } from '../../frontend/constants/AuthConstants';
 //import Promise from 'bluebird';
@@ -10,8 +10,8 @@ export default function authAction(loginData) {
     return {
         types: [
             LOGIN_REQUEST,
-            LOGIN_ERROR,
             LOGIN_SUCCESS,
+            LOGIN_ERROR,
             LOGOUT_SUCCESS,
         ],
         promise: () => {

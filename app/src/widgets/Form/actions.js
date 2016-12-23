@@ -23,14 +23,15 @@ export function updateInputText(formName, inputName,value) {
 
 export function submitForm(actionName, data, url) {
     debugger;
+    // Если actionName не равен дефолтному, то подключаем его из фабрики action
     if (actionName !== 'submitForm') {
         return ActionsFactory(actionName, data);
     }
     return {
         types: [
-            FORM.SUBMIT_REQUEST,
-            FORM.SUBMIT_SUCCESS,
-            FORM.SUBMIT_ERROR
+            FORM.REQUEST,
+            FORM.SUCCESS,
+            FORM.ERROR
         ],
         promise: () => {
             return new Promise(( resolve, reject ) => {
