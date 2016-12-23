@@ -1,6 +1,6 @@
 export const INIT_FORM = 'INIT_FORM';
 export const INPUT_TEXT_UPDATE_VALUE = 'INPUT_TEXT_UPDATE_VALUE';
-export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
-export const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS';
-export const SUBMIT_ERROR = 'SUBMIT_ERROR';
+export const REQUEST = 'SUBMIT_REQUEST';
+export const SUCCESS = 'SUBMIT_SUCCESS';
+export const ERROR = 'SUBMIT_ERROR';
 export const FORM_RESET = 'FORM_RESET';

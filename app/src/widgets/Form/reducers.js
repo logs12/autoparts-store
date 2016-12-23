@@ -3,8 +3,19 @@ import * as FORM from './constants';
 const initialState = { //define initial state - an empty form
 };
 
-
+/**
+ * Все actions работающие с виджетом Form должны иметь обязательные типы, заканчивающиеся на
+ * _REQUEST,
+ * _ERROR,
+ * _SUCCESS
+ *
+ * @param state
+ * @param action
+ * @returns {{}}
+ * @constructor
+ */
 export default function FormReducer(state = initialState, action) {
+    debugger;
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 
@@ -45,8 +56,26 @@ export default function FormReducer(state = initialState, action) {
         default: {
             return state;
         }
-
     }
+
+    // Разбиваем тип action по разделителю
+    let typeActionAfterSplit = action.type.split('_');
+    // Обработка actions при submit формы
+    switch (typeActionAfterSplit[typeActionAfterSplit.length-1]) {
+        case FORM.REQUEST: {
+            return {
+                ...state,
+
+            }
+        }
+        case FORM.SUCCESS: {
+            return {
+                ...state,
+
+            }
+        }
+    }
+
 }
 
 function inputTextUpdate(state = {}, action) {
