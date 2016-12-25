@@ -14,8 +14,8 @@ export default function PromiseMiddleware() {
             (result) => {
                 next({ ...rest, result, type: SUCCESS });
             },
-            (error) => {
-                next({ ...rest, error, type: ERROR });
+            (errors) => {
+                next({ ...rest, errors, type: ERROR });
             }
         );
     }

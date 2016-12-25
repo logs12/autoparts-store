@@ -21,11 +21,18 @@ export function updateInputText(formName, inputName,value) {
     }
 }
 
-export function submitForm(actionName, data, url) {
-    debugger;
+/**
+ * Actions submit form
+ * @param formName {string} - название формы
+ * @param actionName {string} - название action который обрабатывает submit
+ * @param data {object} - объект с данными формы
+ * @param url {string} - url на который происходит отправка данных
+ * @returns {{types: *[], promise: (function())}}
+ */
+export function submitForm(formName, actionName, data, url) {
     // Если actionName не равен дефолтному, то подключаем его из фабрики action
     if (actionName !== 'submitForm') {
-        return ActionsFactory(actionName, data);
+        return ActionsFactory(actionName, data, url, {formName: formName});
     }
     return {
         types: [

@@ -18,9 +18,9 @@ export default class Home extends Component{
                 <Form
                     actionName="authAction"
                     formName="loginForm"
-                    url="/login" >
+                    url="/api/login" >
                     <InputText
-                        name = 'login'
+                        name = 'email'
                         placeholder = 'Логин'
                     />
                     <InputText

@@ -90,6 +90,7 @@ export default class Form extends Component {
 
         // Запускаем submit формы
         this.props.formActions.submitForm(
+            this.props.formName,
             this.props.actionName,
             data,
             this.props.url,
