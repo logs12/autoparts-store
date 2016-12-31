@@ -87,13 +87,24 @@ export default function FormReducer(state = initialState, action) {
                 // Названия полей формы
                 let inputNames = Object.keys(state[action.options.formName]['errors']);
                 inputNames.forEach((inputName) => {
-                    action.errors.forEach((error) => {
-                        if(error.field === inputName) {
-                            errors[error.field] = error.message;
+
+                    // Проходим по полученным ошибкам
+                    let countError = 0;
+                    for (let i = 0; action.errors.length >= i; i++) {
+                        // Если хотя бы одно из полей пришедших ошибок совпадает с name у полей ввода
+                        // Сохраняем эту ошибку и выходим из цикла, если нет, то считаем количество несовпадений
+                        if(action.errors[i].field === inputName) {
+                            errors[action.errors[i].field] = action.errors[i].message;
+                            break;
                         } else {
-                            throw new Error(`Данного поля ${error.field} не существует`);
+                            countError++;
                         }
-                    });
+                    }
+                    
+                    // Если количество несовпадений ошибок, то выбрасываем исключение
+                    if (countError == action.errors.length) {
+                        throw new Error(`Данного поля ${inputName} не существует`);
+                    }
                 });
 
                 return {

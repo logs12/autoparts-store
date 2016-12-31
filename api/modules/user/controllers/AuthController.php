@@ -31,7 +31,7 @@ class AuthController extends BaseRestController
     {
         User::setFieldsSet(User::FIELDS_USER_PERMISSIONS);
         $model = new LoginForm();
-
+            $sfsd = Yii::$app->getRequest()->getBodyParams();
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
         if ($model->validate() === false && !$model->hasErrors()) {
             throw new ServerErrorHttpException('Не удалось обновить запись по непонятным причинам');

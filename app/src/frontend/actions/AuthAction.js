@@ -19,17 +19,20 @@ export default function authAction(loginData, url, options) {
                 fetch(url,{
                     method: 'POST',
                     headers: {
-                        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                        'Accept': 'application/json, text/javascript, */*; q=0.01',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(loginData)
                 })
                 .then((response) => {
+                    debugger;
                     if (response.status === 200) {
-                        return resolve(response.json());
+                        resolve(response.json());
+                    } else {
+                        response.json().then((object) => {
+                            reject(object);
+                        });
                     }
-                    response.json().then((object) => {
-                        reject(object);
-                    });
                 })/*
                 .then(function(user) {
                     alert(user.name); //
