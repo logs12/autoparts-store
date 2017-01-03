@@ -4,9 +4,19 @@ import {bindActionCreators} from "redux";
 import FormComponent from './component';
 import * as actions from './actions';
 
+/**
+ * Свойства из state, которые будут использоваться
+ * @param state
+ * @returns {{FormReducer: *}}
+ */
+const mapStateToProps = ( state) => {
+    return {
+        FormReducer: state.FormReducer
+    }
+};
 
 @connect(
-    (state) => state, // mapStateToProps
+    mapStateToProps,
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)
     })
@@ -55,10 +65,19 @@ export default class Form extends Component {
         );
     }
 
+
     getChildContext() {
         return {
             formName: this.props.formName
         };
+    }
+
+    /**
+     * Хук на получение новых свойств
+     * @param nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+        console.log('nextProps213123 = ',nextProps);
     }
 
     /**
@@ -80,7 +99,7 @@ export default class Form extends Component {
 
 
     /**
-     * Отпрака данных
+     * Отправка данных
      * @param event
      */
     submitHandle(event) {
@@ -95,7 +114,6 @@ export default class Form extends Component {
             data,
             this.props.url,
         );
-
         event.preventDefault();
     }
 

@@ -25,7 +25,6 @@ export default function authAction(loginData, url, options) {
                     body: JSON.stringify(loginData)
                 })
                 .then((response) => {
-                    debugger;
                     if (response.status === 200) {
                         resolve(response.json());
                     } else {
