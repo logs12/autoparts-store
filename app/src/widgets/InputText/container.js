@@ -5,10 +5,9 @@ import {bindActionCreators} from "redux";
 import { connect } from 'react-redux';
 import * as actions from '../Form/actions';
 
-/*const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
-        value: state.FormReducer.value,
-        errors: state.FormReducer.errors
+        forms: state.FormReducer
     }
 };
 
@@ -17,9 +16,9 @@ import * as actions from '../Form/actions';
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)
     })
-)*/
+)
 
-export class InputText extends Component {
+export default class InputText extends Component {
 
     /**
      * Инициализируем контроль типов свойств
@@ -59,8 +58,9 @@ export class InputText extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
-        alert(111);
         console.log('InputText = ',nextProps);
+        this.error = nextProps.forms[this.context.formName].errors[this.props.name];
+        //this.error = nextProps['forms'][this.context.formName];
     }
 
     /**
@@ -70,12 +70,11 @@ export class InputText extends Component {
         console.log('event = ',event.target.value);
         // Передаем в редьюсер артикул детали для поиска
         //console.log('getState = ', this.props.getState());
-        this.props.dispatch(
-            FormAction.updateInputText(
+        this.props.formActions.updateInputText(
                 this.context.formName,
                 this.props.name,
                 event.target.value
-        ));
+        );
     }
 
     render () {
@@ -84,22 +83,10 @@ export class InputText extends Component {
                 name = {this.props.name}
                 placeholder = {this.props.placeholder}
                 onChange = {this.onChange}
+                error={this.error}
             />
         )
     }
 
 }
 
-/*
-
-const mapStateToProps = (state) => {
-    return {
-        value: state.FormReducer.value,
-        errors: state.FormReducer.errors
-    }
-};
-
-const ConnectedInput = connect(mapStateToProps)(InputText);
-
-export default ConnectedInput;
-*/

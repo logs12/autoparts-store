@@ -31,7 +31,6 @@ export class SearchForArticle extends Component {
 
         this.pending = this.props.pending;
         this.action = this.props.action;
-        this.reduxState = this.props.reduxState;
     }
 
     /**
@@ -76,7 +75,6 @@ const mapStateToProps = (state) => {
     return {
         pending: state.SearchForArticul.pending,
         products: state.SearchForArticul.products,
-        reduxState: state
     }
 };
 

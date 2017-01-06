@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class InputText extends Component {
+export default class SubmitButton extends Component {
 
     static propTypes = {
         className: React.PropTypes.string,

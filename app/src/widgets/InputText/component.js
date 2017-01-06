@@ -20,6 +20,7 @@ export default class InputText extends Component {
                     name = {this.props.name}
                     hintText = {this.props.placeholder}
                     onChange={this.props.onChange}
+                    errorText={this.props.error}
                 />
             </div>
         );
