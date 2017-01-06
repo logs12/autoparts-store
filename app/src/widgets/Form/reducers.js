@@ -81,6 +81,8 @@ export default function FormReducer(state = initialState, action) {
         }
         case FORM.ERROR: {
             try{
+
+                debugger;
                 let errors = {};
                 // Названия полей формы
                 let inputNames = Object.keys(state[action.options.formName]['errors']);
