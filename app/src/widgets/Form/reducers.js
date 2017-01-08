@@ -80,45 +80,18 @@ export default function FormReducer(state = initialState, action) {
             }
         }
         case FORM.ERROR: {
-            try{
-
-                debugger;
-                let errors = {};
-                // Названия полей формы
-                let inputNames = Object.keys(state[action.options.formName]['errors']);
-                inputNames.forEach((inputName) => {
-
-                    // Проходим по полученным ошибкам
-                    let countError = 0;
-                    for (let i = 0; action.errors.length >= i; i++) {
-                        // Если хотя бы одно из полей пришедших ошибок совпадает с name у полей ввода
-                        // Сохраняем эту ошибку и выходим из цикла, если нет, то считаем количество несовпадений
-                        if(action.errors[i].field === inputName) {
-                            errors[action.errors[i].field] = action.errors[i].message;
-                            break;
-                        } else {
-                            countError++;
-                        }
-                    }
-                    
-                    // Если количество несовпадений ошибок, то выбрасываем исключение
-                    if (countError == action.errors.length) {
-                        throw new Error(`Данного поля ${inputName} не существует`);
-                    }
-                });
-
-                return {
-                    ...state,
-                    [action.options.formName]: {
-                        ...state[action.options.formName],
-                        errors: { ...errors }
-                    }
-
+            let errors = {};
+            action.errors.forEach((error) => {
+                errors[error.field] = error.message;
+            });
+            return {
+                ...state,
+                [action.options.formName]: {
+                    ...state[action.options.formName],
+                    errors: { ...errors },
+                    pending: false
                 }
-            } catch (e) {
-                alert(e);
             }
-
         }
     }
     return state;

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
 
 export default class SubmitButton extends Component {
 
@@ -32,6 +33,7 @@ export default class SubmitButton extends Component {
                     primary
                     type="submit"
                     label={this.props.label}
+                    icon={<CircularProgress size={0.3} />}
                     onTouchTap={this.submit} />
             </div>
         );
