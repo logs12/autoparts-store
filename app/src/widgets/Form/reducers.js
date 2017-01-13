@@ -1,4 +1,5 @@
 import * as FORM from './constants';
+import * as _ from 'underscore';
 
 const initialState = {};
 
@@ -62,6 +63,8 @@ export default function FormReducer(state = initialState, action) {
     switch (typeActionAfterSplit[typeActionAfterSplit.length-1]) {
         // обработка REQUEST, меняем pending на true
         case FORM.REQUEST: {
+            debugger;
+            let rrr = _.isEqual(initialState, state[action.options.formName]);
             return {
                 ...state,
                 [action.options.formName]: {

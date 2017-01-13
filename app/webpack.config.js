@@ -62,7 +62,12 @@ module.exports = {
         /* proxy: {
          '*': 'http://help-kran.loc/'
          }*/
-    }
+    },
+    plugins:[
+        new webpack.ProvidePlugin({
+            underscore:'underscore'
+        })
+    ]
     /*  plugins: [
      new webpack.HotModuleReplacementPlugin(),
      new webpack.NoErrorsPlugin(),
