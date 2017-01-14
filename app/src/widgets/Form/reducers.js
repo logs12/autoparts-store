@@ -1,8 +1,6 @@
 import * as FORM from './constants';
 import * as _ from 'underscore';
 
-const initialState = {};
-
 /**
  * Структура state виджета Form
  *
@@ -16,11 +14,18 @@ const initialState = {};
  * @returns {{}}
  * @constructor
  */
-export default function FormReducer(state = initialState, action) {
+let initialState = {};
+export default function FormReducer(state = {}, action) {
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 
         case FORM.INIT_FORM: {
+            initialState = {
+                [action.formName]: {
+                    values: action.inputNames,
+                    pending: false,
+                    errors: action.inputNames
+            }};
             return {
                 ...state,
                 [action.formName]: {
@@ -64,7 +69,10 @@ export default function FormReducer(state = initialState, action) {
         // обработка REQUEST, меняем pending на true
         case FORM.REQUEST: {
             debugger;
-            let rrr = _.isEqual(initialState, state[action.options.formName]);
+            let rrr = _.isEqual(
+                initialState[action.options.formName].value,
+                state[action.options.formName].value
+            );
             return {
                 ...state,
                 [action.options.formName]: {
