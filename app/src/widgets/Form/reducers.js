@@ -24,6 +24,7 @@ export default function FormReducer(state = {}, action) {
                 [action.formName]: {
                     values: action.inputNames,
                     pending: false,
+                    isChanged: false,
                     errors: action.inputNames
             }};
             return {
@@ -39,6 +40,7 @@ export default function FormReducer(state = {}, action) {
         // Обновляем state формы при вводе данных в input
         case FORM.INPUT_TEXT_UPDATE_VALUE:
         {
+            // Формируем объект с данными из input
             let values = {};
             for(let inputName in state[action.formName]['values']) {
                 if (inputName === action.inputName) {
@@ -47,10 +49,18 @@ export default function FormReducer(state = {}, action) {
                     values[inputName] =  state[action.formName]['values'][inputName];
                 }
             }
+
+            // Флаг изменились ли данные
+            let isChanged = !_.isEqual(
+                initialState[action.formName].values,
+                values
+            );
+
             return {
                 ...state,
                 [action.formName]: {
                     ...state[action.formName],
+                    isChanged,
                     values: { ...values }
                 }
             };
@@ -69,7 +79,7 @@ export default function FormReducer(state = {}, action) {
         // обработка REQUEST, меняем pending на true
         case FORM.REQUEST: {
             debugger;
-            let rrr = _.isEqual(
+            let isChanged = _.isEqual(
                 initialState[action.options.formName].value,
                 state[action.options.formName].value
             );
