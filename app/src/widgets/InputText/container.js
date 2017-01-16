@@ -5,14 +5,13 @@ import {bindActionCreators} from "redux";
 import { connect } from 'react-redux';
 import * as actions from '../Form/actions';
 
-const mapStateToProps = (state) => {
-    return {
-        forms: state.FormReducer
-    }
-};
-
+/**
+ * Подключение к reduxStore
+ */
 @connect(
-    mapStateToProps,
+    (state) => ({
+        forms: state.FormReducer
+    }),
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)
     })
@@ -35,8 +34,7 @@ export default class InputText extends Component {
      */
     static contextTypes = {
         formName: React.PropTypes.string.isRequired
-    }
-
+    };
 
     /**
      * Инициализируем состояния
@@ -49,8 +47,6 @@ export default class InputText extends Component {
     constructor(props, context) {
         super(props, context);
         this.onChange = this.onChange.bind(this);
-
-        console.log('InputText = ',this.props);
     }
 
     /**
@@ -58,18 +54,14 @@ export default class InputText extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
-        console.log('InputText = ',nextProps);
         this.error = nextProps.forms[this.context.formName].errors[this.props.name];
-        //this.error = nextProps['forms'][this.context.formName];
     }
 
     /**
-     * Обработчик события измнния input, отправка введеного значения в store
+     * Обработчик события изменния input, отправка введеного значения в store
      */
     onChange(event) {
-        console.log('event = ',event.target.value);
         // Передаем в редьюсер артикул детали для поиска
-        //console.log('getState = ', this.props.getState());
         this.props.formActions.updateInputText(
                 this.context.formName,
                 this.props.name,

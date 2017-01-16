@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 import Form from '../../../widgets/Form/container';
 import InputText from '../../../widgets/InputText/container';
-import SubmitButton from '../../../widgets/SubmitButton';
+import SubmitButton from '../../../widgets/SubmitButton/container';
 
 //components
 import SearchForArticle from '../../containers/SearchForArticle';
