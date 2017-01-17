@@ -4,19 +4,23 @@ import {bindActionCreators} from "redux";
 import FormComponent from './component';
 import * as actions from './actions';
 
-/**
- * Свойства из state, которые будут использоваться
- * @param state
- * @returns {{FormReducer: *}}
- */
-const mapStateToProps = ( state) => {
-    return {
-        FormReducer: state.FormReducer
-    }
-};
 
+/**
+ * Подключение к reduxStore
+ */
 @connect(
-    mapStateToProps,
+    /**
+     * Свойства из state, которые будут использоваться
+     * @param state
+     */
+    (state) => ({ // mapStateToProps
+        forms: state.FormReducer
+    }),
+
+    /**
+     * Actions из state, которые будут использоваться
+     * @param state
+     */
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)
     })
@@ -36,23 +40,23 @@ export default class Form extends Component {
 
     /**
      * Инициализируем контроль типов свойств контекста
-     * @type {{url: *}}
+     * @type {{formName: string}}
      */
     static childContextTypes = {
-        formName: React.PropTypes.string
+        formName: React.PropTypes.string,
     };
 
     /**
      * Устанавливаем свойства по дефолту
-     * @type {{actionName: string}}
+     * @type {{actionName: string, formName: string, url: string}}
      */
     static defaultProps = {
         actionName: 'submitForm',
+        formName: 'widgetForm',
+        url: '/',
+
     };
 
-    constructor(props, context) {
-        super(props, context);
-    }
 
     /**
      * Перед рендерингом инициализируем форму в store
@@ -68,16 +72,8 @@ export default class Form extends Component {
 
     getChildContext() {
         return {
-            formName: this.props.formName
+            formName: this.props.formName,
         };
-    }
-
-    /**
-     * Хук на получение новых свойств
-     * @param nextProps
-     */
-    componentWillReceiveProps(nextProps) {
-        console.log('nextProps213123 = ',nextProps);
     }
 
     /**
@@ -105,7 +101,7 @@ export default class Form extends Component {
     submitHandle(event) {
 
         // Собираем из store данные введенные в форму
-        let data = this.props.FormReducer[this.props.formName].values;
+        let data = this.props.forms[this.props.formName].values;
 
         // Запускаем submit формы
         this.props.formActions.submitForm(
@@ -114,13 +110,14 @@ export default class Form extends Component {
             data,
             this.props.url,
         );
+
+
         event.preventDefault();
     }
 
     render () {
         return (
             <FormComponent
-                formName={this.props.formName}
                 submitHandle={::this.submitHandle}>
                 {this.props.children}
             </FormComponent>

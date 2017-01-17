@@ -1,4 +1,5 @@
 <?php
+
 //если apache
 $_SERVER['REQUEST_URI'] = str_replace('api/', '', $_SERVER['REQUEST_URI']);
 $_SERVER['SCRIPT_NAME'] = str_replace('/api/web', '', $_SERVER['SCRIPT_NAME']);
@@ -22,3 +23,4 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 $config = require(__DIR__ . '/../config/web.php');
 
 (new yii\web\Application($config))->run();
+sleep(5);

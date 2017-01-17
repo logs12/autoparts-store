@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import RaisedButton from 'material-ui/RaisedButton';
-import CircularProgress from 'material-ui/CircularProgress';
 
 export default class SubmitButtonComponent extends Component {
 
@@ -12,19 +10,19 @@ export default class SubmitButtonComponent extends Component {
         className: React.PropTypes.string,
         label: React.PropTypes.string,
         disabled: React.PropTypes.bool,
+        isPending: React.PropTypes.bool,
     };
+
+    spinner = <i className="fa fa-spinner fa-pulse" aria-hidden="true"></i>;
 
     render() {
         return (
             <div className={this.props.className}>
-                <RaisedButton
-                    primary
-                    type="submit"
-                    label={this.props.label}
-                    icon={<CircularProgress size={0.3} />}
-                    onTouchTap={this.submit}
-                    disabled={this.props.disabled}
-                />
+                <button className="mdl-button mdl-js-button mdl-button--raised"
+                        disabled={this.props.disabled}
+                >
+                    {this.props.isPending ? this.spinner : this.props.label}
+                </button>
             </div>
         );
     }

@@ -30,21 +30,33 @@ export default class SubmitButton extends Component{
 
     /**
      * Свойство выключения кнопки
-     * @type {boolean}
+     * @type {{disabled: boolean, isPending: boolean}}
      */
-    disabled = true;
+    state = {
+        disabled: true,
+        isPending: false,
+    };
 
     /**
      * Инициализируем контроль типов свойств контекста
-     * @type {{url: *}}
+     * @type {{formName: *, isPending: RegExp}}
      */
     static contextTypes = {
-        formName: React.PropTypes.string.isRequired
+        formName: React.PropTypes.string.isRequired,
     };
 
+    /**
+     *
+     * @param nextProps
+     */
     componentWillReceiveProps(nextProps) {
+
         // Если isChanged == true, то выключаем кнопку disabled == false
-        this.disabled = !nextProps.forms[this.context.formName].isChanged;
+        this.state.disabled = !nextProps.forms[this.context.formName].isChanged;
+
+        //
+        this.state.isPending = nextProps.forms[this.context.formName].isPending;
+
     }
 
     render () {
@@ -52,7 +64,8 @@ export default class SubmitButton extends Component{
             <SubmitButtonComponent
                 className={this.props.className}
                 label={this.props.label}
-                disabled={this.disabled}
+                disabled={this.state.disabled}
+                isPending={this.state.isPending}
             >
             </SubmitButtonComponent>
         )

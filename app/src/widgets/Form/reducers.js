@@ -23,7 +23,7 @@ export default function FormReducer(state = {}, action) {
             initialState = {
                 [action.formName]: {
                     values: action.inputNames,
-                    pending: false,
+                    isPending: false,
                     isChanged: false,
                     errors: action.inputNames
             }};
@@ -31,7 +31,7 @@ export default function FormReducer(state = {}, action) {
                 ...state,
                 [action.formName]: {
                     values: action.inputNames,
-                    pending: false,
+                    isPending: false,
                     errors: action.inputNames
                 }
             }
@@ -76,9 +76,8 @@ export default function FormReducer(state = {}, action) {
 
     // Обработка actions при submit формы
     switch (typeActionAfterSplit[typeActionAfterSplit.length-1]) {
-        // обработка REQUEST, меняем pending на true
+        // обработка REQUEST, меняем isPending на true
         case FORM.REQUEST: {
-            debugger;
             let isChanged = _.isEqual(
                 initialState[action.options.formName].value,
                 state[action.options.formName].value
@@ -87,7 +86,7 @@ export default function FormReducer(state = {}, action) {
                 ...state,
                 [action.options.formName]: {
                     ...state[action.options.formName],
-                    pending: true
+                    isPending: true
                 }
             }
         }
@@ -96,7 +95,7 @@ export default function FormReducer(state = {}, action) {
                 ...state,
                 [action.options.formName]: {
                     ...state[action.options.formName],
-                    pending: false
+                    isPending: false
                 }
             }
         }
@@ -110,7 +109,7 @@ export default function FormReducer(state = {}, action) {
                 [action.options.formName]: {
                     ...state[action.options.formName],
                     errors: { ...errors },
-                    pending: false
+                    isPending: false
                 }
             }
         }

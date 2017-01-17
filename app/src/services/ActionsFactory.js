@@ -11,7 +11,7 @@ const ListActions = {
 /**
  * Фабричная функция actions
  * @param nameAction - имя action
- * @param data - данные ждя отправки или обработки
+ * @param data - данные для отправки или обработки
  * @param url {string} - url на который происходит отправка данных
  * @param options - дополнительные опции
  * @returns {*}

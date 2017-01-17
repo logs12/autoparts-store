@@ -3,14 +3,15 @@ import InputTextComponent from "./component";
 import {bindActionCreators} from "redux";
 
 import { connect } from 'react-redux';
-import * as actions from '../Form/actions';
+//import * as actions from '../Form/actions';
+import * as actions from './actions';
 
 /**
  * Подключение к reduxStore
  */
 @connect(
     (state) => ({
-        forms: state.FormReducer
+        forms: state.InputTextReducer
     }),
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)
@@ -58,7 +59,7 @@ export default class InputText extends Component {
     }
 
     /**
-     * Обработчик события изменния input, отправка введеного значения в store
+     * Обработчик события изменения input, отправка введеного значения в store
      */
     onChange(event) {
         // Передаем в редьюсер артикул детали для поиска
