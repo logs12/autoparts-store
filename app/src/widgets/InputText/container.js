@@ -78,6 +78,12 @@ export default class InputText extends Component {
      * Обработчик события изменения input, отправка введеного значения в store
      */
     onChange(event) {
+
+        // Передаем в редьюсер артикул детали для поиска
+        this.props.dispatch(
+            SearchForArticulActions.getProducts(event.target.value)
+        );
+
         // Передаем в редьюсер данные input
         this.props.actions.updateInputText(
                 this.context.formName,
