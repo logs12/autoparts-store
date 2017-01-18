@@ -1,4 +1,5 @@
 import * as FORM from './constants';
+import * as INPUT from '../InputText/constants';
 import * as _ from 'underscore';
 
 /**
@@ -19,7 +20,7 @@ export default function FormReducer(state = {}, action) {
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 
-        case FORM.INIT_FORM: {
+        case FORM.INIT: {
             initialState = {
                 [action.formName]: {
                     values: action.inputNames,
@@ -38,7 +39,7 @@ export default function FormReducer(state = {}, action) {
         }
 
         // Обновляем state формы при вводе данных в input
-        case FORM.INPUT_TEXT_UPDATE_VALUE:
+        case INPUT.UPDATE_VALUE:
         {
             // Формируем объект с данными из input
             let values = {};
@@ -66,7 +67,7 @@ export default function FormReducer(state = {}, action) {
             };
         }
 
-        case FORM.FORM_RESET:{
+        case FORM.RESET:{
             return initialState;
         }
     }

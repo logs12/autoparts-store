@@ -3,21 +3,28 @@ import InputTextComponent from "./component";
 import {bindActionCreators} from "redux";
 
 import { connect } from 'react-redux';
-//import * as actions from '../Form/actions';
 import * as actions from './actions';
+
 
 /**
  * Подключение к reduxStore
  */
 @connect(
-    (state) => ({
-        forms: state.InputTextReducer
-    }),
+    (state) => state,
     (dispatch) => ({ // mapDispatchToProps
-        formActions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     })
 )
 
+/**
+ * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer
+ * в глобальном state в свойстве reducerName, которому принадлежат данные
+    <InputText
+        name = 'password'
+        placeholder = 'Пароль'
+        reducerName = 'entity'
+    />
+ */
 export default class InputText extends Component {
 
     /**
@@ -26,7 +33,16 @@ export default class InputText extends Component {
      */
     static propTypes = {
         name: React.PropTypes.string.isRequired,
-        placeholder: React.PropTypes.string
+        placeholder: React.PropTypes.string,
+    };
+
+
+    /**
+     * @param reducerName - название reducer
+     * @type {{actionName: string}}
+     */
+    static defaultProps = {
+        reducerName: 'FormReducer',
     };
 
     /**
@@ -34,7 +50,7 @@ export default class InputText extends Component {
      * @type {{url: *}}
      */
     static contextTypes = {
-        formName: React.PropTypes.string.isRequired
+        formName: React.PropTypes.string.isRequired,
     };
 
     /**
@@ -55,15 +71,15 @@ export default class InputText extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
-        this.error = nextProps.forms[this.context.formName].errors[this.props.name];
+        this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
     }
 
     /**
      * Обработчик события изменения input, отправка введеного значения в store
      */
     onChange(event) {
-        // Передаем в редьюсер артикул детали для поиска
-        this.props.formActions.updateInputText(
+        // Передаем в редьюсер данные input
+        this.props.actions.updateInputText(
                 this.context.formName,
                 this.props.name,
                 event.target.value

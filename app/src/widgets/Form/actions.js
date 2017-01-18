@@ -1,24 +1,20 @@
 import * as FORM from './constants';
-import * as INPUTTEXT from '../InputText/constants';
 import ActionsFactory from '../../services/ActionsFactory';
 
+/**
+ * Первоначальная инициализация формы в глобальном state
+ * @param formName
+ * @param inputNames
+ * @param url
+ * @returns {function(*): *}
+ */
 export function initForm(formName, inputNames, url) {
     return dispatch => dispatch({
-        type: FORM.INIT_FORM,
+        type: FORM.INIT,
         formName,
         inputNames,
         url
     });
-}
-
-
-export function updateInputText(formName, inputName,value) {
-    return {
-        type: FORM.INPUT_TEXT_UPDATE_VALUE,
-        formName,
-        inputName,
-        value
-    }
 }
 
 /**
@@ -61,6 +57,6 @@ export function submitForm(formName, actionName, data, url) {
 
 export function reset() {
     return dispatch => dispatch({
-        type: FORM.FORM_RESET
+        type: FORM.RESET
     });
 }

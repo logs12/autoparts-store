@@ -1,16 +1,16 @@
 import * as INPUT from './constants';
 
 /**
- *
- * @param entityName - название сущности в state которой принадлежит содержимое input
+ * Обновление значений input в глобальном state
+ * @param formName
  * @param inputName
  * @param value
  * @returns {{type, formName: *, inputName: *, value: *}}
  */
-export function updateInputText(entityName, inputName,value) {
+export function updateInputText(formName, inputName,value) {
     return {
-        type: INPUT.INPUT_UPDATE_VALUE,
-        entityName,
+        type: INPUT.UPDATE_VALUE,
+        formName,
         inputName,
         value
     }

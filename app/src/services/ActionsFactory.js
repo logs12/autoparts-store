@@ -1,4 +1,5 @@
 import authAction from '../frontend/actions/AuthAction';
+import formAction from '../frontend/actions/AuthAction';
 
 /**
  * Список action

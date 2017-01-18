@@ -54,7 +54,6 @@ export default class Form extends Component {
         actionName: 'submitForm',
         formName: 'widgetForm',
         url: '/',
-
     };
 
 

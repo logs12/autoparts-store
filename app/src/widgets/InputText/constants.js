@@ -1,1 +1,1 @@
-export const INPUT_UPDATE_VALUE = 'INPUT_UPDATE_VALUE';
+export const UPDATE_VALUE = 'UPDATE_VALUE';
