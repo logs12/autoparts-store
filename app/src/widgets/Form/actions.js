@@ -19,39 +19,53 @@ export function initForm(formName, inputNames, url) {
 
 /**
  * Actions submit form
- * @param formName {string} - название формы
  * @param actionName {string} - название action который обрабатывает submit
  * @param data {object} - объект с данными формы
- * @param url {string} - url на который происходит отправка данных
+ * data{
+ *  formName {string} - название формы
+ *  data {object} - объект с данными формы
+ *  url {string} - url на который происходит отправка данных
+ * }
  * @returns {{types: *[], promise: (function())}}
  */
-export function submitForm(formName, actionName, data, url) {
-    // Если actionName не равен дефолтному, то подключаем его из фабрики action
-    if (actionName !== 'submitForm') {
-        return ActionsFactory(actionName, data, url, {formName: formName});
-    }
-    return {
-        types: [
-            FORM.REQUEST,
-            FORM.SUCCESS,
-            FORM.ERROR
-        ],
-        promise: () => {
-            return new Promise(( resolve, reject ) => {
-                debugger;
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data,
-                    success: (result) => {
-                        resolve(result);
-                    },
-                    error: (error) => {
-                        reject(error);
-                    }
-                });
-            });
+export function submitForm(actionName, data) {
+    try {
+        debugger;
+        if (!data.formName) throw new Error(`В ${actionName} не передано название формы`);
+
+        // Если actionName не равен дефолтному, то подключаем его из фабрики action
+        if (actionName !== 'submitForm') {
+            return ActionsFactory(actionName, data, {formName: data.formName});
         }
+
+        if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
+        if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
+
+        return {
+            types: [
+                FORM.REQUEST,
+                FORM.SUCCESS,
+                FORM.ERROR
+            ],
+            promise: () => {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        type: 'POST',
+                        url: data.url,
+                        data: data.values,
+                        success: (result) => {
+                            resolve(result);
+                        },
+                        error: (error) => {
+                            reject(error);
+                        }
+                    });
+                });
+            }
+        }
+    }
+    catch (Error) {
+        alert(Error);
     }
 }
 

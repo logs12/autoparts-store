@@ -30,6 +30,7 @@ export default function fetchData(getter, executor) {
         componentDidUpdate(prevProps) {
             const params = getter(this.props, this.props.params);
             const prevParams = getter(prevProps, prevProps.params);
+            // Сравниваем новые свойства со старыми
             !shallowEqual(params, prevParams)
             && executor(params, this.props.actions);
         }

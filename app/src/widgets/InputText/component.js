@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import TextField from 'material-ui/TextField';
 
-export default class InputText extends Component {
+export default class InputTextComponent extends Component {
 
     /**
      * Инициализируем контроль типов свойств

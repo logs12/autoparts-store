@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 
 import Form from '../../../widgets/Form/container';
-import InputText from '../../../widgets/InputText/container';
+import {InputText} from '../../../widgets/InputText/container';
 import SubmitButton from '../../../widgets/SubmitButton/container';
 
 //components

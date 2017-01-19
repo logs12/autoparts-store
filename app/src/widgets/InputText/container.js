@@ -1,20 +1,24 @@
 import React, {Component, PropTypes} from 'react';
 import InputTextComponent from "./component";
-import {bindActionCreators} from "redux";
 
 import { connect } from 'react-redux';
+
 import * as actions from './actions';
 
+import * as INPUT from './constants';
 
 /**
  * Подключение к reduxStore
  */
+
+
 @connect(
     (state) => state,
-    (dispatch) => ({ // mapDispatchToProps
+    /*(dispatch) => ({ // mapDispatchToProps
         actions: bindActionCreators(actions, dispatch)
-    })
+    })*/
 )
+
 
 /**
  * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer
@@ -22,10 +26,12 @@ import * as actions from './actions';
     <InputText
         name = 'password'
         placeholder = 'Пароль'
+        actionName = 'updateInputText'
+        urlSubmit = ''
         reducerName = 'entity'
     />
  */
-export default class InputText extends Component {
+export class InputText extends Component {
 
     /**
      * Инициализируем контроль типов свойств
@@ -34,6 +40,8 @@ export default class InputText extends Component {
     static propTypes = {
         name: React.PropTypes.string.isRequired,
         placeholder: React.PropTypes.string,
+        actionName: React.PropTypes.string,
+        urlSubmit: React.PropTypes.string,
     };
 
 
@@ -43,6 +51,8 @@ export default class InputText extends Component {
      */
     static defaultProps = {
         reducerName: 'FormReducer',
+        actionName: INPUT.ACTION_NAME,
+        urlSubmit: '/',
     };
 
     /**
@@ -78,17 +88,18 @@ export default class InputText extends Component {
      * Обработчик события изменения input, отправка введеного значения в store
      */
     onChange(event) {
+        event.preventDefault();
 
         // Передаем в редьюсер артикул детали для поиска
         this.props.dispatch(
-            SearchForArticulActions.getProducts(event.target.value)
-        );
-
-        // Передаем в редьюсер данные input
-        this.props.actions.updateInputText(
-                this.context.formName,
-                this.props.name,
-                event.target.value
+            actions.updateInputText(
+                this.props.actionName,
+                {
+                    formName: this.context.formName,
+                    inputName: this.props.name,
+                    value: event.target.value
+                },
+            )
         );
     }
 

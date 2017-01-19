@@ -56,7 +56,6 @@ export default class Form extends Component {
         url: '/',
     };
 
-
     /**
      * Перед рендерингом инициализируем форму в store
      */
@@ -100,15 +99,15 @@ export default class Form extends Component {
     submitHandle(event) {
 
         // Собираем из store данные введенные в форму
-        let data = this.props.forms[this.props.formName].values;
+        let values = this.props.forms[this.props.formName].values;
 
         // Запускаем submit формы
         this.props.formActions.submitForm(
-            this.props.formName,
-            this.props.actionName,
-            data,
-            this.props.url,
-        );
+            this.props.actionName, {
+            formName: this.props.formName,
+            values: values,
+            url: this.props.url,
+        });
 
 
         event.preventDefault();
