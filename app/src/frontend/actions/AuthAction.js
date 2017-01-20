@@ -6,9 +6,8 @@ import {
 } from '../../frontend/constants/AuthConstants';
 //import Promise from 'bluebird';
 
-import actionFormDecorator from '../../widgets/Form/decorators/@actionFormDecorator';
+import {actionFormDecorator} from '../../widgets/Form/decorators/@actionFormDecorator';
 
-actionFormDecorator
 export default function authAction(loginData, url, options) {
     return {
         types: [
