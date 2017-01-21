@@ -12,9 +12,8 @@ import SearchForArticle from '../../containers/SearchForArticle';
 import {actionFormDecorator} from '../../../widgets/Form/decorators/@actionFormDecorator';
 
 export default class Home extends Component{
-
-
-    constructor(props) {
+    
+    /*constructor(props) {
         super(props);
         debugger;
         let ff = function f(n) {
@@ -22,7 +21,7 @@ export default class Home extends Component{
         };
         ff = actionFormDecorator(ff,'sdfsdf');
         let uu = ff(456);
-    }
+    }*/
 
     render()  {
         return (

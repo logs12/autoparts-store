@@ -30,7 +30,6 @@ export function initForm(formName, inputNames, url) {
  */
 export function submitForm(actionName, data) {
     try {
-        debugger;
         if (!data.formName) throw new Error(`В ${actionName} не передано название формы`);
 
         // Если actionName не равен дефолтному, то подключаем его из фабрики action
@@ -49,19 +48,27 @@ export function submitForm(actionName, data) {
             ],
             promise: () => {
                 return new Promise((resolve, reject) => {
-                    $.ajax({
-                        type: 'POST',
-                        url: data.url,
-                        data: data.values,
-                        success: (result) => {
-                            resolve(result);
+                    fetch(data.url, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json, text/javascript, */*; q=0.01',
+                            'Content-Type': 'application/json'
                         },
-                        error: (error) => {
-                            reject(error);
+                        body: JSON.stringify(data.values)
+                    }).then((response) => {
+                        if (response.status === 200) {
+                            resolve(response.json());
+                        } else {
+                            response.json().then((object) => {
+                                reject(object);
+                            });
                         }
+                    }).catch((errorMessage) => {
+                        reject(new Error(errorMessage));
                     });
                 });
-            }
+            },
+            options: {formName: data.formName},
         }
     }
     catch (Error) {
