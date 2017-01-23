@@ -2,31 +2,29 @@ import './style.scss';
 
 import React, { Component } from 'react';
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router'
 
-export default class Error extends Component{
+export default class Error extends Component {
 
     render()  {
         return (
-            <Card>
-                <CardHeader
-                    title="URL Avatar"
-                    subtitle="Subtitle"
-                    avatar="images/jsa-128.jpg"
-                />
-                <CardTitle title="Card title" subtitle="Card subtitle" />
-                <CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                </CardText>
-                <CardActions>
-                    <FlatButton label="Action1" />
-                    <FlatButton label="Action2" />
-                </CardActions>
-            </Card>
+
+            <div className="error-page">
+                <h3>
+                    <i className="material-icons mdl-color-text--red-A200">error</i>
+                    {this.props.message}
+                </h3>
+                <div className="error-page__message mdl-color-text--grey-600">
+                    Произошла ошибка. Мы уже знаем о ней и сделаем всё возможное для её исправления.
+                    <br />
+                    Попробуйте обновить страницу (например, нажав клавишу F5).
+                    <br />
+                    <Link to="dashboard">Переход на главную страницу</Link>
+                </div>
+                <div className="error-page__stack-trace mdl-card__supporting-text">
+                    {this.props.stackTrace}
+                </div>
+            </div>
         )
     }
-};
+}

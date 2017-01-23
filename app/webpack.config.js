@@ -1,8 +1,8 @@
 'use strict';
 
-const webpack = require('webpack'),
-    path = require('path');
-
+const webpack = require('webpack');
+const path = require('path');
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     // точки входа
@@ -11,7 +11,6 @@ module.exports = {
         'babel-polyfill',
         "./src/index.js"
     ],
-
     // то, что получим на выходе
     output: {
         path: "./build",
@@ -19,14 +18,28 @@ module.exports = {
         publicPath: '/build/',
         chunkFilename: "[id].bundle.js"
     },
+    plugins:[
+        new webpack.ProvidePlugin({
+            underscore:'underscore'
+        }),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(NODE_ENV)
+        }),
+    ],
+    resolve: {
+        modules: [
+            path.resolve('./src'),
+            "node_modules"
+        ]
+    },
     devtool: '#eval-source-map',
     module: {
-        loaders: [
+        rules: [
             {
                 loaders: ['babel-loader'],
                 include: path.join(__dirname, 'src'),
+                exclude: /node_modules/,
                 test: /\.js$/,
-                plugins: ['transform-runtime'],
             },
             {
                 test: /\.jsx$/,
@@ -39,12 +52,15 @@ module.exports = {
             },
             {
                 test   : /\.css$/,
-                loaders: ['style', 'css', 'resolve-url']
+                loaders: ['style-loader', 'css-loader', 'resolve-url-loader']
             },
             {
-                test   : /\.scss$/,
-                loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap']
-            }
+                test: /\.scss$/, use: [
+                    {loader: "style-loader"},
+                    {loader: "css-loader"},
+                    {loader: "sass-loader"},
+                ]
+            },
         ]
 
     },
@@ -63,20 +79,18 @@ module.exports = {
          '*': 'http://help-kran.loc/'
          }*/
     },
-    plugins:[
-        new webpack.ProvidePlugin({
-            underscore:'underscore'
-        })
-    ]
-    /*  plugins: [
-     new webpack.HotModuleReplacementPlugin(),
-     new webpack.NoErrorsPlugin(),
-     //Minification js
-     new webpack.optimize.UglifyJsPlugin({
-     compressor: {
-     warnings: false
-     }
-     })
-     ],*/
 
+};
+
+// Плагин для минификации
+if (NODE_ENV == 'production') {
+    module.exports.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                drop_console: true,
+                unsafe: true
+            }
+        })
+    );
 }
