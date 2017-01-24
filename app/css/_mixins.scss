@@ -1,0 +1,54 @@
+@mixin input-placeholder ($color) {
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: $color;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: $color;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: $color;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: $color;
+    }
+}
+
+@mixin display($value) {
+    @if ($value = flex) {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+    } @else {
+        display: $value;
+    }
+}
+@mixin row() {
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    word-break: break-all;
+}
+
+@mixin flex($flow, $flex: false) {
+
+    //min-height: 0; // Смотреть http://stackoverflow.com/a/28639686
+
+    @if type-of($flow) == number and $flex == false {
+        flex: $flow
+    } @else {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        flex-flow: $flow;
+
+        @if $flex {
+            flex: $flex;
+        }
+    }
+
+}

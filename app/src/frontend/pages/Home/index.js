@@ -3,13 +3,13 @@ import './style.scss';
 import React, { Component } from 'react';
 
 
-import Form from '../../../widgets/Form/container';
-import {InputText} from '../../../widgets/InputText/container';
-import SubmitButton from '../../../widgets/SubmitButton/container';
+import Form from '../../../widgets/form/container';
+import {InputText} from '../../../widgets/input-text/container';
+import SubmitButton from '../../../widgets/submit-button/container';
 
 //components
 import SearchForArticle from '../../containers/SearchForArticle';
-import {actionFormDecorator} from '../../../widgets/Form/decorators/@actionFormDecorator';
+import {actionFormDecorator} from '../../../widgets/form/decorators/@actionFormDecorator';
 
 export default class Home extends Component{
     

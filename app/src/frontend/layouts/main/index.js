@@ -9,7 +9,7 @@ export default class Main extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <div className="main mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded">
+                <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded">
                     <Header/>
                     <main className="wrapper mdl-layout__content">
                         <div className="wrapper-page-content ">

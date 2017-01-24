@@ -3,21 +3,30 @@ import { Route, IndexRoute } from 'react-router';
 import { render } from 'react-dom';
 
 // Layouts
-import  MainLayout  from './frontend/layouts/main';
+import  FrontendLayout  from './frontend/layouts/main';
+import  BackendLayout  from './backend/layouts/main';
 
-// Components
-import Home from './frontend/pages/Home';
+// Frontend components
+import FrontendHome from './frontend/pages/Home';
 import Test from './frontend/pages/Test';
+
+// Backend components
+import AdminHome from './frontend/pages/Home';
+
+// Common components
 import Error from './pages/Error';
-import NotFound from './frontend/components/NotFound';
+import NotFound from './pages/NotFound';
 
 export const routes = (
     <Route>
-        <Route path='/' component={MainLayout}>
-            <IndexRoute component={Home}/>
+        <Route path="/" component={FrontendLayout}>
+            <IndexRoute component={FrontendHome}/>
             <Route path="test" component={Test}/>
-            <Route path='error' component={Error}/>
+            <Route path="error" component={Error}/>
         </Route>
+
+        <Route path="/admin" component={BackendLayout}/>
+
         <Route path='*' component={NotFound}/>
     </Route>
 );

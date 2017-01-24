@@ -20,7 +20,10 @@ module.exports = {
     },
     plugins:[
         new webpack.ProvidePlugin({
-            underscore:'underscore'
+            underscore:'lodash',
+            $: "jquery/dist/jquery.min.js",
+            jQuery: "jquery/dist/jquery.min.js",
+            "window.jQuery": "jquery/dist/jquery.min.js"
         }),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV)
@@ -32,7 +35,6 @@ module.exports = {
             "node_modules"
         ]
     },
-    devtool: '#eval-source-map',
     module: {
         rules: [
             {
@@ -93,4 +95,6 @@ if (NODE_ENV == 'production') {
             }
         })
     );
+}  else {
+    module.exports.devtool = 'source-map';
 }

@@ -1,7 +1,7 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
-import ProgressBar from '../../../widgets/ProgressBar';
+import ProgressBar from '../../../widgets/progress-bar';
 
 export default class SearchControl extends Component {
 
@@ -41,7 +41,7 @@ export default class SearchControl extends Component {
                                 return onClickButton(event);
                             }}
                             {...stateButton}>
-                        <i className="material-icons">search</i>
+                        <i className="fa fa-search fa-2x mdl-color-text--grey-700"></i>
                     </button>
                 </div>
                 {pending ? <ProgressBar /> : false}

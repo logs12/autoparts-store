@@ -1,0 +1,263 @@
+@import '../../../../css/mixins';
+
+.backend-layout {
+
+    /** верхняя панель**/
+    .header {
+        .mdl-textfield .mdl-textfield__expandable-holder {
+            bottom: 19px;
+        }
+
+        .mdl-layout__drawer-button {
+
+            color: rgba(0, 0, 0, 0.54);
+            height: 40px;
+            margin: 1px 0 0 0;
+
+            i {
+                top: -5px;
+                position: relative;
+            }
+
+        }
+
+        .mdl-layout__header-row .mdl-navigation {
+            height: 50px;
+        }
+    }
+
+    /** боковая панель**/
+    .drawer {
+        border: none;
+
+        .avatar {
+            margin-bottom: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+        }
+
+        /* iOS Safari specific workaround */
+        .mdl-menu__container {
+            z-index: -1;
+        }
+
+        .navigation {
+            z-index: -2;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+
+            .material-icons {
+                margin-right: 15px;
+            }
+
+            .mdl-navigation__link {
+                line-height: 16px;
+                display: -webkit-flex !important;
+                display: -ms-flexbox !important;
+                display: flex !important;
+                -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.56);
+                font-weight: 500;
+                padding: 10px 5px 10px 10px;
+            }
+
+            .mdl-navigation__link:hover {
+                background-color: #00BCD4;
+                color: #FFFFFF;
+            }
+
+            .mdl-navigation__link:hover .material-icons {
+                color: #FFFFFF !important;
+            }
+
+            .mdl-navigation__link .material-icons {
+                font-size: 24px;
+                color: rgba(255, 255, 255, 0.56);
+                margin-right: 32px;
+            }
+
+            .mdl-navigation__link {
+                cursor: pointer;
+            }
+        }
+
+        /* END iOS Safari specific workaround */
+        .mdl-menu .mdl-menu__item {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0;
+        }
+
+        .drawer-header {
+            box-sizing: border-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-justify-content: flex-end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            padding: 16px;
+            height: 151px;
+        }
+
+        .mdl-navigation__link--active, .drawer .mdl-navigation__link--active i {
+            color: #FFFFFF !important;
+        }
+
+        .avatar-dropdown {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            position: relative;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 100%;
+        }
+    }
+
+    .mdl-progress {
+        width: 100%;
+        visibility: hidden;
+        height: 3px;
+    }
+
+    .mdl-layout__header-row {
+        height: 47px;
+    }
+
+    .mdl-layout__header-row .mdl-navigation__link {
+        border-top: 6px solid transparent;
+        color: #757575;
+        position: relative;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        line-height: 46px;
+        padding: 0 15px;
+    }
+
+    .mdl-layout__header-row .mdl-navigation__link:hover {
+        background-color: #E0E0E0;
+    }
+
+    .mdl-layout__header-row .mdl-navigation__link--active {
+        border-top: 6px solid #546E7A;
+    }
+
+    #view-source {
+        position: fixed;
+        display: block;
+        right: 0;
+        bottom: 0;
+        margin-right: 40px;
+        margin-bottom: 40px;
+        z-index: 900;
+    }
+
+    .mdl-menu__item a {
+        color: rgba(0, 0, 0, .87);
+        text-decoration: none;
+        font-weight: normal;
+        padding: 0 16px;
+    }
+
+    .mdl-textfield--file {
+
+        .mdl-textfield__input {
+            box-sizing: border-box;
+            width: calc(100% - 32px);
+        }
+
+        .mdl-button--file {
+            right: 0;
+        }
+    }
+
+    .mdl-button--file {
+        input {
+            cursor: pointer;
+            height: 100%;
+            right: 0;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            width: 300px;
+            z-index: 4;
+        }
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .mdl-tooltip {
+        white-space: normal;
+    }
+
+    main.mdl-layout__content {
+        z-index: initial;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        padding: 25px;
+        height: 100%;
+    }
+
+    main.mdl-layout__content > div {
+        @include flex(1);
+        max-width: 100%;
+    }
+
+    .wide {
+        width: 100%;
+    }
+
+    .mdl-layout__header .mdl-menu__container {
+        top: 47px !important;
+        right: 0 !important;
+    }
+
+    .mdl-layout__header .mdl-menu__item {
+        padding: 0;
+    }
+
+    .mdl-layout__header .mdl-menu__item a {
+        padding: 0 16px;
+        height: 48px;
+        display: block;
+    }
+
+    /** breadcrumbs **/
+    .breadcrumbs {
+        box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.3), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        width: 100%;
+        padding: 5px 5px 5px 25px;
+        background-color: #757575;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 300;
+        min-height: 22px;
+        z-index: 1;
+    }
+}
+
+

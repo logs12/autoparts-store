@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Article from '../../../widgets/article/component';
 
 
 export default class Test extends Component{
@@ -7,7 +8,7 @@ export default class Test extends Component{
 
         return (
             <div id="test" >
-                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                <Article>!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</Article>
             </div>
         )
     }
