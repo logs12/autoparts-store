@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Article from '../../widgets/article/component';
 
-export default class Error extends Component {
+export default class ErrorPage extends Component {
 
     /**
      * Инициализируем контроль типов свойств

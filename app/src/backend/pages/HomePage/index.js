@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Article from '../../../widgets/article/component';
 
 
-export default class Home extends Component{
+export default class HomePage extends Component{
 
     render()  {
 

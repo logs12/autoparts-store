@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 import Article from '../../widgets/article/component';
 
-export default class NotFound extends Component {
+export default class NotFoundPage extends Component {
     render() {
         return (
             <div className="not-found-page">

@@ -35,7 +35,7 @@ export default class BackendLayout extends Component {
                     </header>
                     <nav className="navigation mdl-navigation mdl-color--blue-grey-800"></nav>
                 </div>
-                <main className="mdl-layout__content mdl-color--grey-100"></main>
+                <main className="mdl-layout__content mdl-color--grey-100">{this.props.children}</main>
                 <div className="mdl-layout-spacer"></div>
             </div>
         )

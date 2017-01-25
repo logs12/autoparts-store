@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Article from '../../../widgets/article/component';
 
 
-export default class Test extends Component{
+export default class TestPage extends Component{
 
     render()  {
 

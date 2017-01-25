@@ -11,7 +11,7 @@ import SubmitButton from '../../../widgets/submit-button/container';
 import SearchForArticle from '../../containers/SearchForArticle';
 import {actionFormDecorator} from '../../../widgets/form/decorators/@actionFormDecorator';
 
-export default class Home extends Component{
+export default class HomePage extends Component{
     
     /*constructor(props) {
         super(props);

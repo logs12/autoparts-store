@@ -3,7 +3,7 @@ import './styles/style.scss';
 import React, { Component } from 'react';
 import FlexMenu from '../../../widgets/flex-menu';
 import NavLink from '../../../widgets/nav-link/component';
-import LoginForm from '../../containers/LoginFormContainer';
+import LoginFormComponent from '../../components/LoginFormComponent';
 import Dialog from 'material-ui/Dialog';
 
 
@@ -18,42 +18,48 @@ export default class MainMenu extends Component {
         this.links = [
             {
                 url: '/',
-                title: 'Главная'
+                title: 'Главная',
+                onlyActiveOnIndex: true,
             },
             {
                 url: '/test',
-                title: 'Тест'
-            },
-
-            {
-                url: '/test',
-                title: 'Тест'
-            },
-
-            {
-                url: '/test',
-                title: 'Тест'
-            },
-
-            {
-                url: '/test',
-                title: 'Тест'
+                title: 'Тест',
+                onlyActiveOnIndex: false,
             },
             {
                 url: '/test',
-                title: 'Тест'
+                title: 'Тест',
+                onlyActiveOnIndex: false,
             },
             {
                 url: '/test',
-                title: 'Тест'
+                title: 'Тест',
+                onlyActiveOnIndex: false,
             },
             {
                 url: '/test',
-                title: 'Тест'
+                title: 'Тест',
+                onlyActiveOnIndex: false,
             },
             {
                 url: '/test',
-                title: 'Тест'
+                title: 'Тест',
+                onlyActiveOnIndex: false,
+            },
+            {
+                url: '/test',
+                title: 'Тест',
+                onlyActiveOnIndex: false,
+            },
+            {
+                url: '/test',
+                title: 'Тест',
+                onlyActiveOnIndex: false,
+            },
+            {
+                url: '/test',
+                title: 'Тест',
+                onlyActiveOnIndex: false,
             },
 
         ];
@@ -115,7 +121,7 @@ export default class MainMenu extends Component {
                             open={this.state.open}
                             onRequestClose={::this.handleClose}
                             autoScrollBodyContent={true}>
-                                <LoginForm />
+                                <LoginFormComponent />
                         </Dialog>
                     </nav>
                 </div>
