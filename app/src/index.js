@@ -1,11 +1,15 @@
 import "../css/styles.scss";
 
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory} from 'react-router';
-import { routes } from './routes';
 import Root from './Root';
+
+
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './frontend/store/configureStore';

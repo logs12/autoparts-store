@@ -20,10 +20,11 @@
     "material-ui": "*",
     "react": "*",
     "react-dom": "*",
-    "redux": "*",
+    "react-mdl": "^1.9.0",
     "react-redux": "*",
     "react-router": "*",
-    "react-tap-event-plugin": "*"
+    "react-tap-event-plugin": "*",
+    "redux": "*"
   },
   "author": "*",
   "license": "*",

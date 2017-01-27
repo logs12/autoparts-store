@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import TextField from 'material-ui/TextField';
+import { TextField } from 'react-mdl/lib/Textfield';
 
 export default class InputTextComponent extends Component {
 
@@ -17,10 +17,9 @@ export default class InputTextComponent extends Component {
         return (
             <div>
                 <TextField
-                    name = {this.props.name}
-                    hintText = {this.props.placeholder}
                     onChange={this.props.onChange}
-                    errorText={this.props.error}
+                    error={this.props.error}
+                    label={this.props.placeholder}
                 />
             </div>
         );
