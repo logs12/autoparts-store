@@ -4,7 +4,7 @@ import React, {Component} from "react";
 
 import Form from '../../../widgets/form/container';
 import {InputText} from '../../../widgets/input-text/container';
-import SubmitButton from '../../../widgets/submit-button/container';
+import SubmitButton from '../../../widgets/button-loading/container';
 
 import { connect } from 'react-redux';
 

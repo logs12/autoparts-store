@@ -1,0 +1,15 @@
+.widget-button-loading {
+	display: flex; }
+
+.widget-button-loading__success-text, .widget-button-loading__error-text {
+	margin: 8px 10px;
+	display: none; }
+
+.widget-button-loading__success-text--icon, .widget-button-loading__error-text--icon {
+	padding: 4px 0 0 5px;
+	margin: 0;
+	display: none; }
+
+.widget-button-loading__spinner {
+	margin: 4px 10px 0 10px;
+	display: none; }

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import * as actions from './actions';
 
-import * as INPUT from './constants';
+import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
 
 /**
  * Подключение к reduxStore
@@ -51,7 +51,7 @@ export class InputText extends Component {
      */
     static defaultProps = {
         reducerName: 'FormReducer',
-        actionName: INPUT.ACTION_NAME,
+        actionName: WIDGET_INPUT_TEXT_ACTION_NAME,
         urlSubmit: '/',
     };
 

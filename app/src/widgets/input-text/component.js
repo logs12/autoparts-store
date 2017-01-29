@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { TextField } from 'react-mdl/lib/Textfield';
+import TextField from 'react-mdl/lib/Textfield';
 
 export default class InputTextComponent extends Component {
 

@@ -1,6 +1,12 @@
-import * as FORM from './constants';
-import * as INPUT from '../input-text/constants';
-import * as _ from 'lodash';
+import {
+    WIDGET_FORM_INIT,
+    WIDGET_FORM_REQUEST,
+    WIDGET_FORM_SUCCESS,
+    WIDGET_FORM_ERROR,
+    WIDGET_FORM_RESET
+} from '../../constants';
+
+import { WIDGET_INPUT_TEXT_UPDATE_VALUE } from '../../constants';
 
 /**
  * Структура state виджета Form
@@ -20,26 +26,27 @@ export default function FormReducer(state = {}, action) {
     console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
 
-        case FORM.INIT: {
+        case WIDGET_FORM_INIT: {
             initialState = {
                 [action.formName]: {
                     values: action.inputNames,
-                    isPending: false,
                     isChanged: false,
+                    stateForm: WIDGET_FORM_INIT,
                     errors: action.inputNames
             }};
             return {
                 ...state,
                 [action.formName]: {
                     values: action.inputNames,
-                    isPending: false,
+                    isChanged: false,
+                    stateForm: WIDGET_FORM_INIT,
                     errors: action.inputNames
                 }
             }
         }
 
         // Обновляем state формы при вводе данных в input
-        case INPUT.UPDATE_VALUE:
+        case WIDGET_INPUT_TEXT_UPDATE_VALUE:
         {
             // Формируем объект с данными из input
             let values = {};
@@ -49,6 +56,12 @@ export default function FormReducer(state = {}, action) {
                 } else {
                     values[inputName] =  state[action.formName]['values'][inputName];
                 }
+            }
+
+            // Чистим ошибки в state
+            let errors = {}
+            for(let errorFieldName in state[action.formName]['errors']) {
+                errors[errorFieldName] = null;
             }
 
             // Флаг изменились ли данные
@@ -62,12 +75,13 @@ export default function FormReducer(state = {}, action) {
                 [action.formName]: {
                     ...state[action.formName],
                     isChanged,
-                    values: { ...values }
+                    values: { ...values },
+                    errors: { ...errors }
                 }
             };
         }
 
-        case FORM.RESET:{
+        case WIDGET_FORM_RESET:{
             return initialState;
         }
     }
@@ -77,30 +91,29 @@ export default function FormReducer(state = {}, action) {
 
     // Обработка actions при submit формы
     switch (typeActionAfterSplit[typeActionAfterSplit.length-1]) {
+
         // обработка REQUEST, меняем isPending на true
-        case FORM.REQUEST: {
-            let isChanged = _.isEqual(
-                initialState[action.options.formName].value,
-                state[action.options.formName].value
-            );
+        case WIDGET_FORM_REQUEST: {
             return {
                 ...state,
                 [action.options.formName]: {
                     ...state[action.options.formName],
-                    isPending: true
+                    stateForm: WIDGET_FORM_REQUEST,
                 }
             }
         }
-        case FORM.SUCCESS: {
+
+        case WIDGET_FORM_SUCCESS: {
             return {
                 ...state,
                 [action.options.formName]: {
                     ...state[action.options.formName],
-                    isPending: false
+                    isChanged: false,
+                    stateForm: WIDGET_FORM_SUCCESS,
                 }
             }
         }
-        case FORM.ERROR: {
+        case WIDGET_FORM_ERROR: {
             let errors = {};
             action.errors.forEach((error) => {
                 errors[error.field] = error.message;
@@ -110,7 +123,7 @@ export default function FormReducer(state = {}, action) {
                 [action.options.formName]: {
                     ...state[action.options.formName],
                     errors: { ...errors },
-                    isPending: false
+                    stateForm: WIDGET_FORM_ERROR,
                 }
             }
         }

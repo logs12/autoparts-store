@@ -1,8 +1,7 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import LinearProgress from 'material-ui/LinearProgress';
+import ProgressBarMdl from 'react-mdl/lib/ProgressBar';
 
 export default class ProgressBar extends Component {
 
@@ -12,10 +11,6 @@ export default class ProgressBar extends Component {
             completed: 0,
         };
     }
-
-    /*componentDidUpdate() {
-        componentHandler.upgradeDom();
-    }*/
 
 
     componentDidMount() {
@@ -41,9 +36,7 @@ export default class ProgressBar extends Component {
     render() {
 
         return (
-            <MuiThemeProvider>
-                <LinearProgress mode="determinate" value={this.state.completed} />
-            </MuiThemeProvider>
+            <ProgressBarMdl indeterminate className="progress-bar"/>
         )
     }
 }

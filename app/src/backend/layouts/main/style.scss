@@ -36,11 +36,7 @@
             height: 48px;
             border-radius: 24px;
         }
-
-        /* iOS Safari specific workaround */
-        .mdl-menu__container {
-            z-index: -1;
-        }
+        
 
         .navigation {
             z-index: -2;
@@ -88,17 +84,6 @@
             }
         }
 
-        /* END iOS Safari specific workaround */
-        .mdl-menu .mdl-menu__item {
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-align-items: center;
-            -ms-flex-align: center;
-            align-items: center;
-            padding: 0;
-        }
-
         .drawer-header {
             box-sizing: border-box;
             display: -webkit-flex;
@@ -131,12 +116,6 @@
             align-items: center;
             width: 100%;
         }
-    }
-
-    .mdl-progress {
-        width: 100%;
-        visibility: hidden;
-        height: 3px;
     }
 
     .mdl-layout__header {

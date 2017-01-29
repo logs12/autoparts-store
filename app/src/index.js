@@ -3,6 +3,8 @@ import "../css/styles.scss";
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 
+import * as _ from 'lodash';
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -12,7 +14,7 @@ import Root from './Root';
 
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import configureStore from './frontend/store/configureStore';
+import configureStore from './store/configureStore';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941

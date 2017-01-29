@@ -1,4 +1,10 @@
-import * as FORM from './constants';
+import {
+    WIDGET_FORM_INIT,
+    WIDGET_FORM_REQUEST,
+    WIDGET_FORM_SUCCESS,
+    WIDGET_FORM_ERROR,
+    WIDGET_FORM_RESET
+} from '../../constants';
 import ActionsFactory from '../../services/ActionsFactory';
 
 /**
@@ -10,7 +16,7 @@ import ActionsFactory from '../../services/ActionsFactory';
  */
 export function initForm(formName, inputNames, url) {
     return dispatch => dispatch({
-        type: FORM.INIT,
+        type: WIDGET_FORM_INIT,
         formName,
         inputNames,
         url
@@ -42,9 +48,9 @@ export function submitForm(actionName, data) {
 
         return {
             types: [
-                FORM.REQUEST,
-                FORM.SUCCESS,
-                FORM.ERROR
+                WIDGET_FORM_REQUEST,
+                WIDGET_FORM_SUCCESS,
+                WIDGET_FORM_ERROR,
             ],
             promise: () => {
                 return new Promise((resolve, reject) => {
@@ -78,6 +84,6 @@ export function submitForm(actionName, data) {
 
 export function reset() {
     return dispatch => dispatch({
-        type: FORM.RESET
+        type: WIDGET_FORM_RESET
     });
 }

@@ -2,7 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from "redux";
 
-import SubmitButtonComponent from './component';
+import { WIDGET_FORM_INIT } from '../../constants';
+
+import ButtonLoadingComponent from './component';
 
 /**
  * Подключение к reduxStore
@@ -13,7 +15,7 @@ import SubmitButtonComponent from './component';
     })
 )
 
-export default class SubmitButton extends Component{
+export default class ButtonLoading extends Component{
 
     static propTypes = {
         className: React.PropTypes.string,
@@ -30,11 +32,12 @@ export default class SubmitButton extends Component{
 
     /**
      * Свойство выключения кнопки
-     * @type {{disabled: boolean, isPending: boolean}}
+     * @type {{disabled: boolean, isPending: boolean, isSuccess: boolean}}
      */
     state = {
         disabled: true,
         isPending: false,
+        buttonState: WIDGET_FORM_INIT,
     };
 
     /**
@@ -54,20 +57,20 @@ export default class SubmitButton extends Component{
         // Если isChanged == true, то выключаем кнопку disabled == false
         this.state.disabled = !nextProps.forms[this.context.formName].isChanged;
 
-        //
-        this.state.isPending = nextProps.forms[this.context.formName].isPending;
+        // Состояния кнопки
+        this.state.buttonState = nextProps.forms[this.context.formName].stateForm;
 
     }
 
     render () {
         return (
-            <SubmitButtonComponent
+            <ButtonLoadingComponent
                 className={this.props.className}
                 label={this.props.label}
                 disabled={this.state.disabled}
-                isPending={this.state.isPending}
+                buttonState={this.state.buttonState}
             >
-            </SubmitButtonComponent>
+            </ButtonLoadingComponent>
         )
     }
 }

@@ -5,11 +5,12 @@ import React, { Component } from 'react';
 
 import Form from '../../../widgets/form/container';
 import {InputText} from '../../../widgets/input-text/container';
-import SubmitButton from '../../../widgets/submit-button/container';
+import ButtonLoading from '../../../widgets/button-loading/container';
 
 //components
 import SearchForArticle from '../../containers/SearchForArticle';
 import {actionFormDecorator} from '../../../widgets/form/decorators/@actionFormDecorator';
+import ProgressBar from 'react-mdl/lib/ProgressBar';
 
 export default class HomePage extends Component{
     
@@ -38,7 +39,7 @@ export default class HomePage extends Component{
                         name = 'password'
                         placeholder = 'Пароль'
                     />
-                    <SubmitButton
+                    <ButtonLoading
                         label="Вход"
                     />
                 </Form>
