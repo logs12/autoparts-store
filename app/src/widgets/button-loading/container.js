@@ -28,6 +28,7 @@ export default class ButtonLoading extends Component{
      */
     static defaultProps = {
         label: 'Submit',
+        className: ''
     };
 
     /**

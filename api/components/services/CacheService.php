@@ -1,14 +1,26 @@
 <?php
+
 namespace app\components\services;
 
 use app\models\Type as TypeModel;
 use app\models\Status as StatusModel;
 use yii\base\UserException;
+use yii\helpers\ArrayHelper;
 
-class Cache extends BaseService
+class CacheService extends BaseService
 {
-    private static $statuses = [];
-    private static $types = [];
+    public static $statuses = [];
+    public static $types = [];
+    public static $fiasIds = [];
+
+    public static function getFiasDataById($fiasId)
+    {
+        if ($fiasObjectData = ArrayHelper::getValue(static::$fiasIds, $fiasId)) {
+            return $fiasObjectData;
+        }
+
+        return null;
+    }
 
     public static function getTypes()
     {
@@ -33,9 +45,9 @@ class Cache extends BaseService
         return static::getType('id', $id, $throwException);
     }
 
-    public static function getTypeByName($id, $throwException = true)
+    public static function getTypeByName($name, $throwException = true)
     {
-        return static::getType('name', $id, $throwException);
+        return static::getType('name', $name, $throwException);
     }
 
     private static function getType($field, $value, $throwException = true)

@@ -74,9 +74,10 @@ export default function FormReducer(state = {}, action) {
                 ...state,
                 [action.formName]: {
                     ...state[action.formName],
-                    isChanged,
                     values: { ...values },
-                    errors: { ...errors }
+                    errors: { ...errors },
+                    isChanged,
+                    stateForm: WIDGET_FORM_INIT,
                 }
             };
         }

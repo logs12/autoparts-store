@@ -1,3 +1,5 @@
+import './style.scss';
+
 import React, {Component} from "react";
 
 import {
@@ -50,11 +52,6 @@ export default class ButtonLoadingComponent extends Component {
             }
         }
 
-        // Если кнопка кнопка выключенна(отменили изменение сущности), то состояние не показывается
-        if (this.props.disabled) {
-            stateElement = null;
-        }
-
         return stateElement;
     }
 
@@ -71,13 +68,15 @@ export default class ButtonLoadingComponent extends Component {
 
     render() {
         return (
-            <div className={this.props.className}>
+            <div className={'widget-button-loading ' + this.props.className}>
                 <Button className={this.props.className}
                         disabled={this.renderDisabled()}
                 >
                     {this.props.label}
                 </Button>
-                {this.renderStateButton()}
+                <div className="widget-button-loading__state-container">
+                    {this.renderStateButton()}
+                </div>
             </div>
         )
     }

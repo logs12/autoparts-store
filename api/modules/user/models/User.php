@@ -12,6 +12,7 @@ use app\components\services\Cache;
 use yii\base\UserException;
 use yii\db\ActiveQuery;
 use app\modules\user\Module;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -123,6 +124,24 @@ class User extends BaseActiveRecord implements IdentityInterface
             'status_id' => 'Статус',
             'role' => Module::t('module', 'USER_ROLE')
         ];
+    }
+
+    public function fields()
+    {
+        return ArrayHelper::merge(parent::fields(), [
+            'id' => function ($model) {
+                return $this->getIntOrNull($model->id);
+            },
+            'status_id' => function ($model) {
+                return $this->getIntOrNull($model->status_id);
+            },
+            'first_name',
+            'second_name',
+            'third_name',
+            'phone',
+            'email',
+            'role',
+        ]);
     }
 
     public function validatePassword($password)

@@ -12,7 +12,7 @@ export default function authAction(data, options) {
     try {
         if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
         if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
-
+        debugger;
         return {
             types: [
                 LOGIN_REQUEST,
@@ -30,21 +30,30 @@ export default function authAction(data, options) {
                         },
                         body: JSON.stringify(data.values)
                     })
-                        .then((response) => {
-                            if (response.status === 200) {
-                                resolve(response.json());
-                            } else {
-                                response.json().then((object) => {
-                                    reject(object);
-                                });
-                            }
-                        })/*
-                         .then(function(user) {
-                         alert(user.name); //
-                         })*/
-                        .catch((errorMessage) => {
-                            reject(new Error(errorMessage));
-                        });
+                    .then((response) => {
+                        if (response.status === 200) {
+                            response.json().then((object) => {
+                                resolve(object);
+                                let user =object.configData.user;
+                                debugger;
+                                /*if (!user && routeName !== 'login') {
+                                    this.navigate('#login', {trigger: true});
+                                } else if (user && routeName === 'login') {
+                                    this.navigate('#dashboard', {trigger: true});
+                                }*/
+                                console.log('user = ',);
+                            })
+                        } else {
+                            response.json().then((object) => {
+                                reject(object);
+                                return object;
+                            })
+                        }
+                    })
+
+                    .catch((errorMessage) => {
+                        reject(new Error(errorMessage));
+                    });
                 });
             },
             options: options

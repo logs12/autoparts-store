@@ -19,6 +19,11 @@ import SignUpPage from './pages/SignUpPage';
 import ErrorPage from './pages/ErrorPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+function checkLogin() {
+
+}
+
+
 export const routes = (
     <Route>
         <Route path="/" component={FrontendLayout}>

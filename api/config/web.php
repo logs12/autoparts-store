@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\ArrayHelper;
+use app\components\services\BaseService;
+use yii\log\FileTarget;
+use yii\web\Response;
 
 // Слияние глобальных и локальных парамертов
 $params = file_exists(__DIR__ . '/params.local.php')
@@ -36,16 +39,19 @@ $config = [
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'E2zOyK9QPZMxwTO4uyX7KGc1Lg94O5Oy',
+            'cookieValidationKey' => 'tVBqer4KQDz0t_dUaQtjmoPkXzmZg-a_yM',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ]
         ],
         'response' => [
-            'format' => \yii\web\Response::FORMAT_JSON,
+            'format' => Response::FORMAT_JSON,
             'formatters' => [
                 'json' => 'app\components\formatters\JsonResponseFormatter',
             ],
+            'on ' . Response::EVENT_BEFORE_SEND => function () {
+                BaseService::handleResponse();
+            }
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
