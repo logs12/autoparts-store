@@ -32,7 +32,6 @@ export default function authAction(data, options) {
                         body: JSON.stringify(data.values)
                     })
                     .then((response) => {
-                        debugger;
                         if (response.status === 200) {
                             response.json().then((object) => {
                                 resolve(object);

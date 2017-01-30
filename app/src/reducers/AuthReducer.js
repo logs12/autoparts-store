@@ -11,7 +11,6 @@ export default function AuthReducer(state = initialTimeState, action) {
     console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
         case LOGIN_SUCCESS: {
-            debugger;
             return {
                 ...state,
                 pending: true
