@@ -1,5 +1,6 @@
 export default function PromiseMiddleware() {
-    return ( next ) => ( action ) => {
+    return next => (dispatch, getState, action) => {
+
         const { promise, types, ...rest } = action;
 
         if( !promise ) {
@@ -10,7 +11,7 @@ export default function PromiseMiddleware() {
 
         next({ ...rest, type: REQUEST });
 
-        return promise().then(
+        return promise(dispatch, getState).then(
             (result) => {
                 next({ ...rest, result, type: SUCCESS });
             },

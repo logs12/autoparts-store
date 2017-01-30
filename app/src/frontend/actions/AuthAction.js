@@ -3,16 +3,17 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     LOGOUT_SUCCESS,
-} from '../../frontend/constants/AuthConstants';
+} from '../../constants';
 //import Promise from 'bluebird';
 
 import {actionFormDecorator} from '../../widgets/form/decorators/@actionFormDecorator';
+
+import { push } from 'react-router-redux';
 
 export default function authAction(data, options) {
     try {
         if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
         if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
-        debugger;
         return {
             types: [
                 LOGIN_REQUEST,
@@ -20,7 +21,7 @@ export default function authAction(data, options) {
                 LOGIN_ERROR,
                 LOGOUT_SUCCESS,
             ],
-            promise: () => {
+            promise: (dispatch, getState) => {
                 return new Promise((resolve, reject) => {
                     fetch(data.url, {
                         method: 'POST',
@@ -31,17 +32,18 @@ export default function authAction(data, options) {
                         body: JSON.stringify(data.values)
                     })
                     .then((response) => {
+                        debugger;
                         if (response.status === 200) {
                             response.json().then((object) => {
                                 resolve(object);
-                                let user =object.configData.user;
-                                debugger;
+                                let user = object.configData.user;
+                                dispatch(push('/admin'));
                                 /*if (!user && routeName !== 'login') {
                                     this.navigate('#login', {trigger: true});
                                 } else if (user && routeName === 'login') {
                                     this.navigate('#dashboard', {trigger: true});
                                 }*/
-                                console.log('user = ',);
+                                console.log('user = ', user);
                             })
                         } else {
                             response.json().then((object) => {
