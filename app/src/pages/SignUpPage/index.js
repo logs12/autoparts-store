@@ -2,7 +2,7 @@ import './style.scss';
 
 import React from 'react';
 
-import LoginFormComponent from '../../frontend/components/LoginFormComponent';
+import LoginFormComponent from '../../components/LoginFormComponent';
 
 const SignUpPage = () => {
 

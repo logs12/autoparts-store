@@ -2,11 +2,9 @@ import './style.scss';
 
 import React, {Component} from "react";
 
-import Form from '../../../widgets/form/container';
-import {InputText} from '../../../widgets/input-text/container';
-import SubmitButton from '../../../widgets/button-loading/container';
-
-import { connect } from 'react-redux';
+import Form from '../../widgets/form/container';
+import {InputText} from '../../widgets/input-text/container';
+import ButtonLoading from '../../widgets/button-loading/container';
 
 export default class LoginFormComponent extends Component {
 
@@ -24,11 +22,10 @@ export default class LoginFormComponent extends Component {
                     name = 'password'
                     placeholder = 'Пароль'
                 />
-                <SubmitButton
+                <ButtonLoading
                     label="Вход"
                 />
             </Form>
-
         )
     }
 }
