@@ -10,15 +10,9 @@ import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
 /**
  * Подключение к reduxStore
  */
-
-
 @connect(
     (state) => state,
-    /*(dispatch) => ({ // mapDispatchToProps
-        actions: bindActionCreators(actions, dispatch)
-    })*/
 )
-
 
 /**
  * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer

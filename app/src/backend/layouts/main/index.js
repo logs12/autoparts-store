@@ -12,7 +12,6 @@ import ProgressBar from '../../../widgets/progress-bar';
 export default class BackendLayout extends Component {
 
     render() {
-
         return (
             <Layout fixedHeader fixedDrawer className="backend-layout">
 

@@ -3,14 +3,13 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     LOGOUT_SUCCESS,
-} from '../../constants';
-//import Promise from 'bluebird';
+} from '../constants';
 
-import {actionFormDecorator} from '../../widgets/form/decorators/@actionFormDecorator';
+import {actionFormDecorator} from '../widgets/form/decorators/@actionFormDecorator';
 
 import { push } from 'react-router-redux';
 
-export default function authAction(data, options) {
+export function authAction(data, options) {
     try {
         if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
         if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
@@ -34,15 +33,18 @@ export default function authAction(data, options) {
                     .then((response) => {
                         if (response.status === 200) {
                             response.json().then((object) => {
+                                /*debugger;
                                 resolve(object);
-                                let user = object.configData.user;
+                                return object;
+                                alert(222);*/
+                                // Не используем re
+                                dispatch({
+                                    type: LOGIN_SUCCESS,
+                                    payload: object,
+                                    options: {...options},
+                                });
                                 dispatch(push('/admin'));
-                                /*if (!user && routeName !== 'login') {
-                                    this.navigate('#login', {trigger: true});
-                                } else if (user && routeName === 'login') {
-                                    this.navigate('#dashboard', {trigger: true});
-                                }*/
-                                console.log('user = ', user);
+                                debugger;
                             })
                         } else {
                             response.json().then((object) => {

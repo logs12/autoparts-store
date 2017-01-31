@@ -14,14 +14,11 @@ import TestPage from './frontend/pages/TestPage';
 import AdminHomePage from './backend/pages/HomePage';
 
 // Common components
-import {LoginPage} from './pages/LoginPage';
+import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ErrorPage from './pages/ErrorPage';
 import NotFoundPage from './pages/NotFoundPage';
-
-function checkLogin() {
-
-}
+import RequireAuthenticationContainer from './containers/RequireAuthenticationContainer';
 
 
 export const routes = (
@@ -31,7 +28,8 @@ export const routes = (
             <Route path="test" component={TestPage}/>
         </Route>
 
-        <Route path="/admin" component={BackendLayout}>
+        <Route path="/admin" component={RequireAuthenticationContainer(BackendLayout)}>
+        {/*<Route path="/admin" component={BackendLayout}>*/}
             <IndexRoute component={AdminHomePage}/>
         </Route>
 

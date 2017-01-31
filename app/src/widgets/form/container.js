@@ -19,7 +19,7 @@ import * as actions from './actions';
 
     /**
      * Actions из state, которые будут использоваться
-     * @param state
+     * @param dispatch
      */
     (dispatch) => ({ // mapDispatchToProps
         formActions: bindActionCreators(actions, dispatch)

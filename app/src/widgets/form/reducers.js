@@ -1,12 +1,13 @@
+import * as _ from 'lodash';
+
 import {
     WIDGET_FORM_INIT,
     WIDGET_FORM_REQUEST,
     WIDGET_FORM_SUCCESS,
     WIDGET_FORM_ERROR,
-    WIDGET_FORM_RESET
+    WIDGET_FORM_RESET,
+    WIDGET_INPUT_TEXT_UPDATE_VALUE
 } from '../../constants';
-
-import { WIDGET_INPUT_TEXT_UPDATE_VALUE } from '../../constants';
 
 /**
  * Структура state виджета Form

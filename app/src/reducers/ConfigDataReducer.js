@@ -5,15 +5,21 @@ import {
     LOGOUT_SUCCESS,
 } from '../constants';
 
-const initialTimeState = {};
+const initialTimeState = {
+    user: {},
+    environment: 'dev',
+    info: {},
+    isAuthenticated: false,
+};
 
-export default function AuthReducer(state = initialTimeState, action) {
+export function ConfigData(state = initialTimeState, action) {
     console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
         case LOGIN_SUCCESS: {
             return {
                 ...state,
-                pending: true
+                ...action.payload.configData,
+                ...{isAuthenticated: true},
             };
         }
         default: {

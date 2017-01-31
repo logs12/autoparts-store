@@ -29,7 +29,38 @@ $config = [
         'log',
         'app\modules\user\Bootstrap',
     ],
+    'modules' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+        ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
+            'controllerNamespace' => 'app\modules\user\controllers',
+        ]
+    ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
+
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUR',
+            'locale' => 'ru-RU',
+            'defaultTimeZone' => 'Europe/Moscow',
+        ],
         'authManager' => [
             'class' => 'app\components\rbac\AuthManager',
         ],
@@ -81,12 +112,6 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/rules.php')
         ],
-    ],
-    'modules' => [
-        'user' => [
-            'class' => 'app\modules\user\Module',
-            'controllerNamespace' => 'app\modules\user\controllers',
-        ]
     ],
     'params' => $params,
 ];
