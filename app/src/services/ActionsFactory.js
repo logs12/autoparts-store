@@ -1,5 +1,4 @@
-import authAction from '../actions/AuthAction';
-import formAction from '../actions/AuthAction';
+import { authAction } from '../actions/AuthAction';
 
 /**
  * Список action

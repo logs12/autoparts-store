@@ -51,7 +51,7 @@ class m161025_194027_init extends Migration
                         'file_id' => $this->integer()->unsigned()->comment('Идентификатор файла фотографии'),
                         'phone' => $this->string(25)->comment('Телефон'),
                         'password_hash' => $this->string(60)->notNull()->comment('Хэш пароля'),
-                        'access_token' => $this->string(32)->comment('Токен досутпа к API'),
+                        'auth_key' => $this->string(32)->comment('Ключ подтверждения для cookie аутентификации'),
                         'status_id' => $this->integer()->unsigned()->notNull()->comment('Идентификатор статуса'),
                         'created' => $this->integer(11)->comment('Дата добавления записи'),
                         'updated' => $this->integer(11)->comment('Дата изменения записи'),

@@ -102,7 +102,7 @@ export default class Form extends Component {
         let values = this.props.forms[this.props.formName].values;
 
         // Запускаем submit формы
-        this.props.formActions.submitForm(
+        this.props.formActions.submitFormAction(
             this.props.actionName, {
             formName: this.props.formName,
             values: values,

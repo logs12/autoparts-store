@@ -29,16 +29,15 @@ export default function RequireAuthenticationContainer(Component) {
 
         componentWillMount() {
             this.checkAuth(this.props.configData.isAuthenticated);
-            debugger;
             // При перезагруке странички(f5) заново отсылаем авторизационные данные на сервер
-            this.props.authAction();
+            //this.props.authAction();
 
 
-            this.props.formActions.initForm(
+            /*this.props.actions.authAction(
                 this.props.formName,
                 this.getInputNames(),
                 this.props.url
-            );
+            );*/
         }
 
         componentWillReceiveProps(nextProps) {

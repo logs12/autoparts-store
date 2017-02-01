@@ -40,7 +40,7 @@ class AuthController extends BaseRestController
         if (!$model->hasErrors()) {
             $webUser = Yii::$app->user;
             $user = $model->getUser();
-            $webUser->login($user);
+            $webUser->login($user, Yii::$app->params['authTimeOut']);
             $model->configData = BaseService::getConfig($user);
             return $model;
         }

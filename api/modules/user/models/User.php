@@ -168,19 +168,23 @@ class User extends BaseActiveRecord implements IdentityInterface
 
     public function getAuthKey()
     {
-        throw new UserException('Системная ошибка');
+        return $this->auth_key;
     }
 
     public function validateAuthKey($authKey)
     {
-        throw new UserException('Системная ошибка');
+        return $this->getAuthKey() === $authKey;
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
         $user = static::find()
+            ->innerJoin(
+                Status::tableName(),
+                static::field('status_id') . ' = ' . Status::field('id') . ' AND ' . Status::field('name') . ' = :name',
+                [':name' => Status::STATUS_ACTIVE]
+            )
             ->where([static::field('access_token') => $token])
-            //->innerJoin(Contractor::tableName(), Contractor::field('user_id') . '=' . static::field('id'))
             ->one();
         return $user;
     }

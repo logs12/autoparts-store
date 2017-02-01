@@ -9,6 +9,7 @@ import {actionFormDecorator} from '../widgets/form/decorators/@actionFormDecorat
 
 import { push } from 'react-router-redux';
 
+
 export function authAction(data, options) {
     try {
         if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
@@ -44,7 +45,6 @@ export function authAction(data, options) {
                                     options: {...options},
                                 });
                                 dispatch(push('/admin'));
-                                debugger;
                             })
                         } else {
                             response.json().then((object) => {

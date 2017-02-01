@@ -34,7 +34,7 @@ export function initForm(formName, inputNames, url) {
  * }
  * @returns {{types: *[], promise: (function())}}
  */
-export function submitForm(actionName, data) {
+export function submitFormAction(actionName, data) {
     try {
         if (!data.formName) throw new Error(`В ${actionName} не передано название формы`);
 
