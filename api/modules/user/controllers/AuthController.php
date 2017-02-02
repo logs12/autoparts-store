@@ -29,9 +29,12 @@ class AuthController extends BaseRestController
 
     public function actionLogin()
     {
+        Yii::$app->response->cookies->add(new \yii\web\Cookie([
+            'name' => 'test',
+            'value' => 'testValue'
+        ]));
         User::setFieldsSet(User::FIELDS_USER_PERMISSIONS);
         $model = new LoginForm();
-            $sfsd = Yii::$app->getRequest()->getBodyParams();
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
         if ($model->validate() === false && !$model->hasErrors()) {
             throw new ServerErrorHttpException('Не удалось обновить запись по непонятным причинам');

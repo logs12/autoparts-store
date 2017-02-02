@@ -3,7 +3,6 @@ import rootReducer from '../reducers/RootReducer';
 import ThunkMiddleware from '../middlewares/ThunkMiddleware';
 import createLogger from 'redux-logger';
 import PromiseMiddleware from '../middlewares/PromiseMiddleware';
-//import { redirect } from '../middlewares/redirect';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import DevTools from '../DevTools'

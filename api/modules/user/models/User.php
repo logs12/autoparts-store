@@ -8,7 +8,7 @@ use app\models\File;
 use app\models\Status;
 use app\components\services\User as UserService;
 use Yii;
-use app\components\services\Cache;
+use app\components\services\CacheService;
 use yii\base\UserException;
 use yii\db\ActiveQuery;
 use app\modules\user\Module;
@@ -26,7 +26,6 @@ use yii\web\IdentityInterface;
  * @property integer $file_id
  * @property string $phone
  * @property string $password_hash
- * @property string $access_token
  * @property integer $status_id
  * @property string $created
  * @property string $updated
@@ -52,10 +51,6 @@ class User extends BaseActiveRecord implements IdentityInterface
         if ($this->password) {
 //            $this->password_hash = '$2y$13$JXd1YdAt6rSKMImKgQmiCedLgrQWvjYwfR24KgjeOrRYN0EBKyqTW'; // ТОЛЬКО ПРИ РАЗРАБОТКЕ: для ускорения миграций. Пароль - 12345.
             $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);
-        }
-
-        if ($this->isNewRecord) {
-            $this->access_token = Yii::$app->security->generateRandomString(19) . uniqid();
         }
 
         return parent::beforeSave($insert);
@@ -101,7 +96,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             ['file_id', 'exist', 'targetClass' => File::className(), 'targetAttribute' => 'id'],
 
             ['status_id', 'integer'],
-            ['status_id', 'default', 'value' => Cache::getStatusByName(static::STATUS_ACTIVE)->id],
+            ['status_id', 'default', 'value' => CacheService::getStatusByName(static::STATUS_ACTIVE)->id],
             ['status_id', 'exist', 'targetClass' => Status::className(), 'targetAttribute' => 'id'],
 
             ['role', 'string', 'max' => 64],
