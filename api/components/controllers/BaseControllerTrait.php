@@ -11,7 +11,9 @@ trait BaseControllerTrait
 {
     public function behaviors()
     {
-        /*$behaviours['access'] = [
+        $behaviours = parent::behaviors();
+
+        $behaviours['access'] = [
             'class' => AccessControl::className(),
             'rules' => [
                 [
@@ -19,7 +21,7 @@ trait BaseControllerTrait
                     'roles' => ['@'],
                 ],
             ],
-        ];*/
+        ];
 
         // Указание делать вывод в формате JSON
         $behaviours['contentNegotiator']['formats'] = [
@@ -30,11 +32,13 @@ trait BaseControllerTrait
         return $behaviours;
     }
 
-   /* public function checkAccess($action, $model = null, $params = [])
+    public function checkAccess($action, $model = null, $params = [])
     {
         if (Yii::$app->user->isGuest) {
-            throw new ForbiddenHttpException('Необходимо выполнить авторизацию');
+            throw new ForbiddenHttpException('Необходимо выполнить вход в портал');
         }
+
+        throw new yii\base\ErrorException('В контроллере ' . get_class($this) . ' отсутствует метод checkAccess.');
     }
 
     public function checkPermissions($permissions, $throwException = true)
@@ -42,6 +46,7 @@ trait BaseControllerTrait
         $permissions = is_array($permissions) ? $permissions : [$permissions];
 
         foreach ($permissions as $permission) {
+
             if (!Yii::$app->getUser()->can($permission)) {
                 if ($throwException) {
                     throw new ForbiddenHttpException('Вам не разрешено данное действие');
@@ -52,5 +57,5 @@ trait BaseControllerTrait
         }
 
         return true;
-    }*/
+    }
 }

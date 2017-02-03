@@ -2,6 +2,8 @@ import './style.scss';
 
 import React, {Component} from "react";
 
+import { LOGIN_URL_REQUEST } from "../../constants";
+
 import Form from '../../widgets/form/container';
 import {InputText} from '../../widgets/input-text/container';
 import ButtonLoading from '../../widgets/button-loading/container';
@@ -13,7 +15,7 @@ export default class LoginFormComponent extends Component {
             <Form
                 actionName="authAction"
                 formName="loginForm"
-                url="/api/login" >
+                url={LOGIN_URL_REQUEST} >
                 <InputText
                     name = 'email'
                     placeholder = 'Логин'

@@ -21,9 +21,9 @@ module.exports = {
     plugins:[
         new webpack.ProvidePlugin({
             underscore:'lodash',
-            $: "jquery/dist/jquery.min.js",
-            jQuery: "jquery/dist/jquery.min.js",
-            "window.jQuery": "jquery/dist/jquery.min.js"
+            $: "jquery/dist/jquery.js",
+            jQuery: "jquery/dist/jquery.js",
+            "window.jQuery": "jquery/dist/jquery.js"
         }),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV)

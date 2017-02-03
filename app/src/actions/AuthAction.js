@@ -23,21 +23,22 @@ export function authAction(data, options) {
             ],
             promise: (dispatch, getState) => {
                 return new Promise((resolve, reject) => {
+
                     fetch(data.url, {
                         method: 'POST',
                         headers: {
-                            'Accept': 'application/json, text/javascript, */*; q=0.01',
-                            'Content-Type': 'application/json'
+                            'Accept': 'application/json, text/javascript, *!/!*; q=0.01',
+                            'Content-Type': 'application/json',
                         },
+                        credentials: 'include', // поддержка cookie
                         body: JSON.stringify(data.values)
                     })
                     .then((response) => {
                         if (response.status === 200) {
                             response.json().then((object) => {
-                                /*debugger;
-                                resolve(object);
-                                return object;
-                                alert(222);*/
+
+                                //resolve(object);
+                                //return object;
                                 // Не используем re
                                 dispatch({
                                     type: LOGIN_SUCCESS,

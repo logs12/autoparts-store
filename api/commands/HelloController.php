@@ -9,6 +9,8 @@ namespace app\commands;
 
 use yii\console\Controller;
 
+use app\components\services\RoleService;
+
 /**
  * This command echoes the first argument that you have entered.
  *
@@ -25,6 +27,8 @@ class HelloController extends Controller
      */
     public function actionIndex($message = 'hello world')
     {
+        $nameRole = RoleService::getName('ROLE_ADMI');
+        echo '$nameRole = ',$nameRole;
         echo $message . "\n";
     }
 }

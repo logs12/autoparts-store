@@ -53,6 +53,7 @@ class m161025_194027_init extends Migration
                         'password_hash' => $this->string(60)->notNull()->comment('Хэш пароля'),
                         'auth_key' => $this->string(32)->comment('Ключ подтверждения для cookie аутентификации'),
                         'status_id' => $this->integer()->unsigned()->notNull()->comment('Идентификатор статуса'),
+                        'role_name' => $this->string(64)->comment('Наименование роли'),
                         'created' => $this->integer(11)->comment('Дата добавления записи'),
                         'updated' => $this->integer(11)->comment('Дата изменения записи'),
                         'deleted' => $this->integer(11)->comment('Дата удаления записи'),

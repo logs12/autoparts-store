@@ -7,7 +7,7 @@ class m161025_200131_add_user_role_fields extends Migration
 {
     public function init()
     {
-        $this->operations = [
+        /*$this->operations = [
             [
                 'up' => function () {
                     $this->addColumn('{{%user}}', 'role', $this->string(64));
@@ -19,6 +19,6 @@ class m161025_200131_add_user_role_fields extends Migration
                 },
                 'transactional' => false,
             ],
-        ];
+        ];*/
     }
 }

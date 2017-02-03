@@ -1,7 +1,11 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-$db = require(__DIR__ . '/db.php');
+
+// Слияние глобальных и локальных парамертов БД
+$db = file_exists(__DIR__ . '/db.local.php')
+    ? \yii\helpers\ArrayHelper::merge(require(__DIR__ . '/db.php'), require(__DIR__ . '/db.local.php'))
+    : require(__DIR__ . '/db.php');
 
 $config = [
     'id' => 'basic-console',

@@ -4,6 +4,7 @@ use app\models\WebService;
 use app\components\Migration;
 use app\modules\user\models\User;
 use app\models\Status;
+use app\models\AuthItem;
 
 class m161912_192623_seed_init extends Migration
 {
@@ -85,6 +86,7 @@ class m161912_192623_seed_init extends Migration
                         'email' => 'admin@mail.ru',
                         'phone' => '+79091237035',
                         'password' => '12345',
+                        'role_name' => AuthItem::ROLE_ROOT,
                     ]);
                     $user->saveOrError();
 

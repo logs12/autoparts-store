@@ -1,5 +1,5 @@
 <?php
-namespace app\components\rbac;
+namespace app\modules\user\components\rbac;
 
 use app\modules\user\models\User;
 use yii\rbac\Assignment;
@@ -13,7 +13,7 @@ class AuthManager extends PhpManager
         if ($userId && $user = $this->getUser($userId)) {
             $assignment = new Assignment();
             $assignment->userId = $userId;
-            $assignment->roleName = $user->role_name;
+            $assignment->roleName = $user->role;
             return [$assignment->roleName => $assignment];
         }
         return [];
@@ -22,10 +22,10 @@ class AuthManager extends PhpManager
     public function getAssignment($roleName, $userId)
     {
         if ($userId && $user = $this->getUser($userId)) {
-            if ($user->role_name == $roleName) {
+            if ($user->role == $roleName) {
                 $assignment = new Assignment();
                 $assignment->userId = $userId;
-                $assignment->roleName = $user->role_name;
+                $assignment->roleName = $user->role;
                 return $assignment;
             }
         }
@@ -54,7 +54,7 @@ class AuthManager extends PhpManager
     public function revoke($role, $userId)
     {
         if ($userId && $user = $this->getUser($userId)) {
-            if ($user->role_name == $role->name) {
+            if ($user->role == $role->name) {
                 $this->setRole($user, null);
                 return true;
             }
@@ -91,7 +91,7 @@ class AuthManager extends PhpManager
      */
     private function setRole(User $user, $roleName)
     {
-        $user->role_name = $roleName;
+        $user->role = $roleName;
         $user->updateAttributes(['role' => $roleName]);
     }
 }

@@ -17,3 +17,6 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 // constants react-redux-router app
 export const LOGIN_ROUTE = '/login';
+
+// constants url request
+export const LOGIN_URL_REQUEST = '/api-internal/login';

@@ -33,10 +33,10 @@ $config = [
         'debug' => [
             'class' => 'yii\debug\Module',
         ],
-        'user' => [
+        /*'user' => [
             'class' => 'app\modules\user\Module',
             'controllerNamespace' => 'app\modules\user\controllers',
-        ]
+        ]*/
     ],
     'components' => [
         'i18n' => [
@@ -63,9 +63,11 @@ $config = [
         ],
         'authManager' => [
             'class' => 'app\components\rbac\AuthManager',
+            //'class' => 'yii\rbac\DbManager',
         ],
         'user' => [
-            'identityClass' => 'app\modules\user\models\User',
+            //'identityClass' => 'app\modules\user\models\User',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
         'request' => [

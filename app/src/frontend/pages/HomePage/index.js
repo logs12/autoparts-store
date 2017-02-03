@@ -27,22 +27,6 @@ export default class HomePage extends Component{
     render()  {
         return (
             <div id="home" >
-                <Form
-                    actionName="authAction"
-                    formName="loginForm"
-                    url="/api/login" >
-                    <InputText
-                        name = 'email'
-                        placeholder = 'Логин'
-                    />
-                    <InputText
-                        name = 'password'
-                        placeholder = 'Пароль'
-                    />
-                    <ButtonLoading
-                        label="Вход"
-                    />
-                </Form>
 
                 <SearchForArticle />
             </div>

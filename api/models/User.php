@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\user\models;
+namespace app\models;
 
 use app\components\BaseActiveRecord;
 use app\components\behaviors\UserBehavior;
@@ -36,6 +36,8 @@ use yii\web\IdentityInterface;
 class User extends BaseActiveRecord implements IdentityInterface
 {
     const FIELDS_USER_PERMISSIONS = 'FIELDS_USER_PERMISSIONS';
+
+    public static $fieldsSet;
 
     public $password;
 
@@ -133,7 +135,7 @@ class User extends BaseActiveRecord implements IdentityInterface
 
     public function fields()
     {
-        return ArrayHelper::merge(parent::fields(), [
+        $fields = ArrayHelper::merge(parent::fields(), [
             'id' => function ($model) {
                 return $this->getIntOrNull($model->id);
             },
@@ -147,6 +149,16 @@ class User extends BaseActiveRecord implements IdentityInterface
             'email',
             'role_name',
         ]);
+
+        switch (static::$fieldsSet) {
+            case static::FIELDS_USER_PERMISSIONS:
+                $fields['permissions'] = function ($model) {
+                    return UserService::getPermissions($model);
+                };
+                break;
+        }
+
+        return $fields;
     }
 
     public function validatePassword($password)
