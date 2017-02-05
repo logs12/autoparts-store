@@ -1,8 +1,9 @@
 import {
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_ERROR,
+    LOGIN_WIDGET_FORM_REQUEST,
+    LOGIN_WIDGET_FORM_SUCCESS,
+    LOGIN_WIDGET_FORM_ERROR,
     LOGOUT_SUCCESS,
+    WIDGET_ERROR_GET,
 } from '../constants';
 
 import {actionFormDecorator} from '../widgets/form/decorators/@actionFormDecorator';
@@ -16,10 +17,9 @@ export function authAction(data, options) {
         if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
         return {
             types: [
-                LOGIN_REQUEST,
-                LOGIN_SUCCESS,
-                LOGIN_ERROR,
-                LOGOUT_SUCCESS,
+                LOGIN_WIDGET_FORM_REQUEST,
+                LOGIN_WIDGET_FORM_SUCCESS,
+                LOGIN_WIDGET_FORM_ERROR,
             ],
             promise: (dispatch, getState) => {
                 return new Promise((resolve, reject) => {
@@ -46,6 +46,14 @@ export function authAction(data, options) {
                                     options: {...options},
                                 });
                                 dispatch(push('/admin'));
+                            })
+                        } else if (response.status === 500) {
+                            response.json().then((object) => {
+                                dispatch({
+                                    type: WIDGET_ERROR_GET,
+                                    payload: object,
+                                });
+                                dispatch(push('/error'));
                             })
                         } else {
                             response.json().then((object) => {

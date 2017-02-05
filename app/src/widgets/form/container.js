@@ -56,16 +56,16 @@ export default class Form extends Component {
         url: '/',
     };
 
-    /**
-     * Перед рендерингом инициализируем форму в store
-     */
-    componentWillMount() {
-        this.props.formActions.initForm(
-            this.props.formName,
-            this.getInputNames(),
-            this.props.url
-        );
-    }
+        /**
+         * Перед рендерингом инициализируем форму в store
+         */
+        componentWillMount() {
+            this.props.formActions.initForm(
+                this.props.formName,
+                this.getInputNames(),
+                this.props.url
+            );
+        }
 
 
     getChildContext() {

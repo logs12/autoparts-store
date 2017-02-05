@@ -96,5 +96,5 @@ if (NODE_ENV == 'production') {
         })
     );
 }  else {
-    module.exports.devtool = 'source-map';
+    module.exports.devtool = 'eval-source-map';
 }

@@ -29,14 +29,13 @@ export const routes = (
         </Route>
 
         <Route path="/admin" component={RequireAuthenticationContainer(BackendLayout)}>
-        {/*<Route path="/admin" component={BackendLayout}>*/}
             <IndexRoute component={AdminHomePage}/>
         </Route>
 
         <Route path="/login" component={LoginPage}/>
         <Route path="/sign-up" component={SignUpPage}/>
 
-        <Route path="error" component={ErrorPage}/>
+        <Route path="/error" component={ErrorPage}/>
         <Route path='*' component={NotFoundPage}/>
     </Route>
 );

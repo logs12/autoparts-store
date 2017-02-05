@@ -8,7 +8,7 @@ export default function PromiseMiddleware() {
         }
 
         const [REQUEST, SUCCESS, ERROR] = types;
-
+        
         next({ ...rest, type: REQUEST });
 
         return promise(dispatch, getState).then(

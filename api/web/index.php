@@ -1,7 +1,7 @@
 <?php
 
 //если apache
-$_SERVER['REQUEST_URI'] = str_replace('api/', '', $_SERVER['REQUEST_URI']);
+$_SERVER['REQUEST_URI'] = str_replace('api-internal/', '', $_SERVER['REQUEST_URI']);
 $_SERVER['SCRIPT_NAME'] = str_replace('/api/web', '', $_SERVER['SCRIPT_NAME']);
 
 /*

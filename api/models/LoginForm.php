@@ -3,8 +3,6 @@
 namespace app\models;
 
 use app\components\BaseModel;
-use app\modules\user\models\User;
-use Yii;
 
 /**
  * LoginForm is the model behind the login form.
@@ -80,7 +78,7 @@ class LoginForm extends BaseModel
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return \Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
     }

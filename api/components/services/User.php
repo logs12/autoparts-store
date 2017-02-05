@@ -4,7 +4,7 @@ namespace app\components\services;
 use app\components\BaseActiveRecord;
 use yii;
 
-class User extends BaseService
+class UserService extends BaseService
 {
     public static function getPermissions($user)
     {

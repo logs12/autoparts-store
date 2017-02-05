@@ -1,7 +1,7 @@
 <?php
 namespace app\models\search;
 
-use app\modules\user\models\User as UserModel;
+use app\models\User as UserModel;
 use yii\helpers\ArrayHelper;
 
 class UserSearch extends UserModel

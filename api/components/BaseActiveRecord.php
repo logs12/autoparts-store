@@ -4,8 +4,6 @@ namespace app\components;
 use app\components\queries\BaseQuery;
 use app\components\services\BaseService;
 use app\components\services\CacheService;
-use app\components\services\UserService;
-use app\models\User;
 use yii;
 use yii\base\UserException;
 use yii\behaviors\BlameableBehavior;

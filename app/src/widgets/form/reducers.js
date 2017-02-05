@@ -90,9 +90,12 @@ export default function FormReducer(state = {}, action) {
 
     // Разбиваем тип action по разделителю
     let typeActionAfterSplit = action.type.split('_');
-
+    
+    let typeAction = typeActionAfterSplit[typeActionAfterSplit.length-3] + '_'
+        + typeActionAfterSplit[typeActionAfterSplit.length-2] + '_'
+        + typeActionAfterSplit[typeActionAfterSplit.length-1];
     // Обработка actions при submit формы
-    switch (typeActionAfterSplit[typeActionAfterSplit.length-1]) {
+    switch (typeAction) {
 
         // обработка REQUEST, меняем isPending на true
         case WIDGET_FORM_REQUEST: {
