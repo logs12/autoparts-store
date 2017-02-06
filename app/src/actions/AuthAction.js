@@ -2,8 +2,9 @@ import {
     LOGIN_WIDGET_FORM_REQUEST,
     LOGIN_WIDGET_FORM_SUCCESS,
     LOGIN_WIDGET_FORM_ERROR,
-    LOGOUT_SUCCESS,
     WIDGET_ERROR_GET,
+    CONFIG_DATA_URL_REQUEST,
+    LOGIN_SUCCESS,
 } from '../constants';
 
 import {actionFormDecorator} from '../widgets/form/decorators/@actionFormDecorator';
@@ -23,7 +24,6 @@ export function authAction(data, options) {
             ],
             promise: (dispatch, getState) => {
                 return new Promise((resolve, reject) => {
-
                     fetch(data.url, {
                         method: 'POST',
                         headers: {
@@ -36,10 +36,7 @@ export function authAction(data, options) {
                     .then((response) => {
                         if (response.status === 200) {
                             response.json().then((object) => {
-
-                                //resolve(object);
-                                //return object;
-                                // Не используем re
+                                debugger;
                                 dispatch({
                                     type: LOGIN_SUCCESS,
                                     payload: object,
@@ -53,7 +50,6 @@ export function authAction(data, options) {
                                     type: WIDGET_ERROR_GET,
                                     payload: object,
                                 });
-                                dispatch(push('/error'));
                             })
                         } else {
                             response.json().then((object) => {
@@ -74,3 +70,4 @@ export function authAction(data, options) {
         alert(Error);
     }
 }
+

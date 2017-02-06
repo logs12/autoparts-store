@@ -18,22 +18,22 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ErrorPage from './pages/ErrorPage';
 import NotFoundPage from './pages/NotFoundPage';
-import RequireAuthenticationContainer from './containers/RequireAuthenticationContainer';
+import ApplicationContainer from './containers/ApplicationContainer';
 
 
 export const routes = (
     <Route>
-        <Route path="/" component={FrontendLayout}>
+        <Route path="/" component={ApplicationContainer(FrontendLayout, false)}>
             <IndexRoute component={FrontendHomePage}/>
             <Route path="test" component={TestPage}/>
         </Route>
 
-        <Route path="/admin" component={RequireAuthenticationContainer(BackendLayout)}>
+        <Route path="/admin" component={ApplicationContainer(BackendLayout)}>
             <IndexRoute component={AdminHomePage}/>
         </Route>
 
-        <Route path="/login" component={LoginPage}/>
-        <Route path="/sign-up" component={SignUpPage}/>
+        <Route path="/login" component={ApplicationContainer(LoginPage, false)}/>
+        <Route path="/sign-up" component={ApplicationContainer(SignUpPage, false)}/>
 
         <Route path="/error" component={ErrorPage}/>
         <Route path='*' component={NotFoundPage}/>
