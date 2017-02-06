@@ -5,7 +5,7 @@ use app\models\File as FileModel;
 use yii;
 use yii\web\UploadedFile;
 
-class File extends BaseService
+class FileService extends BaseService
 {
     public static $tempFile;
 

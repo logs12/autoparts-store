@@ -7,7 +7,7 @@ use app\components\behaviors\UserBehavior;
 use app\components\validators\Phone;
 use app\models\File;
 use app\models\Status;
-use app\components\services\User as UserService;
+use app\components\services\UserService;
 use Yii;
 use app\components\services\CacheService;
 use yii\base\UserException;

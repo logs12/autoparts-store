@@ -4,7 +4,7 @@ namespace app\components\services;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberUtil;
 
-class Validator extends BaseService
+class ValidatorService extends BaseService
 {
 
     public static function phone($phone)

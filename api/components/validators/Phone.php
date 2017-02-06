@@ -2,7 +2,7 @@
 
 namespace app\components\validators;
 
-use app\components\services\Validator as ValidatorService;
+use app\components\services\ValidatorService;
 
 class Phone extends BaseValidator
 {
