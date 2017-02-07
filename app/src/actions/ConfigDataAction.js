@@ -1,14 +1,14 @@
 import {
     WIDGET_ERROR_GET,
+    CONFIG_DATA_GET,
     CONFIG_DATA_URL_REQUEST,
-    LOGIN_SUCCESS,
 } from '../constants';
 
 /**
  * Action get config
  * @returns {function(*=, *)}
  */
-export function configDataAction() {
+export default function configDataAction() {
     return (dispatch, getState) => {
         var state = getState();
 
@@ -23,8 +23,9 @@ export function configDataAction() {
         .then((response) => {
             if (response.status === 200) {
                 response.json().then((object) => {
+                    debugger;
                     dispatch({
-                        type: LOGIN_SUCCESS,
+                        type: CONFIG_DATA_GET,
                         payload: object,
                     });
                 })

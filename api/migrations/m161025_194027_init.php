@@ -11,7 +11,7 @@ class m161025_194027_init extends Migration
 
             [
                 'up' => function () {
-                    $this->createTable('status', [
+                    $this->createTable('{{%status}}', [
                         'id' => $this->primaryKey()->unsigned()->comment('Идентификатор записи'),
                         'title' => $this->string(255)->notNull()->comment('Название'),
                         'name' => $this->string(255)->notNull()->comment('Системное название'),
@@ -25,7 +25,7 @@ class m161025_194027_init extends Migration
             ],
             [
                 'up' => function () {
-                    $this->createTable('file', [
+                    $this->createTable('{{%file}}', [
                         'id' => $this->primaryKey()->unsigned()->comment('Идентификатор записи'),
                         'name' => $this->string(255)->notNull()->comment('Название файла в нашей файловой системе'),
                         'filename' => $this->string(255)->notNull()->comment('Оригинальное название файла'),
@@ -53,7 +53,7 @@ class m161025_194027_init extends Migration
                         'password_hash' => $this->string(60)->notNull()->comment('Хэш пароля'),
                         'auth_key' => $this->string(32)->comment('Ключ подтверждения для cookie аутентификации'),
                         'status_id' => $this->integer()->unsigned()->notNull()->comment('Идентификатор статуса'),
-                        'role_name' => $this->string(64)->comment('Наименование роли'),
+                        //'role_name' => $this->string(64)->comment('Наименование роли'),
                         'created' => $this->integer(11)->comment('Дата добавления записи'),
                         'updated' => $this->integer(11)->comment('Дата изменения записи'),
                         'deleted' => $this->integer(11)->comment('Дата удаления записи'),
@@ -83,7 +83,7 @@ class m161025_194027_init extends Migration
             ],
             [
                 'up' => function () {
-                    $this->createTable('type', [
+                    $this->createTable('{{%type}}', [
                         'id' => $this->primaryKey()->unsigned()->comment('Идентификатор записи'),
                         'title' => $this->string(255)->notNull()->comment('Название'),
                         'name' => $this->string(255)->notNull()->comment('Системное название'),

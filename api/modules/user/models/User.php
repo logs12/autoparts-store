@@ -7,7 +7,7 @@ use app\components\behaviors\UserBehavior;
 use app\components\validators\Phone;
 use app\models\File;
 use app\models\Status;
-use app\components\services\User as UserService;
+use app\components\services\UserService;
 use Yii;
 use app\components\services\CacheService;
 use yii\base\UserException;
@@ -109,7 +109,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             ['status_id', 'default', 'value' => CacheService::getStatusByName(static::STATUS_ACTIVE)->id],
             ['status_id', 'exist', 'targetClass' => Status::className(), 'targetAttribute' => 'id'],
 
-            ['role_name', 'string', 'max' => 64],
+            //['role_name', 'string', 'max' => 64],
         ];
     }
 
@@ -127,7 +127,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             'password' => 'Пароль',
             'file_id' => 'Фотография',
             'status_id' => 'Статус',
-            'role_name' => Module::t('module', 'USER_ROLE')
+            //'role_name' => Module::t('module', 'USER_ROLE')
         ];
     }
 
@@ -145,7 +145,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             'third_name',
             'phone',
             'email',
-            'role_name',
+            //'role_name',
         ]);
     }
 

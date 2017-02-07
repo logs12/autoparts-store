@@ -62,8 +62,9 @@ $config = [
             'defaultTimeZone' => 'Europe/Moscow',
         ],
         'authManager' => [
-            'class' => 'app\components\rbac\AuthManager',
-            //'class' => 'yii\rbac\DbManager',
+            //'class' => 'app\components\rbac\AuthManager',
+            'class' => 'yii\rbac\DbManager',
+            //'cache' => 'cache',
         ],
         'user' => [
             //'identityClass' => 'app\modules\user\models\User',

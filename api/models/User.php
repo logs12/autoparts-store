@@ -31,7 +31,6 @@ use yii\web\IdentityInterface;
  * @property string $created
  * @property string $updated
  * @property string $deleted
- * @property string $role_name
  */
 class User extends BaseActiveRecord implements IdentityInterface
 {
@@ -111,7 +110,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             ['status_id', 'default', 'value' => CacheService::getStatusByName(static::STATUS_ACTIVE)->id],
             ['status_id', 'exist', 'targetClass' => Status::className(), 'targetAttribute' => 'id'],
 
-            ['role_name', 'string', 'max' => 64],
+            //['role_name', 'string', 'max' => 64],
         ];
     }
 
@@ -129,7 +128,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             'password' => 'Пароль',
             'file_id' => 'Фотография',
             'status_id' => 'Статус',
-            'role_name' => Module::t('module', 'USER_ROLE')
+            //'role_name' => Module::t('module', 'USER_ROLE')
         ];
     }
 
@@ -147,7 +146,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             'third_name',
             'phone',
             'email',
-            'role_name',
+            //'role_name',
         ]);
 
         switch (static::$fieldsSet) {

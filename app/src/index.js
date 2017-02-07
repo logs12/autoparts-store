@@ -12,9 +12,14 @@ import Root from './Root';
 
 import configureStore from './store/ConfigureStore';
 
+import configDataAction from './actions/ConfigDataAction';
+
 const store = configureStore();
 
 const history = syncHistoryWithStore(browserHistory, store);
+
+// get Config data each time the application is loaded
+store.dispatch(configDataAction());
 
 render(
     <Root store={store} history={history} />,

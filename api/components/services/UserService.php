@@ -39,4 +39,31 @@ class UserService extends BaseService
 
         return $fio;
     }
+
+    /**
+     * Админ ли...
+     * @return mixed
+     */
+    public static function isAdmin()
+    {
+        return Yii::$app->user->identity->isAdmin();
+    }
+
+    /**
+     * root ли...
+     * @return mixed
+     */
+    public static function isRoot()
+    {
+        return Yii::$app->user->identity->isRoot();
+    }
+
+    /**
+     * ID
+     * @return int|string
+     */
+    public static function getId()
+    {
+        return Yii::$app->user->identity->getId();
+    }
 }

@@ -1,7 +1,6 @@
 import {
-    LOGIN_REQUEST,
+    CONFIG_DATA_GET,
     LOGIN_SUCCESS,
-    LOGIN_ERROR,
     LOGOUT_SUCCESS,
 } from '../constants';
 
@@ -30,12 +29,22 @@ export function ConfigData(state = initialTimeState, action) {
     console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
         case LOGIN_SUCCESS: {
-
-            let isAuthenticated = checkAuthenticated(action.payload.user);
+            debugger;
+            let isAuthenticated = checkAuthenticated(action.payload.configData.user);
 
             return {
                 ...state,
                 ...action.payload.configData,
+                ...{isAuthenticated: isAuthenticated},
+            };
+        }
+        case CONFIG_DATA_GET: {
+            debugger;
+            let isAuthenticated = checkAuthenticated(action.payload.user);
+
+            return {
+                ...state,
+                ...action.payload,
                 ...{isAuthenticated: isAuthenticated},
             };
         }

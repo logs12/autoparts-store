@@ -93,6 +93,6 @@ class AuthManager extends PhpManager
     private function setRole(User $user, $roleName)
     {
         $user->role_name = $roleName;
-        $user->updateAttributes(['role' => $roleName]);
+        $user->updateAttributes(['role_name' => $roleName]);
     }
 }
