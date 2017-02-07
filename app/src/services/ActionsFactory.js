@@ -1,11 +1,12 @@
-import { authAction } from '../actions/AuthAction';
+import { loginAction, logOutAction } from '../actions/AuthAction';
 
 /**
  * Список action
  * @type {{authAction: authAction}}
  */
 const ListActions = {
-    authAction: authAction,
+    loginAction: loginAction,
+    logOutAction: logOutAction,
 };
 
 /**

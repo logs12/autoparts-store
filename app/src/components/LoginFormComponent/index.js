@@ -13,7 +13,7 @@ export default class LoginFormComponent extends Component {
     render() {
         return (
             <Form
-                actionName="authAction"
+                actionName="loginAction"
                 formName="loginForm"
                 url={LOGIN_URL_REQUEST} >
                 <InputText

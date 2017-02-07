@@ -10,7 +10,7 @@ import {
  */
 export default function configDataAction() {
     return (dispatch, getState) => {
-        var state = getState();
+        let state = getState();
 
         return fetch(CONFIG_DATA_URL_REQUEST,{
             method: 'GET',
@@ -23,7 +23,6 @@ export default function configDataAction() {
         .then((response) => {
             if (response.status === 200) {
                 response.json().then((object) => {
-                    debugger;
                     dispatch({
                         type: CONFIG_DATA_GET,
                         payload: object,

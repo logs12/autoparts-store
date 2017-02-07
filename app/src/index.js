@@ -14,14 +14,23 @@ import configureStore from './store/ConfigureStore';
 
 import configDataAction from './actions/ConfigDataAction';
 
+import Preloader from './components/Preloader';
+
 const store = configureStore();
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// get Config data each time the application is loaded
-store.dispatch(configDataAction());
-
+// View Preloader befor loading configData
 render(
-    <Root store={store} history={history} />,
+    <Preloader />,
     document.getElementById('root')
 );
+
+// Get Config data each time the application is loaded
+store.dispatch(configDataAction()).then(() => {
+    render(
+        <Root store={store} history={history} />,
+        document.getElementById('root')
+    );
+});
+
