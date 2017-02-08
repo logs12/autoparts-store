@@ -3,14 +3,13 @@ import './style.scss';
 import React, { Component } from 'react';
 
 import { Layout, Header, Content, Drawer, Navigation } from 'react-mdl/lib/Layout';
-import IconButton from 'react-mdl/lib/IconButton';
-import Menu, { MenuItem } from 'react-mdl/lib/Menu';
-import DrawerHeader from '../../containers/DrawerHeader';
 
-import ProgressBar from '../../../widgets/progress-bar';
+import DrawerHeader from '../containers/DrawerHeader';
+
+import ProgressBar from '../../widgets/progress-bar';
 
 
-export default class BackendLayout extends Component {
+export default class MainLayout extends Component {
 
     render() {
         return (
@@ -29,6 +28,11 @@ export default class BackendLayout extends Component {
                 <Drawer className="drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                     <DrawerHeader />
                     <Navigation className="navigation mdl-color--blue-grey-800">
+                        <NavLink
+                            to={this.brand['url']}
+                            className="main-menu__a main-menu__a--brand">
+                            {this.brand.title}
+                        </NavLink>
                         <a href="">Link</a>
                         <a href="">Link</a>
                         <a href="">Link</a>

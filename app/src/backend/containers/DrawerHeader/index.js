@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 import IconButton from 'react-mdl/lib/IconButton';
 import Menu, { MenuItem } from 'react-mdl/lib/Menu';
 
@@ -23,11 +23,19 @@ export default class DrawerHeader extends Component {
         userFullName: '',
     };
 
-    componentWillReceiveProps(nextProps) {
-        this.state.userFullName = nextProps.configData.user['first_name'] + ' '
-            + nextProps.configData.user['second_name'] + ' '
-            + nextProps.configData.user['third_name'];
+    componentWillMount() {
+        this.userFullName(this.props);
+    }
 
+    componentWillReceiveProps(nextProps) {
+        this.userFullName(nextProps);
+
+    }
+
+    userFullName(props) {
+        this.state.userFullName = props.configData.user['first_name'] + ' '
+            + props.configData.user['second_name'] + ' '
+            + props.configData.user['third_name'];
     }
 
     logOutHandler(event) {

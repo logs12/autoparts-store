@@ -21,8 +21,17 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const CONFIG_DATA_GET = 'CONFIG_DATA_GET';
 
-// constants react-redux-router app
+
+//========== /constants react-redux-router app ==========//
 export const ADMIN_ROUTE = '/admin';
+export const DASHBOARD_ROUTE = '/admin/dashboard';
+export const USERS_ROLES_ROUTE = '/admin/users-roles';
+export const USERS_ROUTE = '/admin/users-roles/users';
+export const USER_VIEW_ROUTE = '/admin/users-roles/user/:id';
+export const USER_CREATE_ROUTE = '/admin/users-roles/user/create';
+export const USER_UPDATE_ROUTE = '/admin/users-roles/user/update/:id';
+export const USER_DELETE_ROUTE = '/admin/users-roles/user/delete';
+
 export const LOGIN_ROUTE = '/login';
 
 // constants url request

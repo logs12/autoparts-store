@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { replace, push } from 'react-router-redux';
 import {bindActionCreators} from "redux";
 
-import { loginAction } from '../actions/AuthAction';
-
-import configDataAction from '../actions/ConfigDataAction';
-
 import { LOGIN_ROUTE } from '../constants';
 
 import Preloader from '../components/Preloader';
@@ -25,10 +21,6 @@ export default function ApplicationContainer(Component, isRequireAuthentication 
             configData: state.ConfigData,
             systemError: state.SystemError,
             routing: state.routing,
-        }),
-        dispatch => ({ // mapDispatchToProps
-            actions: bindActionCreators({ loginAction, configDataAction}, dispatch),
-            dispatch: dispatch,
         })
     )
 
@@ -40,7 +32,7 @@ export default function ApplicationContainer(Component, isRequireAuthentication 
          */
         isError = false;
 
-        component = <Preloader />
+        //component = <Preloader />
 
         componentWillReceiveProps(nextProps) {
             this.isError = nextProps.systemError.isError;
@@ -52,19 +44,19 @@ export default function ApplicationContainer(Component, isRequireAuthentication 
          * @param props
          */
         checkAuth(props) {
-            debugger;
             if (!props.configData.isAuthenticated && isRequireAuthentication) {
-                this.props.dispatch(replace(LOGIN_ROUTE));
-            } else {
+                this.props.dispatch(push(LOGIN_ROUTE));
+            } /*else {
                 this.component = <Component { ...props } />
-            }
+            }*/
         }
 
         render() {
             return (
-                (!this.isError) ? this.component : <ErrorPage/>
+                (!this.isError) ? <Component { ...this.props } /> : <ErrorPage/>
             )
         }
     }
+
     return ApplicationComponent;
 }

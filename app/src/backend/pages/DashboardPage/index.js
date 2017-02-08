@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Article from '../../../widgets/article/component';
 
 
-export default class HomePage extends Component{
+export default class DashboardPage extends Component{
 
     render()  {
 
         return (
-            <div id="test" >
+            <div className="dashboard-page" >
                 <Article>!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</Article>
             </div>
         )
