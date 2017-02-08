@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import IconButton from 'react-mdl/lib/IconButton';
@@ -33,9 +34,11 @@ export default class DrawerHeader extends Component {
     }
 
     userFullName(props) {
-        this.state.userFullName = props.configData.user['first_name'] + ' '
-            + props.configData.user['second_name'] + ' '
-            + props.configData.user['third_name'];
+        if (!_.isEmpty(props.configData.user)) {
+            this.state.userFullName = props.configData.user['first_name'] + ' '
+                + props.configData.user['second_name'] + ' '
+                + props.configData.user['third_name'];
+        }
     }
 
     logOutHandler(event) {

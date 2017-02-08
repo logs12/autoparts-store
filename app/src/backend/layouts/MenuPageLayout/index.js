@@ -8,7 +8,7 @@ import ProgressBar from '../../../widgets/progress-bar';
 
 import DrawnerMenu from '../../components/DrawerMenu';
 
-const MenuPageLayout = (props) => {
+const MenuPageLayout = props => {
     return (
         <Layout fixedHeader className="menu-page-layout">
 
@@ -22,7 +22,7 @@ const MenuPageLayout = (props) => {
             </Header>
             <ProgressBar indeterminate />
             <section className="breadcrumbs"></section>
-            <Drawer className="drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <Drawer className="mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <DrawerHeader />
                 <DrawnerMenu />
             </Drawer>

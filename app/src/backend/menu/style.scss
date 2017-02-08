@@ -3,7 +3,9 @@
 .backend-layout {
 
     /** верхняя панель**/
-    .header {
+    .mdl-layout__header {
+        height: 47px;
+
         .mdl-textfield .mdl-textfield__expandable-holder {
             bottom: 19px;
         }
@@ -27,7 +29,7 @@
     }
 
     /** боковая панель**/
-    .drawer {
+    .mdl-layout__drawer {
         border: none;
 
         .avatar {
@@ -116,10 +118,6 @@
             align-items: center;
             width: 100%;
         }
-    }
-
-    .mdl-layout__header {
-        height: 47px;
     }
 
     /** breadcrumbs **/

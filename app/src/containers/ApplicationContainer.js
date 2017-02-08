@@ -16,6 +16,7 @@ import ErrorPage from "../pages/ErrorPage";
  * @constructor
  */
 export default function ApplicationContainer(Component, isRequireAuthentication = true) {
+
     @connect(
         (state) => ({ // mapStateToProps
             configData: state.ConfigData,
@@ -32,7 +33,9 @@ export default function ApplicationContainer(Component, isRequireAuthentication 
          */
         isError = false;
 
-        //component = <Preloader />
+        componentWillMount() {
+            this.checkAuth(this.props);
+        }
 
         componentWillReceiveProps(nextProps) {
             this.isError = nextProps.systemError.isError;
@@ -46,9 +49,7 @@ export default function ApplicationContainer(Component, isRequireAuthentication 
         checkAuth(props) {
             if (!props.configData.isAuthenticated && isRequireAuthentication) {
                 this.props.dispatch(push(LOGIN_ROUTE));
-            } /*else {
-                this.component = <Component { ...props } />
-            }*/
+            }
         }
 
         render() {
