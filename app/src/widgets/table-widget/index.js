@@ -1,13 +1,5 @@
-//import React, { Component } from 'react';
+import './style.scss';
 export { default as TableHeader } from './TableHeader';
 export { default as Table } from './Table';
 export { default } from './Table';
 
-/*
-class TableWidget extends Component{
-    render() {
-        return(
-
-        );
-    }
-}*/

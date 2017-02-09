@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
+import TableActionsHeader from './TableActionsHeader';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
 
@@ -61,6 +62,8 @@ class Table extends React.Component {
             <div className="widget-table">
 
                 <div className="widget-table__table">
+
+                    <TableActionsHeader />
                     <table className={classes} {...otherProps}>
                         <thead>
                             <tr>
@@ -83,8 +86,8 @@ class Table extends React.Component {
                             })}
                         </tbody>
                     </table>
+                    <div className="widget-table__table-footer"></div>
                 </div>
-                <div className="widget-table__pager"></div>
             </div>
         );
     }
