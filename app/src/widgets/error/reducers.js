@@ -3,7 +3,7 @@ import { WIDGET_ERROR_GET } from '../../constants';
 let initialState = {
     isError: false,
 };
-export function SystemError(state = initialState, action) {
+export default function SystemError(state = initialState, action) {
     switch (action.type) {
         case WIDGET_ERROR_GET: {
             let error = {

@@ -1,18 +1,22 @@
-// constants widget-form
+// Constants widget-form
 export const WIDGET_FORM_INIT = 'WIDGET_FORM_INIT';
 export const WIDGET_FORM_REQUEST = 'WIDGET_FORM_REQUEST';
 export const WIDGET_FORM_SUCCESS = 'WIDGET_FORM_SUCCESS';
 export const WIDGET_FORM_ERROR = 'WIDGET_FORM_ERROR';
 export const WIDGET_FORM_RESET = 'WIDGET_FORM_RESET';
 
-// constants widget-input-text
+// Constants widget-input-text
 export const WIDGET_INPUT_TEXT_ACTION_NAME = 'updateInputText';
 export const WIDGET_INPUT_TEXT_UPDATE_VALUE = 'UPDATE_VALUE';
 
-//constans widget-error
+// Constants widget-error
 export const WIDGET_ERROR_GET = 'WIDGET_ERROR_GET';
 
-// constants Аuthorization
+// Constants progress-bar-widget
+export const PROGRESS_BAR_WIDGET_START = 'PROGRESS_BAR_WIDGET_START';
+export const PROGRESS_BAR_WIDGET_STOP = 'PROGRESS_BAR_WIDGET_STOP';
+
+// Constants Аuthorization
 export const LOGIN_WIDGET_FORM_REQUEST = 'LOGIN_WIDGET_FORM_REQUEST';
 export const LOGIN_WIDGET_FORM_SUCCESS = 'LOGIN_WIDGET_FORM_SUCCESS';
 export const LOGIN_WIDGET_FORM_ERROR = 'LOGIN_WIDGET_FORM_ERROR';
@@ -21,8 +25,15 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const CONFIG_DATA_GET = 'CONFIG_DATA_GET';
 
+//========== /Constants Users ==========//
+export const USERS_GET = 'USERS_GET';
+export const USER_VIEW = 'USER_VIEW';
+export const USER_CREATE = 'USER_CREATE';
+export const USER_UPDATE = 'USER_UPDATE';
+export const USER_DELETE = 'DELETE';
 
-//========== /constants react-redux-router app ==========//
+
+//========== /Constants react-redux-router app ==========//
 export const ADMIN_ROUTE = '/admin';
 export const DASHBOARD_ROUTE = '/admin/dashboard';
 export const USERS_ROLES_ROUTE = '/admin/users-roles';
@@ -34,7 +45,8 @@ export const USER_DELETE_ROUTE = '/admin/users-roles/user/delete';
 
 export const LOGIN_ROUTE = '/login';
 
-// constants url request
+// Constants url request
 export const LOGIN_URL_REQUEST = '/api-internal/login';
 export const LOGOUT_URL_REQUEST = '/api-internal/logout';
 export const CONFIG_DATA_URL_REQUEST = '/api-internal/config';
+export const USER_URL_REQUEST = '/api-internal/user';

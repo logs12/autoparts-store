@@ -20,6 +20,7 @@ module.exports = {
     },
     plugins:[
         new webpack.ProvidePlugin({
+            classNames: 'classNames',
             underscore:'lodash',
             $: "jquery/dist/jquery.js",
             jQuery: "jquery/dist/jquery.js",

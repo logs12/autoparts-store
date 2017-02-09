@@ -25,7 +25,7 @@ const checkAuthenticated = (user) => {
     return false;
 };
 
-export function ConfigData(state = initialState, action) {
+export default function ConfigData(state = initialState, action) {
     console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
     switch (action.type) {
         case LOGIN_SUCCESS: {

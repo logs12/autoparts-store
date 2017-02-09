@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Layout, Header, Content, Drawer, Navigation } from 'react-mdl/lib/Layout';
 
 import DrawerHeader from '../../containers/DrawerHeader';
-import ProgressBar from '../../../widgets/progress-bar';
+import ProgressBarWidget from '../../../widgets/progress-bar-widget';
 
 import DrawnerMenu from '../../components/DrawerMenu';
 
@@ -20,7 +20,7 @@ const MenuPageLayout = props => {
                     <a href="">Link</a>
                 </Navigation>
             </Header>
-            <ProgressBar indeterminate />
+            <ProgressBarWidget />
             <section className="breadcrumbs"></section>
             <Drawer className="mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <DrawerHeader />

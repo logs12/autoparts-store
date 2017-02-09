@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { replace, push } from 'react-router-redux';
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 
 import { LOGIN_ROUTE } from '../constants';
 

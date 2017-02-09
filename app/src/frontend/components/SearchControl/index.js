@@ -1,7 +1,7 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
-import ProgressBar from '../../../widgets/progress-bar';
+import ProgressBarWidget from '../../../widgets/progress-bar-widget';
 
 export default class SearchControl extends Component {
 
@@ -44,7 +44,7 @@ export default class SearchControl extends Component {
                         <i className="fa fa-search fa-2x mdl-color-text--grey-700"></i>
                     </button>
                 </div>
-                {pending ? <ProgressBar /> : false}
+                {pending ? <ProgressBarWidget /> : false}
             </div>
         ) 
     }

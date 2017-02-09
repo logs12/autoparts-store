@@ -44,7 +44,6 @@ export function loginAction(data, options) {
                                     payload: object,
                                     options: {...options},
                                 });
-                                debugger;
                                 dispatch(replace(ADMIN_ROUTE));
                             })
                         } else if (response.status === 500) {
