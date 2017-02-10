@@ -17,6 +17,7 @@ import DashboardLayout from './backend/layouts/DashboardLayout';
 import DashboardPage from './backend/pages/DashboardPage';
 import UsersRolePage from './backend/menu/users-roles';
 import UsersPage from './backend/menu/users-roles/users';
+import UserFormPage from './backend/menu/users-roles/users/user-form';
 
 // Common components
 import LoginPage from './pages/LoginPage';
@@ -53,8 +54,8 @@ export const routes = (
         <Route path={USERS_ROLES_ROUTE} component={ApplicationContainer(MenuPageLayout)}>
             <IndexRoute component={UsersRolePage}/>
             <Route path={USERS_ROUTE} component={UsersPage}/>
+            <Route path={USER_CREATE_ROUTE} component={UserFormPage}/>
             <Route path={USER_VIEW_ROUTE} component={UsersPage}/>
-            <Route path={USER_CREATE_ROUTE} component={UsersPage}/>
             <Route path={USER_UPDATE_ROUTE} component={UsersPage}/>
             <Route path={USER_DELETE_ROUTE} component={UsersPage}/>
         </Route>

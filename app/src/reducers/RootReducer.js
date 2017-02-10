@@ -4,6 +4,7 @@ import FormReducer from '../widgets/form/reducers';
 import SystemError from '../widgets/error/reducers';
 import ConfigData from './ConfigDataReducer';
 import ProgressBar from '../widgets/progress-bar-widget/reducer';
+import CollectionPaginations from '../backend/reducers/CollectionPaginations';
 
 import Users from '../backend/reducers/UserReducer'
 
@@ -16,5 +17,6 @@ export default combineReducers({
     SearchForArticul,
     ProgressBar,
     Users,
+    CollectionPaginations,
     routing: routerReducer
 })

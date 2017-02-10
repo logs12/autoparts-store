@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as _ from 'lodash';
 //import DataTable, { TableHeader } from 'react-mdl/lib/DataTable';
-import DataTable, { TableHeader } from '../../../../widgets/table-widget';
+import TableWidget from '../../../../widgets/table-widget';
 
 import IconButton from 'react-mdl/lib/IconButton';
 import Menu, { MenuItem } from 'react-mdl/lib/Menu';
 
 import * as actions from '../../../actions/UserAction';
+import { USER_CREATE_ROUTE } from '../../../../constants';
 
 @connect(
     (state) => ({
@@ -49,21 +50,54 @@ export default class UsersPage extends Component{
         return (
             <div className="users-page">
                 {(!_.isEmpty(this.props.users)) ?
-                    <DataTable
+                    <TableWidget
+                        actions={[
+                            {
+                                title: 'Add',
+                                iconName: 'add',
+                                link: USER_CREATE_ROUTE,
+                            }
+                        ]}
+                        attributes={
+                            {
+                                first_name: {
+                                    title: 'first_name',
+                                    propsTableHeader: {
+                                        tooltip: 'First name tooltip',
+                                    },
+                                },
+                                second_name: {
+                                    title: 'second_name',
+                                    propsTableHeader: {
+                                        tooltip: 'Second name tooltip',
+                                    },
+                                },
+
+                                third_name: {
+                                    title: 'third_name',
+                                    propsTableHeader: {
+                                        tooltip: 'Third name tooltip',
+                                    },
+                                },
+                                phone: {
+                                    title: 'phone',
+                                    propsTableHeader: {
+                                        tooltip: 'phone name tooltip',
+                                    },
+                                },
+                                email: {
+                                    title: 'email',
+                                    propsTableHeader: {
+                                        tooltip: 'email name tooltip',
+                                    },
+                                },
+                            }
+                        }
+                        collection = {this.props.users}
                         shadow={0}
-                        rows = {this.props.users}
                         className="wide"
                     >
-
-                        <TableHeader name="_model_cid" >Material</TableHeader>
-                        <TableHeader name="email">Quantity</TableHeader>
-                        <TableHeader name="first_name">Quantity</TableHeader>
-                        <TableHeader name="id"></TableHeader>
-                        <TableHeader name="phone"></TableHeader>
-                        <TableHeader name="second_name"></TableHeader>
-                        <TableHeader name="status_id"></TableHeader>
-                        <TableHeader name="third_name"></TableHeader>
-                    </DataTable>
+                    </TableWidget>
                     : null}
             </div>
         );

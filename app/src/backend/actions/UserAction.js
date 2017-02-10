@@ -12,7 +12,16 @@ import {
     WIDGET_ERROR_GET,
     PROGRESS_BAR_WIDGET_START,
     PROGRESS_BAR_WIDGET_STOP,
+    PAGINATION_GET,
 } from '../../constants';
+
+const getPaginationData = (response) => {
+    return {
+        total: response.headers.get('X-Pagination-Total-Count'),
+        current: response.headers.get('X-Pagination-Current-Page'),
+        perPage: response.headers.get('X-Pagination-Per-Page'),
+    };
+};
 
 export function UsersGetAction() {
     return (dispatch, getState) => {
@@ -31,10 +40,16 @@ export function UsersGetAction() {
             })
             .then((response) => {
                 if (response.status === 200) {
+                    debugger;
+                    let configPagination = getPaginationData(response);
                     response.json().then((object) => {
                         dispatch({
                             type: USERS_GET,
                             payload: object,
+                        });
+                        dispatch({
+                            type: PAGINATION_GET,
+                            payload: {'UserPagination' : configPagination},
                         });
                         // Stop ProgressBar
                         dispatch({type: PROGRESS_BAR_WIDGET_STOP});

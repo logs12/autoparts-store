@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 
 import Article from '../../../../../widgets/article/component';
 
-@connect(
-
-)
-export default class UserView extends Component {
+export default class UserForm extends Component {
     render () {
         return (
-            <Article>
+            <Article>UserFormUserFormUserFormUserFormUserFormUserForm
             </Article>
         );
     }

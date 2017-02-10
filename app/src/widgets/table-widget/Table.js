@@ -4,6 +4,7 @@ import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
 import TableActionsHeader from './TableActionsHeader';
+import TablePaging from './TablePaging';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
 
@@ -19,7 +20,10 @@ const propTypes = {
     rows: PropTypes.arrayOf(
         PropTypes.object
     ).isRequired,
-    shadow: PropTypes.number
+    shadow: PropTypes.number,
+    actions: PropTypes.arrayOf(
+        PropTypes.object
+    )
 };
 
 class Table extends React.Component {
@@ -32,10 +36,30 @@ class Table extends React.Component {
         );
     }
 
+    renderRows(realRows, columnChildren, rowKeyColumn) {
+        let trComponent = [];
+        trComponent.push(
+            realRows.map((row, idx) => {
+                const { className: mdlRowPropsClassName, ...remainingMdlRowProps } = row.mdlRowProps || {};
+
+                return (
+                    <tr
+                        key={row[rowKeyColumn] || row.key || idx}
+                        className={classNames(row.className, mdlRowPropsClassName)}
+                        {...remainingMdlRowProps}
+                    >
+                        {columnChildren.map((child) => this.renderCell(child.props, row, idx))}
+                    </tr>
+                );
+            })
+        );
+        return trComponent;
+    }
+
     render() {
 
         const { className, columns, shadow, children,
-            rowKeyColumn, rows, data, ...otherProps } = this.props;
+            rowKeyColumn, rows, data, actions, ...otherProps } = this.props;
         const realRows = rows || data;
 
         const hasShadow = typeof shadow !== 'undefined';
@@ -59,35 +83,21 @@ class Table extends React.Component {
                 </TableHeader>
             );
         return (
-            <div className="widget-table">
-
-                <div className="widget-table__table">
-
-                    <TableActionsHeader />
-                    <table className={classes} {...otherProps}>
-                        <thead>
-                            <tr>
-                                {columnChildren}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {realRows.map((row, idx) => {
-                                const { className: mdlRowPropsClassName, ...remainingMdlRowProps } = row.mdlRowProps || {};
-
-                                return (
-                                    <tr
-                                        key={row[rowKeyColumn] || row.key || idx}
-                                        className={classNames(row.className, mdlRowPropsClassName)}
-                                        {...remainingMdlRowProps}
-                                    >
-                                        {columnChildren.map((child) => this.renderCell(child.props, row, idx))}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                    <div className="widget-table__table-footer"></div>
-                </div>
+            <div className="widget-table wide mdl-card mdl-shadow--2dp">
+                    <TableActionsHeader actions={actions} />
+                    <div className="widget-table__table">
+                        <table className={classes} {...otherProps}>
+                            <thead>
+                                <tr>
+                                    {columnChildren}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.renderRows(realRows, columnChildren, rowKeyColumn)}
+                            </tbody>
+                        </table>
+                    </div>
+                    <TablePaging />
             </div>
         );
     }

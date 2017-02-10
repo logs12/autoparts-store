@@ -25,6 +25,10 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const CONFIG_DATA_GET = 'CONFIG_DATA_GET';
 
+//========== /Constants Pagination ==========//
+export const PAGINATION_GET = 'PAGINATION_GET';
+
+
 //========== /Constants Users ==========//
 export const USERS_GET = 'USERS_GET';
 export const USER_VIEW = 'USER_VIEW';
