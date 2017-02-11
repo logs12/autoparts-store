@@ -21,12 +21,23 @@ const propTypes = {
         PropTypes.object
     ).isRequired,
     shadow: PropTypes.number,
-    actions: PropTypes.arrayOf(
+    actionsTableHeader: PropTypes.arrayOf(
         PropTypes.object
-    )
+    ),
+    actionsTableBody: PropTypes.arrayOf(
+        PropTypes.object
+    ),
 };
 
 class Table extends React.Component {
+
+    /**
+     *
+     * @param column
+     * @param row
+     * @param idx
+     * @returns {XML}
+     */
     renderCell(column, row, idx) {
         const className = !column.numeric ? 'mdl-data-table__cell--non-numeric' : '';
         return (
@@ -36,7 +47,17 @@ class Table extends React.Component {
         );
     }
 
-    renderRows(realRows, columnChildren, rowKeyColumn) {
+    /**
+     * Rendering rows
+     * @param realRows
+     * @param columnChildren
+     * @param rowKeyColumn
+     * @param actionsTableBody - actions table body
+     * @returns {Array}
+     */
+    renderRows(realRows, columnChildren, rowKeyColumn, actionsTableBody) {
+
+        /*@@@@@@@@@@@@@@@@@@@*/
         let trComponent = [];
         trComponent.push(
             realRows.map((row, idx) => {
@@ -59,7 +80,7 @@ class Table extends React.Component {
     render() {
 
         const { className, columns, shadow, children,
-            rowKeyColumn, rows, data, actions, ...otherProps } = this.props;
+            rowKeyColumn, rows, data, actionsTableHeader, actionsTableBody, ...otherProps } = this.props;
         const realRows = rows || data;
 
         const hasShadow = typeof shadow !== 'undefined';
@@ -84,7 +105,7 @@ class Table extends React.Component {
             );
         return (
             <div className="widget-table wide mdl-card mdl-shadow--2dp">
-                    <TableActionsHeader actions={actions} />
+                    <TableActionsHeader actions={actionsTableHeader} />
                     <div className="widget-table__table">
                         <table className={classes} {...otherProps}>
                             <thead>
@@ -93,7 +114,7 @@ class Table extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderRows(realRows, columnChildren, rowKeyColumn)}
+                                {this.renderRows(realRows, columnChildren, rowKeyColumn, actionsTableBody)}
                             </tbody>
                         </table>
                     </div>

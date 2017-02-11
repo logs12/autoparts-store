@@ -51,13 +51,27 @@ export default class UsersPage extends Component{
             <div className="users-page">
                 {(!_.isEmpty(this.props.users)) ?
                     <TableWidget
-                        actions={[
+                        actionsTableHeader={[
                             {
                                 title: 'Add',
                                 iconName: 'add',
                                 link: USER_CREATE_ROUTE,
                             }
                         ]}
+
+
+                        actionsTableBody = {[
+                            {
+                                type: 'view'
+                            },
+                            {
+                                type: 'update'
+                            },
+                            {
+                                type: 'delete'
+                            }
+                        ]}
+
                         attributes={
                             {
                                 first_name: {

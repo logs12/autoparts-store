@@ -40,7 +40,6 @@ export function UsersGetAction() {
             })
             .then((response) => {
                 if (response.status === 200) {
-                    debugger;
                     let configPagination = getPaginationData(response);
                     response.json().then((object) => {
                         dispatch({
@@ -49,7 +48,7 @@ export function UsersGetAction() {
                         });
                         dispatch({
                             type: PAGINATION_GET,
-                            payload: {'UserPagination' : configPagination},
+                            payload: {UserPagination : configPagination},
                         });
                         // Stop ProgressBar
                         dispatch({type: PROGRESS_BAR_WIDGET_STOP});
