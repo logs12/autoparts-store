@@ -42,10 +42,10 @@ export const ADMIN_ROUTE = '/admin';
 export const DASHBOARD_ROUTE = '/admin/dashboard';
 export const USERS_ROLES_ROUTE = '/admin/users-roles';
 export const USERS_ROUTE = '/admin/users-roles/users';
-export const USER_VIEW_ROUTE = '/admin/users-roles/user/:id';
 export const USER_CREATE_ROUTE = '/admin/users-roles/user/create';
-export const USER_UPDATE_ROUTE = '/admin/users-roles/user/update/:id';
-export const USER_DELETE_ROUTE = '/admin/users-roles/user/delete';
+export const USER_VIEW_ROUTE = id => `/admin/users-roles/user/${id}`;
+export const USER_UPDATE_ROUTE = id => `/admin/users-roles/user/update/${id}`;
+export const USER_DELETE_ROUTE = id => `/admin/users-roles/user/delete/${id}`;
 
 export const LOGIN_ROUTE = '/login';
 

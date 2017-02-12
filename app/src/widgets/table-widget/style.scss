@@ -20,6 +20,7 @@
 	}
 	.widget-table__table{
 		overflow-x: auto;
+		overflow-y: inherit;
 		box-shadow: none;
 		.mdl-data-table{
 

@@ -17,8 +17,8 @@ export default class TablePaging extends Component {
                         <span className="widget-table__pager-text widget-table__pager-text--narrow">of</span>
                         <span className="widget-table__pager-total">90</span>
                         <span className="widget-table__pager-navigation">
-                        <Button raised className="widget-table__pager-previous" onclick=""><Icon name="keyboard_arrow_left"/></Button>
-                        <Button raised className="widget-table__pager-next" onclick=""><Icon name="keyboard_arrow_right"/></Button>
+                        <Button raised className="widget-table__pager-previous" ><Icon name="keyboard_arrow_left"/></Button>
+                        <Button raised className="widget-table__pager-next"><Icon name="keyboard_arrow_right"/></Button>
                     </span>
                 </div>
             </div>

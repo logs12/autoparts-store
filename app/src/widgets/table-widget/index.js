@@ -14,9 +14,10 @@ import { USER_CREATE_ROUTE } from '../../constants';
 export default class TableWidget extends Component {
 
     static propTypes = {
-        actions: PropTypes.arrayOf(
+        actionsTableHeader: PropTypes.arrayOf(
             PropTypes.object
         ),
+        rowMenuActions: PropTypes.object,
         attributes:PropTypes.object.isRequired
     };
 
@@ -25,6 +26,7 @@ export default class TableWidget extends Component {
         if (!_.isEmpty(attributes)) {
             let key = 0;
             for (let attribute in attributes) {
+                if (!attributes.hasOwnProperty(attribute)) continue;
                 const { title, ...otherProps } = attributes[attribute];
                 componentTableHeader.push(
                     <TableHeader key = {key} name = {attribute} { ...otherProps.propsTableHeader }>{title}</TableHeader>
@@ -36,10 +38,11 @@ export default class TableWidget extends Component {
     }
 
     render() {
-        const { actions, attributes, collection, ...otherProperties } = this.props;
+        const { actionsTableHeader, rowMenuActions, attributes, collection, ...otherProperties } = this.props;
         return(
             <Table
-                actions={actions}
+                actionsTableHeader={actionsTableHeader}
+                rowMenuActions={rowMenuActions}
                 rows = {collection}
                 { ...otherProperties }
             >

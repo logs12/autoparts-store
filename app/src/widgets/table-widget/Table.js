@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
 import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
@@ -7,6 +7,16 @@ import TableActionsHeader from './TableActionsHeader';
 import TablePaging from './TablePaging';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
+//import { connect } from 'react-redux';
+//import { push } from 'react-router-redux';
+import IconButton from 'react-mdl/lib/IconButton';
+import Menu, { MenuItem } from 'react-mdl/lib/Menu';
+import TableRowMenuActions from './TableRowMenuActions';
+import {
+    USER_VIEW_ROUTE,
+    USER_UPDATE_ROUTE,
+    USER_DELETE_ROUTE,
+} from '../../constants';
 
 const propTypes = {
     className: PropTypes.string,
@@ -24,11 +34,11 @@ const propTypes = {
     actionsTableHeader: PropTypes.arrayOf(
         PropTypes.object
     ),
-    actionsTableBody: PropTypes.arrayOf(
-        PropTypes.object
-    ),
+    rowMenuActions: PropTypes.object,
 };
 
+
+//@connect()
 class Table extends React.Component {
 
     /**
@@ -47,17 +57,41 @@ class Table extends React.Component {
         );
     }
 
+    renderRowMenuActions(rowMenuActions, row) {
+        debugger;
+        let menuItemComponents = [];
+        let menuItemKey = 0;
+        for(let rowMenuAction in rowMenuActions) {
+            if (!rowMenuActions.hasOwnProperty(rowMenuAction)) continue;
+            switch (rowMenuAction) {
+                case 'actionView': {
+                    menuItemComponents.push(
+                        <MenuItem key={menuItemKey} onClick={() => this.props.dispatch(push(USER_VIEW_ROUTE(row['id'])))}>
+                            {rowMenuActions[rowMenuAction]}
+                        </MenuItem>);
+                }
+            }
+            menuItemKey++;
+        }
+        let menuId = `menu-lower-right${row['id']}`;
+        return  <td>
+                    <IconButton name="more_vert" id={menuId} />
+                    <Menu target={menuId} align="right">
+                        {menuItemComponents}
+                    </Menu>
+                </td>;
+    }
+
     /**
      * Rendering rows
      * @param realRows
      * @param columnChildren
      * @param rowKeyColumn
-     * @param actionsTableBody - actions table body
+     * @param rowMenuActions - actions table body
      * @returns {Array}
      */
-    renderRows(realRows, columnChildren, rowKeyColumn, actionsTableBody) {
+    renderRows(realRows, columnChildren, rowKeyColumn, rowMenuActions) {
 
-        /*@@@@@@@@@@@@@@@@@@@*/
         let trComponent = [];
         trComponent.push(
             realRows.map((row, idx) => {
@@ -70,6 +104,8 @@ class Table extends React.Component {
                         {...remainingMdlRowProps}
                     >
                         {columnChildren.map((child) => this.renderCell(child.props, row, idx))}
+                        <TableRowMenuActions rowMenuActions={rowMenuActions} row={row} />
+                        {/*{this.renderRowMenuActions(rowMenuActions, row)}*/}
                     </tr>
                 );
             })
@@ -78,9 +114,8 @@ class Table extends React.Component {
     }
 
     render() {
-
-        const { className, columns, shadow, children,
-            rowKeyColumn, rows, data, actionsTableHeader, actionsTableBody, ...otherProps } = this.props;
+        const {actionsTableHeader, rowMenuActions, rows, className, columns, shadow, children,
+            rowKeyColumn, data, ...otherProps } = this.props;
         const realRows = rows || data;
 
         const hasShadow = typeof shadow !== 'undefined';
@@ -111,10 +146,11 @@ class Table extends React.Component {
                             <thead>
                                 <tr>
                                     {columnChildren}
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderRows(realRows, columnChildren, rowKeyColumn, actionsTableBody)}
+                                {this.renderRows(realRows, columnChildren, rowKeyColumn, rowMenuActions)}
                             </tbody>
                         </table>
                     </div>

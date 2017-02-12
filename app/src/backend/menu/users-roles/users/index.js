@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as _ from 'lodash';
-//import DataTable, { TableHeader } from 'react-mdl/lib/DataTable';
 import TableWidget from '../../../../widgets/table-widget';
-
-import IconButton from 'react-mdl/lib/IconButton';
-import Menu, { MenuItem } from 'react-mdl/lib/Menu';
 
 import * as actions from '../../../actions/UserAction';
 import { USER_CREATE_ROUTE } from '../../../../constants';
@@ -24,28 +20,6 @@ export default class UsersPage extends Component{
     componentWillMount() {
         this.props.userActions.UsersGetAction();
     }
-
-    componentWillReceiveProps(nextProps) {
-
-        let rows=[
-             {
-             material: 'Acrylic (Transparent)',
-             quantity: 25,
-             price: 2.90,
-             actions:<div style={{position: 'relative'}}>
-             <IconButton name="more_vert" id="demo-menu-lower-left" />
-             <Menu target="demo-menu-lower-left" align="right">
-             <MenuItem>Views</MenuItem>
-             <MenuItem>Update</MenuItem>
-             <MenuItem>Delete</MenuItem>
-             </Menu>
-             </div>
-
-             },
-         ]
-    }
-
-
     render() {
         return (
             <div className="users-page">
@@ -59,18 +33,11 @@ export default class UsersPage extends Component{
                             }
                         ]}
 
-
-                        actionsTableBody = {[
-                            {
-                                type: 'view'
-                            },
-                            {
-                                type: 'update'
-                            },
-                            {
-                                type: 'delete'
-                            }
-                        ]}
+                        rowMenuActions = {{
+                                actionView: 'View',
+                                actionUpdate: 'Update',
+                                actionDelete: 'Delete',
+                        }}
 
                         attributes={
                             {
