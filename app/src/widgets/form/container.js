@@ -36,6 +36,7 @@ export default class Form extends Component {
         actionName: React.PropTypes.string,
         formName: React.PropTypes.string.isRequired,
         url: React.PropTypes.string.isRequired,
+        className: React.PropTypes.string,
     };
 
     /**
@@ -54,19 +55,19 @@ export default class Form extends Component {
         actionName: 'submitForm',
         formName: 'widgetForm',
         url: '/',
+        className: 'form-widget',
     };
 
-        /**
-         * Перед рендерингом инициализируем форму в store
-         */
-        componentWillMount() {
-            this.props.formActions.initForm(
-                this.props.formName,
-                this.getInputNames(),
-                this.props.url
-            );
-        }
-
+    /**
+     * Перед рендерингом инициализируем форму в store
+     */
+    componentWillMount() {
+        this.props.formActions.initForm(
+            this.props.formName,
+            this.getInputNames(),
+            this.props.url
+        );
+    }
 
     getChildContext() {
         return {
@@ -116,7 +117,8 @@ export default class Form extends Component {
     render () {
         return (
             <FormComponent
-                submitHandle={::this.submitHandle}>
+                submitHandle={::this.submitHandle}
+                className={this.props.className}>
                 {this.props.children}
             </FormComponent>
         )

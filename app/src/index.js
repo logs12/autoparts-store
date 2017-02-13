@@ -10,6 +10,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import Root from './Root';
 
+import { push } from 'react-router-redux';
+
 import configureStore from './store/ConfigureStore';
 
 import configDataAction from './actions/ConfigDataAction';
@@ -27,10 +29,17 @@ render(
 );
 
 // Get Config data each time the application is loaded
-store.dispatch(configDataAction()).then(() => {
-    render(
-        <Root store={store} history={history} />,
-        document.getElementById('root')
-    );
-});
+store.dispatch(configDataAction())
+    .then(() => {
+        render(
+            <Root store={store} history={history} />,
+            document.getElementById('root')
+        );
+    })
+    .catch(() => {
+        render(
+            <Root store={store} history={history} />,
+            document.getElementById('root')
+        );
+    });
 

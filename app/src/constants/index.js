@@ -10,7 +10,8 @@ export const WIDGET_INPUT_TEXT_ACTION_NAME = 'updateInputText';
 export const WIDGET_INPUT_TEXT_UPDATE_VALUE = 'UPDATE_VALUE';
 
 // Constants widget-error
-export const WIDGET_ERROR_GET = 'WIDGET_ERROR_GET';
+export const WIDGET_SERVER_ERROR = 'WIDGET_SERVER_ERROR';
+export const WIDGET_CLIENT_ERROR = 'WIDGET_CLIENT_ERROR';
 
 // Constants progress-bar-widget
 export const PROGRESS_BAR_WIDGET_START = 'PROGRESS_BAR_WIDGET_START';
@@ -48,6 +49,8 @@ export const USER_UPDATE_ROUTE = id => `/admin/users-roles/user/update/${id}`;
 export const USER_DELETE_ROUTE = id => `/admin/users-roles/user/delete/${id}`;
 
 export const LOGIN_ROUTE = '/login';
+export const ERROR_ROUTE = '/error';
+
 
 // Constants url request
 export const LOGIN_URL_REQUEST = '/api-internal/login';

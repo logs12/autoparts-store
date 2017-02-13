@@ -1,28 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ErrorComponent from './component';
 
+const ErrorWidget = props => {
+    return (
+        <ErrorComponent
+            messageError={props.errors.messageError}
+            stackTraceError={props.errors.stackTraceError}
+        />
+    );
+};
 
-/**
- * Подключение к reduxStore
- */
-@connect(
-    /**
-     * Свойства из state, которые будут использоваться
-     * @param state
-     */
-    (state) => ({ // mapStateToProps
-        errors: state.SystemError
-    }),
-)
-export default class ErrorWidget extends Component {
-    render () {
-        return (
-            <ErrorComponent
-                messageError={this.props.errors.messageError}
-                stackTraceError={this.props.errors.stackTraceError}
-            />
-        );
-    }
+function mapStateToProps(state) {
+    return { errors: state.SystemError }
 }
+
+export default connect(mapStateToProps)(ErrorWidget);

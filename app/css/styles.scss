@@ -14,3 +14,11 @@ html, body {
     padding: 15px;
     min-height: 0;
 }
+
+.mdl-layout{
+    position: inherit !important;
+}
+
+.mdl-textfield {
+    width: 100% !important;
+}

@@ -1,12 +1,15 @@
-.preload-layout__preloader-content {
-  margin: 200px auto 0 auto;
-  text-align: center;
-}
-.preload-layout__preloader-content h1 {
-  margin: 10px 0;
-  color: #ff0707;
-  font-weight: bold;
-}
-.preload-layout__preloader-content img {
-  height: 200px;
+.preloader{
+  position: fixed;
+  .preload-layout__preloader-content {
+    margin: 200px auto 0 auto;
+    text-align: center;
+  }
+  .preload-layout__preloader-content h1 {
+    margin: 10px 0;
+    color: #ff0707;
+    font-weight: bold;
+  }
+  .preload-layout__preloader-content img {
+    height: 200px;
+  }
 }

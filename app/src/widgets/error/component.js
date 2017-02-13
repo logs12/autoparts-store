@@ -5,10 +5,11 @@ import { Link } from 'react-router';
 
 import Article from '../../widgets/article/component';
 
-const renderStackTraceError = (stackTraceError) => {
-    return stackTraceError.map((error, index) => {
-        return <p key={index}>{error}</p>
-    });
+const renderStackTraceError = stackTraceError => {
+    if (stackTraceError) {
+        return stackTraceError.map((error, index) => <p key={index}>{error}</p>);
+    }
+    return null;
 };
 
 /**

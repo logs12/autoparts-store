@@ -7,12 +7,12 @@ export default function Users (state = {}, action) {
     switch (action.type) {
         case USERS_GET: {
             return [
-                ...state,
                 ...action.payload
             ]
         }
+        default: {
+            return state
+        }
     }
-
-    return state;
 
 }

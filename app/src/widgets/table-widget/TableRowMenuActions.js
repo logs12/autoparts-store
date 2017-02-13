@@ -9,9 +9,19 @@ import {
     USER_DELETE_ROUTE,
 } from '../../constants';
 
+/**
+ * Render roe actions menu
+ * @param rowMenuActions
+ * @param row
+ * @param dispatch
+ * @returns {XML}
+ */
 const renderRowMenuActions = (rowMenuActions, row, dispatch) => {
+
     let menuItemComponents = [];
+
     let menuItemKey = 0;
+
     for(let rowMenuAction in rowMenuActions) {
         if (!rowMenuActions.hasOwnProperty(rowMenuAction)) continue;
         switch (rowMenuAction) {
@@ -20,6 +30,23 @@ const renderRowMenuActions = (rowMenuActions, row, dispatch) => {
                     <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_VIEW_ROUTE(row['id'])))}>
                         {rowMenuActions[rowMenuAction]}
                     </MenuItem>);
+                break;
+            }
+            case 'actionUpdate': {
+                menuItemComponents.push(
+                    <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_UPDATE_ROUTE(row['id'])))}>
+                        {rowMenuActions[rowMenuAction]}
+                    </MenuItem>);
+
+                break;
+            }
+            case 'actionDelete': {
+                menuItemComponents.push(
+                    <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_DELETE_ROUTE(row['id'])))}>
+                        {rowMenuActions[rowMenuAction]}
+                    </MenuItem>);
+
+                break;
             }
         }
         menuItemKey++;

@@ -1,20 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Form extends Component {
+const Form = props => {
+    return (
+        <form onSubmit={props.submitHandle} className={props.className}>
+            {props.children}
+        </form>
+    )
+};
 
-    static propTypes = {
-        submitHandle: React.PropTypes.func.isRequired,
-    };
+Form.propTypes = {
+    submitHandle: React.PropTypes.func.isRequired,
+};
 
-    constructor (props) {
-        super(props);
-    }
-    
-    render() {
-        return (
-            <form onSubmit={this.props.submitHandle}>
-                {this.props.children}
-            </form>
-        );
-    }
-}
+export default Form;

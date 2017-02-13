@@ -98,8 +98,8 @@ export function logOutAction() {
                     })
                 }
             })
-            .catch(function (err) {
-                alert("Oops...", "Couldn't fetch repos for user: " + state.user, "error");
+            .catch((error) => {
+                console.log('Fetch Error :-S', error);
             });
     };
 }

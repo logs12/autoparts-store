@@ -1,8 +1,10 @@
 import {
-    WIDGET_ERROR_GET,
+    WIDGET_SERVER_ERROR,
     CONFIG_DATA_GET,
     CONFIG_DATA_URL_REQUEST,
+    ERROR_ROUTE
 } from '../constants';
+import { push } from 'react-router-redux';
 
 /**
  * Action get config
@@ -33,9 +35,11 @@ export default function configDataAction() {
                     } else if (response.status === 500) {
                         response.json().then((object) => {
                             dispatch({
-                                type: WIDGET_ERROR_GET,
+                                type: WIDGET_SERVER_ERROR,
                                 payload: object,
                             });
+                            dispatch(push(ERROR_ROUTE));
+                            reject(object);
                         })
                     }
                 })

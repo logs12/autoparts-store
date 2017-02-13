@@ -24,7 +24,8 @@
     "react-router": "*",
     "react-router-redux": "^4.0.7",
     "react-tap-event-plugin": "*",
-    "redux": "*"
+    "redux": "*",
+    "reselect": "*"
   },
   "author": "*",
   "license": "*",

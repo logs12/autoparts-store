@@ -11,7 +11,6 @@ import DrawnerMenu from '../../components/DrawerMenu';
 const MenuPageLayout = props => {
     return (
         <Layout fixedHeader className="menu-page-layout">
-
             <Header title={<span><span style={{ color: '#ddd' }}>Area / </span><strong>The Title</strong></span>}>
                 <Navigation>
                     <a href="">Link</a>

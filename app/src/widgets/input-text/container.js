@@ -36,6 +36,7 @@ export class InputText extends Component {
         placeholder: React.PropTypes.string,
         actionName: React.PropTypes.string,
         urlSubmit: React.PropTypes.string,
+        className: React.PropTypes.string,
     };
 
 
@@ -47,6 +48,7 @@ export class InputText extends Component {
         reducerName: 'FormReducer',
         actionName: WIDGET_INPUT_TEXT_ACTION_NAME,
         urlSubmit: '/',
+        className: 'input-text-widget',
     };
 
     /**
@@ -104,6 +106,7 @@ export class InputText extends Component {
                 placeholder = {this.props.placeholder}
                 onChange = {this.onChange}
                 error={this.error}
+                className={this.props.className}
             />
         )
     }
