@@ -11,15 +11,15 @@ import ActionsFactory from '../../services/ActionsFactory';
 export function updateInputText(actionName, data) {
     try {
 
-        if (!data.formName) throw new Error(`В ${actionName} не передано название формы`);
+        if (!data.formName) new Error(`В ${actionName} не передано название формы`);
         // Если actionName не равен дефолтному, то подключаем его из фабрики action
 
         if (actionName !== WIDGET_INPUT_TEXT_ACTION_NAME) {
             return ActionsFactory(actionName, data, {formName: data.formName});
         }
 
-        if (!data.inputName) throw new Error(`В ${actionName} не передано название input`);
-        if (! _.has(data, 'value')) throw new Error(`В ${actionName} не передано значение input`);
+        if (!data.inputName) new Error(`В ${actionName} не передано название input`);
+        if (! _.has(data, 'value')) new Error(`В ${actionName} не передано значение input`);
         return {
             type: WIDGET_INPUT_TEXT_UPDATE_VALUE,
             formName: data.formName,

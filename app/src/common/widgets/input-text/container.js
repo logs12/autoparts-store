@@ -11,7 +11,9 @@ import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
  * Подключение к reduxStore
  */
 @connect(
-    (state) => state,
+    (state) => ({
+        form: state.FormReducer
+    }),
 )
 
 /**
@@ -77,6 +79,7 @@ export class InputText extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
+        debugger;
         this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
     }
 
