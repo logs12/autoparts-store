@@ -3,13 +3,13 @@ import './style.scss';
 import React, { Component } from 'react';
 
 
-import Form from '../../../widgets/form/container';
-import {InputText} from '../../../widgets/input-text/container';
-import ButtonLoading from '../../../widgets/button-loading/container';
+import Form from '../../../common/widgets/form/container';
+import {InputText} from '../../../common/widgets/input-text/container';
+import ButtonLoading from '../../../common/widgets/button-loading/container';
 
 //components
 import SearchForArticle from '../../containers/SearchForArticle';
-import {actionFormDecorator} from '../../../widgets/form/decorators/@actionFormDecorator';
+import {actionFormDecorator} from '../../../common/widgets/form/decorators/@actionFormDecorator';
 import ProgressBar from 'react-mdl/lib/ProgressBar';
 
 export default class HomePage extends Component{

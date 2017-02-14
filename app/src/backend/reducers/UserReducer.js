@@ -1,6 +1,6 @@
 import {
     USERS_GET
-} from '../../constants';
+} from '../../common/constants';
 
 export default function Users (state = {}, action) {
 

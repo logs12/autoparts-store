@@ -3,15 +3,12 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as actions from '../../../../actions/UserAction';
-import Article from '../../../../../widgets/article/component';
-
+import Article from '../../../../../common/widgets/article/component';
 
 const mapStateToProps = (state, ownProps) => {
-    let userId = Number(ownProps.params.id);
-    let user = _.find(state.Users, {id: userId});
     return {
         users: state.Users,
-        user: user,
+        user: _.find(state.Users, {id: Number(ownProps.params.id)}),
     }
 };
 

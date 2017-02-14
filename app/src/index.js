@@ -12,11 +12,11 @@ import Root from './Root';
 
 import { push } from 'react-router-redux';
 
-import configureStore from './store/ConfigureStore';
+import configureStore from './common/store/ConfigureStore';
 
-import configDataAction from './actions/ConfigDataAction';
+import configDataAction from './common/actions/ConfigDataAction';
 
-import Preloader from './components/Preloader';
+import Preloader from './common/components/Preloader';
 
 const store = configureStore();
 

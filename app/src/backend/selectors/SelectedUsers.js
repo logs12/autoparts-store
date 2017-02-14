@@ -6,12 +6,10 @@ const usersSelector = state => state.users;
 const selectedUsersSelector = state => state.selectedUserIds;
 
 const getUsers = (users, selectedUserIds) => {
-    const selectedUsers = _.filter(
+    return _.filter(
         users,
-        user => _.contains(selectedUserIds, user.id),
+        user => _.includes(selectedUserIds, user.id),
     );
-
-    return selectedUsers;
 };
 
 export default createSelector(

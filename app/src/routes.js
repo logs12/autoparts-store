@@ -21,11 +21,11 @@ import UserViewPage from './backend/menu/users-roles/users/user';
 import UserFormPage from './backend/menu/users-roles/users/user-form';
 
 // Common components
-import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
-import ErrorPage from './pages/ErrorPage';
-import NotFoundPage from './pages/NotFoundPage';
-import ApplicationContainer from './containers/ApplicationContainer';
+import LoginPage from './common/pages/LoginPage';
+import SignUpPage from './common/pages/SignUpPage';
+import ErrorPage from './common/pages/ErrorPage';
+import NotFoundPage from './common/pages/NotFoundPage';
+import ApplicationContainer from './common/containers/ApplicationContainer';
 
 // constants react-redux-router app
 import {
@@ -36,7 +36,7 @@ import {
     USER_CREATE_ROUTE,
     USER_UPDATE_ROUTE,
     USER_DELETE_ROUTE,
-} from './constants';
+} from './common/constants';
 
 
 export const routes = (

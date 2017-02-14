@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Article from '../../../widgets/article/component';
+import Article from '../../../common/widgets/article/component';
 
 
 export default class DashboardPage extends Component{

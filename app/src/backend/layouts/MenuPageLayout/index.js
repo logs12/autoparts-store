@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Layout, Header, Content, Drawer, Navigation } from 'react-mdl/lib/Layout';
 
 import DrawerHeader from '../../containers/DrawerHeader';
-import ProgressBarWidget from '../../../widgets/progress-bar-widget';
+import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
 
 import DrawnerMenu from '../../components/DrawerMenu';
 

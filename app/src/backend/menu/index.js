@@ -6,7 +6,7 @@ import { Layout, Header, Content, Drawer, Navigation } from 'react-mdl/lib/Layou
 
 import DrawerHeader from '../containers/DrawerHeader';
 
-import ProgressBar from '../../widgets/progress-bar';
+import ProgressBar from '../../common/widgets/progress-bar';
 
 
 export default class MainLayout extends Component {

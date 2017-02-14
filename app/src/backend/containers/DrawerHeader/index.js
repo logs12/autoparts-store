@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import IconButton from 'react-mdl/lib/IconButton';
 import Menu, { MenuItem } from 'react-mdl/lib/Menu';
 
-import { logOutAction } from '../../../actions/AuthAction';
+import { logOutAction } from '../../../common/actions/AuthAction';
 
 @connect(
     (state) => ({ // mapStateToProps

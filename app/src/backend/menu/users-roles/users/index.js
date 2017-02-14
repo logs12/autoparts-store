@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as _ from 'lodash';
-import TableWidget from '../../../../widgets/table-widget';
+import TableWidget from '../../../../common/widgets/table-widget';
 
 import * as actions from '../../../actions/UserAction';
-import { USER_CREATE_ROUTE } from '../../../../constants';
+import { USER_CREATE_ROUTE } from '../../../../common/constants';
 
 @connect(
     (state) => ({

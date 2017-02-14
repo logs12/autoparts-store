@@ -1,8 +1,7 @@
-import { BaseFetch } from '../../utils/BaseFetch';
+import { BaseFetch } from '../../common/utils/BaseFetch';
 
-import { push } from 'react-router-redux';
 import {
-    USER_URL_REQUEST,
+    USER_GET_URL_REQUEST,
     USERS_ROUTE,
     USER_VIEW_ROUTE,
     USER_UPDATE_ROUTE,
@@ -12,11 +11,14 @@ import {
     USER_CREATE,
     USER_UPDATE,
     USER_DELETE,
+    USER_WIDGET_FORM_REQUEST,
+    USER_WIDGET_FORM_SUCCESS,
+    USER_WIDGET_FORM_ERROR,
     WIDGET_SERVER_ERROR,
     PROGRESS_BAR_WIDGET_START,
     PROGRESS_BAR_WIDGET_STOP,
     PAGINATION_GET,
-} from '../../constants';
+} from '../../common/constants';
 
 const getPaginationData = (response) => {
     return {
@@ -28,10 +30,10 @@ const getPaginationData = (response) => {
 
 export function UsersGetAction() {
     return (dispatch, getState) => {
-
+        dispatch({type: PROGRESS_BAR_WIDGET_START});
         return BaseFetch.get({
-            url: USER_URL_REQUEST,
-            dispatch: dispatch,
+            url: USER_GET_URL_REQUEST,
+            //dispatch: dispatch,
             success: (response) => {
                 let configPagination = getPaginationData(response);
                 response.json().then((object) => {
@@ -57,7 +59,32 @@ export function UserCreateAction() {
 
 
 export function UserUpdateAction() {
-
+    try {
+        if (!data.values) new Error(`В ${actionName} не передано данные формы`);
+        if (!data.url) new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
+        return {
+            types: [
+                USER_WIDGET_FORM_REQUEST,
+                USER_WIDGET_FORM_SUCCESS,
+                USER_WIDGET_FORM_ERROR,
+            ],
+            promise: (dispatch, getState) => {
+                    BaseFetch.update({
+                        url: USER_URL_REQUEST,
+                        //dispatch: dispatch,
+                        success: (response) => {
+                            response.json().then((object) => {
+                                // Stop ProgressBar
+                                dispatch({type: PROGRESS_BAR_WIDGET_STOP});
+                            })
+                        }
+                    });
+            },
+            options: options
+        }
+    } catch (Error) {
+        alert(Error);
+    }
 }
 
 export function UserDeleteAction() {

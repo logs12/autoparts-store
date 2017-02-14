@@ -1,9 +1,9 @@
 import './styles/style.scss';
 
 import React, { Component } from 'react';
-import FlexMenu from '../../../widgets/flex-menu';
-import NavLink from '../../../widgets/nav-link/component';
-import LoginFormComponent from '../../../components/LoginFormComponent';
+import FlexMenu from '../../../common/widgets/flex-menu';
+import NavLink from '../../../common/widgets/nav-link/component';
+import LoginFormComponent from '../../../common/components/LoginFormComponent';
 import Dialog from 'material-ui/Dialog';
 
 

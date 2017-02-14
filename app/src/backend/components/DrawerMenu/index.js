@@ -2,10 +2,10 @@ import './style.scss';
 
 import React, { Component } from 'react';
 
-import { USERS_ROLES_ROUTE } from '../../../constants';
+import { USERS_ROLES_ROUTE } from '../../../common/constants';
 
 import { Navigation } from 'react-mdl/lib/Layout';
-import NavLink from '../../../widgets/nav-link/component';
+import NavLink from '../../../common/widgets/nav-link/component';
 
 const DrawerMenu = () => {
     return (

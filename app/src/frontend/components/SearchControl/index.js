@@ -1,7 +1,7 @@
 import "./styles/style.scss";
 import React, {Component} from "react";
 
-import ProgressBarWidget from '../../../widgets/progress-bar-widget';
+import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
 
 export default class SearchControl extends Component {
 
