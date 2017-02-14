@@ -1,5 +1,4 @@
 <IfModule mod_autoindex.c>
-    #Запрещаем просмотр содержимого папок
     Options -Indexes
 </IfModule>
 
@@ -7,17 +6,17 @@
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
     RewriteEngine on
+    RewriteBase /
 
-  # the main rewrite rule for the frontend application
-    RewriteCond %{REQUEST_URI} !^/(api|app)
+    # the main rewrite rule for the frontend application
+    RewriteCond %{REQUEST_URI} !^/(api-internal|app)
     RewriteRule ^(.*)$ /app/$1 [L]
-    #RewriteRule ^(.*)$ http://%{HTTP_HOST}/app/index.html [R=301, L]
 
     # if a directory or a file of the backend application exists, use the request directly
-    RewriteCond %{REQUEST_URI} ^/api
+    RewriteCond %{REQUEST_URI} ^/api-internal
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api(.*) /api/web/$1 [L]
+    RewriteRule ^api-internal(.*) ./api/web/index.php/$1 [NC,L,QSA]
 
     RewriteCond %{REQUEST_URI} \.(htaccess|htpasswd|svn|git)
     RewriteRule \.(htaccess|htpasswd|svn|git) - [F]
