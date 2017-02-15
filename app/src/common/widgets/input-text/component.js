@@ -5,9 +5,11 @@ const InputTextComponent = props => {
     return (
         <div className={props.className}>
             <TextField
+                floatingLabel
                 onChange={props.onChange}
                 error={props.error}
                 label={props.placeholder}
+                value={props.inputTextValue}
             />
         </div>
     );

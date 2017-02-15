@@ -23,29 +23,29 @@ export default function configDataAction() {
                 },
                 credentials: 'include', // поддержка cookie
             })
-                .then((response) => {
-                    if (response.status === 200) {
-                        response.json().then((object) => {
-                            dispatch({
-                                type: CONFIG_DATA_GET,
-                                payload: object,
-                            });
-                            resolve(object);
-                        })
-                    } else if (response.status === 500) {
-                        response.json().then((object) => {
-                            dispatch({
-                                type: WIDGET_SERVER_ERROR,
-                                payload: object,
-                            });
-                            dispatch(push(ERROR_ROUTE));
-                            reject(object);
-                        })
-                    }
-                })
-                .catch(function (err) {
-                    alert("Oops...", "Couldn't fetch repos for user: " + state.user, "error");
-                });
+            .then((response) => {
+                if (response.status === 200) {
+                    response.json().then((object) => {
+                        dispatch({
+                            type: CONFIG_DATA_GET,
+                            payload: object,
+                        });
+                        resolve(object);
+                    })
+                } else if (response.status === 500) {
+                    response.json().then((object) => {
+                        dispatch({
+                            type: WIDGET_SERVER_ERROR,
+                            payload: object,
+                        });
+                        dispatch(push(ERROR_ROUTE));
+                        reject(object);
+                    })
+                }
+            })
+            .catch(function (err) {
+                alert("Oops...", "Couldn't fetch repos for user: " + state.user, "error");
+            });
         });
     };
 }

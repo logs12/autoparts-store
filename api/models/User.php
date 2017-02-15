@@ -145,6 +145,7 @@ class User extends BaseActiveRecord implements IdentityInterface
             'second_name',
             'third_name',
             'phone',
+            'password',
             'email',
             //'role_name',
         ]);

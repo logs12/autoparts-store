@@ -35,39 +35,39 @@ export default class UsersPage extends Component{
 
                         rowMenuActions = {{
                                 actionView: 'View',
-                                actionUpdate: 'Update',
+                                actionUpdate: 'Edit',
                                 actionDelete: 'Delete',
                         }}
 
                         attributes={
                             {
                                 first_name: {
-                                    title: 'first_name',
+                                    title: 'First name',
                                     propsTableHeader: {
                                         tooltip: 'First name tooltip',
                                     },
                                 },
                                 second_name: {
-                                    title: 'second_name',
+                                    title: 'Second name',
                                     propsTableHeader: {
                                         tooltip: 'Second name tooltip',
                                     },
                                 },
 
                                 third_name: {
-                                    title: 'third_name',
+                                    title: 'Third name',
                                     propsTableHeader: {
                                         tooltip: 'Third name tooltip',
                                     },
                                 },
                                 phone: {
-                                    title: 'phone',
+                                    title: 'Phone',
                                     propsTableHeader: {
                                         tooltip: 'phone name tooltip',
                                     },
                                 },
                                 email: {
-                                    title: 'email',
+                                    title: 'Email',
                                     propsTableHeader: {
                                         tooltip: 'email name tooltip',
                                     },

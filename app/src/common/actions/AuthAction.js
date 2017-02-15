@@ -17,8 +17,8 @@ import { replace } from 'react-router-redux';
 
 export function loginAction(data, options) {
     try {
-        if (!data.values) throw new Error(`В ${actionName} не передано данные формы`);
-        if (!data.url) throw new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
+        if (!data.values) new Error(`В ${actionName} не передано данные формы`);
+        if (!data.url) new Error(`В ${actionName} не передано значение url для отправки данных на сервер`);
         return {
             types: [
                 LOGIN_WIDGET_FORM_REQUEST,
@@ -45,6 +45,7 @@ export function loginAction(data, options) {
                                     options: {...options},
                                 });
                                 dispatch(replace(ADMIN_ROUTE));
+                                resolve(object);
                             })
                         } else if (response.status === 500) {
                             response.json().then((object) => {

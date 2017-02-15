@@ -11,9 +11,18 @@ import ButtonLoadingComponent from './component';
  */
 @connect(
     (state) => ({
-        forms: state.FormReducer
+        FormWidgets: state.FormWidget
     })
 )
+
+/**
+ * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer
+ * в глобальном state в свойстве reducerName, которому принадлежат данные
+    <ButtonLoading
+        label = 'Send'
+        reducerName = 'entity'
+    />
+ */
 
 export default class ButtonLoading extends Component{
 
@@ -27,6 +36,7 @@ export default class ButtonLoading extends Component{
      * @type {{}}
      */
     static defaultProps = {
+        reducerName: 'FormWidgets',
         label: 'Submit',
         className: ''
     };
@@ -56,10 +66,10 @@ export default class ButtonLoading extends Component{
     componentWillReceiveProps(nextProps) {
 
         // Если isChanged == true, то выключаем кнопку disabled == false
-        this.state.disabled = !nextProps.forms[this.context.formName].isChanged;
+        this.state.disabled = !nextProps[this.props.reducerName][this.context.formName].isChanged;
 
         // Состояния кнопки
-        this.state.buttonState = nextProps.forms[this.context.formName].stateForm;
+        this.state.buttonState = nextProps[this.props.reducerName][this.context.formName].stateForm;
 
     }
 

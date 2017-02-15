@@ -23,25 +23,25 @@ import {
  * @constructor
  */
 let initialState = {};
-export default function FormReducer(state = {}, action) {
-    console.log( 'Form редуктор вызван с состоянием', state, 'и действием', action );
+export default function FormWidget(state = {}, action) {
+
     switch (action.type) {
 
         case WIDGET_FORM_INIT: {
             initialState = {
                 [action.formName]: {
-                    values: action.inputNames,
+                    values: action.modelForm,
                     isChanged: false,
                     stateForm: WIDGET_FORM_INIT,
-                    errors: action.inputNames
+                    errors: action.modelFormError
             }};
             return {
                 ...state,
                 [action.formName]: {
-                    values: action.inputNames,
+                    values: action.modelForm,
                     isChanged: false,
                     stateForm: WIDGET_FORM_INIT,
-                    errors: action.inputNames
+                    errors: action.modelFormError
                 }
             }
         }

@@ -1,5 +1,5 @@
 import { loginAction, logOutAction } from '../../common/actions/AuthAction';
-import { UserUpdateAction } from '../../backend/actions/UserAction';
+import { UserCreateAction, UserUpdateAction } from '../../backend/actions/UserAction';
 
 /**
  * Список action
@@ -8,6 +8,7 @@ import { UserUpdateAction } from '../../backend/actions/UserAction';
 const ListActions = {
     loginAction: loginAction,
     logOutAction: logOutAction,
+    UserCreateAction: UserCreateAction,
     UserUpdateAction: UserUpdateAction,
 };
 

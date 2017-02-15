@@ -60,4 +60,4 @@ export const LOGIN_URL_REQUEST = '/api-internal/login';
 export const LOGOUT_URL_REQUEST = '/api-internal/logout';
 export const CONFIG_DATA_URL_REQUEST = '/api-internal/config';
 export const USER_GET_URL_REQUEST = `/api-internal/user`;
-export const USER_UPDATE_URL_REQUEST = id => `/api-internal/user/${id}`;
+export const USER_URL_REQUEST = (id = null) => (id) ? `/api-internal/user/${id}` : `/api-internal/user`;

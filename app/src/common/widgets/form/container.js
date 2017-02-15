@@ -14,7 +14,7 @@ import * as actions from './actions';
      * @param state
      */
     (state) => ({ // mapStateToProps
-        forms: state.FormReducer
+        forms: state.FormWidget
     }),
 
     /**
@@ -27,6 +27,19 @@ import * as actions from './actions';
 )
 
 export default class Form extends Component {
+
+    /**
+     * Объект с данными формы
+     * @type {{}}
+     */
+    modelForm = {};
+
+    /**
+     * Объект с ошибками формы
+     * @type {{}}
+     */
+    modelFormError = {};
+
 
     /**
      * Инициализируем контроль типов свойств
@@ -63,12 +76,34 @@ export default class Form extends Component {
      * Перед рендерингом инициализируем форму в store
      */
     componentWillMount() {
-        this.getInputNames(this.props.children);
+
+        this.getInputNames(this.props.children, this.props.model);
+
         this.props.formActions.initForm(
             this.props.formName,
-            this.inputNames,
+            this.modelForm,
+            this.modelFormError,
             this.props.url
         );
+    }
+
+    /**
+     * При каждой новой загрузке приложения,после погрузки данных, заново инициализируем форму
+     * @param nextProps
+     */
+    componentWillReceiveProps(nextProps) {
+
+        // Проверка для устранения зацикливания dispatch
+        if (this.props.model != nextProps.model) {
+            this.getInputNames(this.props.children, nextProps.model);
+            this.props.formActions.initForm(
+                this.props.formName,
+                this.modelForm,
+                this.modelFormError,
+                this.props.url
+            );
+        }
+
     }
 
     getChildContext() {
@@ -77,25 +112,26 @@ export default class Form extends Component {
         };
     }
 
-    inputNames = {};
-
     /**
      * Получаем список полей ввода формы
      * @returns {{}}
      */
-    getInputNames(children) {
+    getInputNames(children, model) {
         if (children.length) {
             for (var child of children) {
                 if (typeof child.type !== 'function') {
-                    this.getInputNames(child.props.children)
+                    this.getInputNames(child.props.children, model);
                 }
                 if (!child.props.name) {
                     continue;
                 }
-                if (this.props.model) {
-                    this.inputNames[child.props.name] = this.props.model[child.props.name];
+                if (model) {
+                    this.modelForm['id'] = model['id'];
+                    this.modelForm[child.props.name] = model[child.props.name];
+                    this.modelFormError[child.props.name] = null;
                 } else {
-                    this.inputNames[child.props.name] = null;
+                    this.modelForm[child.props.name] = null;
+                    this.modelFormError[child.props.name] = null;
                 }
             }
         }

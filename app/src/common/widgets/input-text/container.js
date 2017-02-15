@@ -12,7 +12,7 @@ import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
  */
 @connect(
     (state) => ({
-        form: state.FormReducer
+        FormWidgets: state.FormWidget
     }),
 )
 
@@ -47,7 +47,7 @@ export class InputText extends Component {
      * @type {{actionName: string}}
      */
     static defaultProps = {
-        reducerName: 'FormReducer',
+        reducerName: 'FormWidgets',
         actionName: WIDGET_INPUT_TEXT_ACTION_NAME,
         urlSubmit: '/',
         className: 'input-text-widget',
@@ -72,6 +72,7 @@ export class InputText extends Component {
     constructor(props, context) {
         super(props, context);
         this.onChange = this.onChange.bind(this);
+        this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
     }
 
     /**
@@ -79,8 +80,8 @@ export class InputText extends Component {
      * @param nextProps
      */
     componentWillReceiveProps(nextProps) {
-        debugger;
         this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
+        this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
     }
 
     /**
@@ -89,7 +90,7 @@ export class InputText extends Component {
     onChange(event) {
         event.preventDefault();
 
-        // Передаем в редьюсер артикул детали для поиска
+        // Передаем в редьюсер значение поля
         this.props.dispatch(
             actions.updateInputText(
                 this.props.actionName,
@@ -110,6 +111,7 @@ export class InputText extends Component {
                 onChange = {this.onChange}
                 error={this.error}
                 className={this.props.className}
+                inputTextValue={this.inputTextValue}
             />
         )
     }

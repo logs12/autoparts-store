@@ -10,15 +10,17 @@ import ActionsFactory from '../../services/ActionsFactory';
 /**
  * Первоначальная инициализация формы в глобальном state
  * @param formName
- * @param inputNames
+ * @param modelForm
+ * @param modelFormError
  * @param url
  * @returns {function(*): *}
  */
-export function initForm(formName, inputNames, url) {
+export function initForm(formName, modelForm, modelFormError, url) {
     return dispatch => dispatch({
         type: WIDGET_FORM_INIT,
         formName,
-        inputNames,
+        modelForm,
+        modelFormError,
         url
     });
 }
