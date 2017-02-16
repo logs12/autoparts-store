@@ -53,6 +53,7 @@ export default class SnackbarWidget extends Component {
         return (
             <div>
                 <Snackbar
+                    timeout={1500}
                     active={isSnackbarActive}
                     onClick={::this.handleClickActionSnackbar}
                     onTimeout={::this.handleTimeoutSnackbar}

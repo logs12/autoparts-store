@@ -1,19 +1,28 @@
 import './style.scss';
 
 import React, { Component } from 'react';
-
-import { USERS_ROLES_ROUTE } from '../../../common/constants';
-
+import Icon from 'react-mdl/lib/Icon';
 import { Navigation } from 'react-mdl/lib/Layout';
 import NavLink from '../../../common/widgets/nav-link/component';
+
+import {
+    USERS_ROLES_ROUTE,
+    ADMIN_ROUTE
+} from '../../../common/constants';
+
 
 const DrawerMenu = () => {
     return (
         <Navigation className="drawer-menu mdl-color--blue-grey-800">
             <NavLink
+                to={ADMIN_ROUTE}
+                className="drawer-menu__nav-link">
+                <Icon name="home" />Home
+            </NavLink>
+            <NavLink
                 to={USERS_ROLES_ROUTE}
                 className="drawer-menu__nav-link">
-                <i className="drawer-menu__icon fa fa-users" aria-hidden="true"></i>Users and Roles
+                <Icon name="people" />Users and Roles
             </NavLink>
         </Navigation>
     );

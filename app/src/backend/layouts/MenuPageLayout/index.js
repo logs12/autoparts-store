@@ -12,7 +12,8 @@ import SnackbarWidget from '../../../common/widgets/snackbar-widget';
 const MenuPageLayout = props => {
     return (
         <Layout fixedHeader className="menu-page-layout">
-            <Header title={<span><span style={{ color: '#ddd' }}>Area / </span><strong>The Title</strong></span>}>
+            <Header title={<span><span style={{ color: '#ddd' }}>
+                Area / </span><strong>The Title</strong></span>}>
                 <Navigation>
                     <a href="">Link</a>
                     <a href="">Link</a>

@@ -69,10 +69,15 @@ export class InputText extends Component {
         errors: []
     };
 
+    inputTextValue = '';
+
     constructor(props, context) {
         super(props, context);
-        this.onChange = this.onChange.bind(this);
-        this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
+
+        let inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
+        if (inputTextValue) {
+            this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
+        }
     }
 
     /**
@@ -81,7 +86,11 @@ export class InputText extends Component {
      */
     componentWillReceiveProps(nextProps) {
         this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
-        this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
+
+        let inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
+        if (inputTextValue) {
+            this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
+        }
     }
 
     /**
@@ -108,7 +117,7 @@ export class InputText extends Component {
             <InputTextComponent
                 name = {this.props.name}
                 placeholder = {this.props.placeholder}
-                onChange = {this.onChange}
+                onChange = {::this.onChange}
                 error={this.error}
                 className={this.props.className}
                 inputTextValue={this.inputTextValue}
