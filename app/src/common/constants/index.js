@@ -1,3 +1,6 @@
+
+//========== /Constants WIDGETS ==========//
+
 // Constants widget-form
 export const WIDGET_FORM_INIT = 'WIDGET_FORM_INIT';
 export const WIDGET_FORM_REQUEST = 'WIDGET_FORM_REQUEST';
@@ -16,6 +19,10 @@ export const WIDGET_CLIENT_ERROR = 'WIDGET_CLIENT_ERROR';
 // Constants progress-bar-widget
 export const PROGRESS_BAR_WIDGET_START = 'PROGRESS_BAR_WIDGET_START';
 export const PROGRESS_BAR_WIDGET_STOP = 'PROGRESS_BAR_WIDGET_STOP';
+
+// Constants progress-bar-widget
+export const SNACKBAR_WIDGET_ACTIVE = 'SNACKBAR_WIDGET_ACTIVE';
+export const SNACKBAR_WIDGET_INACTIVE = 'SNACKBAR_WIDGET_INACTIVE';
 
 // Constants Аuthorization
 export const LOGIN_WIDGET_FORM_REQUEST = 'LOGIN_WIDGET_FORM_REQUEST';

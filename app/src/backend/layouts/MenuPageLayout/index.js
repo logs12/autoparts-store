@@ -7,6 +7,7 @@ import DrawerHeader from '../../containers/DrawerHeader';
 import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
 
 import DrawnerMenu from '../../components/DrawerMenu';
+import SnackbarWidget from '../../../common/widgets/snackbar-widget';
 
 const MenuPageLayout = props => {
     return (
@@ -26,6 +27,7 @@ const MenuPageLayout = props => {
                 <DrawnerMenu />
             </Drawer>
             <Content >{props.children}</Content>
+            <SnackbarWidget />
         </Layout>
     );
 };

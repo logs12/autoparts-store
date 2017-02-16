@@ -5,8 +5,11 @@ import {
     WIDGET_SERVER_ERROR,
     WIDGET_CLIENT_ERROR,
     ERROR_ROUTE,
+    SNACKBAR_WIDGET_ACTIVE,
 } from '../constants';
 import { push } from 'react-router-redux';
+import * as actionsSnackbarWidget from '../widgets/snackbar-widget/actions';
+
 
 const BaseFetch = {};
 
@@ -14,7 +17,7 @@ const BaseFetch = {};
  * Basic method fetch request
  * @param options
  */
-BaseFetch.fetch = (options) => {
+BaseFetch.fetch = options => {
 
     const dispatch = options.dispatch;
 
@@ -47,6 +50,7 @@ BaseFetch.fetch = (options) => {
     return fetch(url, headers)
         .then((response) => {
             switch (response.status) {
+                // status code for success get
                 case 200: {
                     response.json().then((object) => {
                         // Stop ProgressBar
@@ -58,6 +62,7 @@ BaseFetch.fetch = (options) => {
                     });
                     break;
                 }
+                // status code success update
                 case 201: {
                     response.json().then((object) => {
                         // Stop ProgressBar
@@ -69,6 +74,15 @@ BaseFetch.fetch = (options) => {
                     });
                     break;
                 }
+                // status code success delete
+                case 204: {
+                    dispatch({type: PROGRESS_BAR_WIDGET_STOP});
+                    if (typeof success === 'function') {
+                        success();
+                    }
+                    break;
+                }
+                // status code error validate on server
                 case 422: {
                     response.json().then((object) => {
 
@@ -81,6 +95,7 @@ BaseFetch.fetch = (options) => {
                     });
                     break;
                 }
+                // status code server error
                 case 500: {
                     response.json().then((object) => {
 
@@ -114,7 +129,7 @@ BaseFetch.fetch = (options) => {
  * Basic method for sending the request to get or error
  * @param options
  */
-BaseFetch.get = (options) => {
+BaseFetch.get = options => {
 
     options.headers = _.merge({
         method: 'GET',
@@ -132,7 +147,7 @@ BaseFetch.get = (options) => {
  * Basic method for sending the request to save or error
  * @param options
  */
-BaseFetch.saveOrError = (options) => {
+BaseFetch.saveOrError = options => {
 
     // Check requires options
     if (!options.body) {
@@ -154,6 +169,31 @@ BaseFetch.saveOrError = (options) => {
     }, options.headers);
 
     BaseFetch.fetch(options);
+};
+
+/**
+ *
+ * @param options
+ * @param snackbarWidget (bool) - show or hide snackbar
+ */
+BaseFetch.delete = (options, snackbarWidget = {}) => {
+
+    options.headers = _.merge({
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json, text/javascript, *!/!*; q=0.01',
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include', // поддержка cookie
+    }, options.headers);
+
+    if (!_.isEmpty(snackbarWidget)) {
+        snackbarWidget['actionTimeoutSnackbar'] = () => BaseFetch.fetch(options);
+        options.dispatch(actionsSnackbarWidget.SnackbarWidgetActiveAction(snackbarWidget));
+    } else {
+        BaseFetch.fetch(options);
+    }
+
 };
 
 module.exports.BaseFetch = BaseFetch;

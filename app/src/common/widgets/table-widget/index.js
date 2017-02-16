@@ -4,13 +4,6 @@ import * as _ from 'lodash';
 import TableHeader  from './TableHeader';
 import Table  from './Table';
 
-/*export { default as TableHeader } from './TableHeader';
-export { default as Table } from './Table';
-export { default } from './Table';*/
-
-import { USER_CREATE_ROUTE } from '../../constants';
-
-
 export default class TableWidget extends Component {
 
     static propTypes = {

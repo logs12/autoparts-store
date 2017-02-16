@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import IconButton from 'react-mdl/lib/IconButton';
 import Menu, { MenuItem } from 'react-mdl/lib/Menu';
-import {
-    USER_VIEW_ROUTE,
-    USER_UPDATE_ROUTE,
-    USER_DELETE_ROUTE,
-} from '../../constants';
+
 
 /**
  * Render roe actions menu
@@ -23,35 +19,43 @@ const renderRowMenuActions = (rowMenuActions, row, dispatch) => {
     let menuItemKey = 0;
 
     for(let rowMenuAction in rowMenuActions) {
+
         if (!rowMenuActions.hasOwnProperty(rowMenuAction)) continue;
+
         switch (rowMenuAction) {
             case 'actionView': {
                 menuItemComponents.push(
-                    <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_VIEW_ROUTE(row['id'])))}>
-                        {rowMenuActions[rowMenuAction]}
+                    <MenuItem key={menuItemKey} onClick={
+                        () => dispatch(push(rowMenuActions[rowMenuAction].url(row['id'])))
+                    }>
+                        {rowMenuActions[rowMenuAction].title}
                     </MenuItem>);
                 break;
             }
             case 'actionUpdate': {
                 menuItemComponents.push(
-                    <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_UPDATE_ROUTE(row['id'])))}>
-                        {rowMenuActions[rowMenuAction]}
+                    <MenuItem key={menuItemKey} onClick={
+                        () => dispatch(push(rowMenuActions[rowMenuAction].url(row['id'])))
+                    }>
+                        {rowMenuActions[rowMenuAction].title}
                     </MenuItem>);
-
                 break;
             }
             case 'actionDelete': {
                 menuItemComponents.push(
-                    <MenuItem key={menuItemKey} onClick={() => dispatch(push(USER_DELETE_ROUTE(row['id'])))}>
-                        {rowMenuActions[rowMenuAction]}
+                    <MenuItem key={menuItemKey} onClick={
+                        () => rowMenuActions[rowMenuAction].dispatchAction(row['id'])
+                    }>
+                        {rowMenuActions[rowMenuAction].title}
                     </MenuItem>);
-
                 break;
             }
         }
         menuItemKey++;
     }
+
     let menuId = `menu-lower-right${row['id']}`;
+
     return  <td>
         <IconButton name="more_vert" id={menuId} />
         <Menu target={menuId} align="right">

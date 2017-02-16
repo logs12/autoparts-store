@@ -3,6 +3,7 @@ import { BaseFetch } from '../../common/services/BaseFetch';
 import {
     USER_URL_REQUEST,
     USERS_GET,
+    USER_DELETE,
     USER_WIDGET_FORM_REQUEST,
     USER_WIDGET_FORM_SUCCESS,
     USER_WIDGET_FORM_ERROR,
@@ -96,6 +97,23 @@ export function UserUpdateAction(data, options) {
     }
 }
 
-export function UserDeleteAction() {
-
+export function UserDeleteAction(userId) {
+    return (dispatch, getState) => {
+        return BaseFetch.delete(
+            {
+                url: USER_URL_REQUEST(userId),
+                dispatch: dispatch,
+                getState: getState,
+                success: () => {
+                    dispatch({
+                        type: USER_DELETE,
+                        payload: {
+                            userId: userId,
+                        }
+                    });
+                },
+            },
+            { messageSnackbar: 'User deleted' }
+        );
+    }
 }

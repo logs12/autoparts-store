@@ -3,7 +3,8 @@ import SearchForArticul from '../../frontend/reducers/SearchForArticul';
 import FormWidget from '../widgets/form/reducers';
 import SystemError from '../widgets/error/reducers';
 import ConfigData from './ConfigDataReducer';
-import ProgressBar from '../widgets/progress-bar-widget/reducer';
+import ProgressBarWidget from '../widgets/progress-bar-widget/reducer';
+import SnackbarWidget from '../widgets/snackbar-widget/reducer';
 import CollectionPaginations from '../../backend/reducers/CollectionPaginations';
 
 import Users from '../../backend/reducers/UserReducer'
@@ -15,7 +16,8 @@ export default combineReducers({
     SystemError,
     ConfigData,
     SearchForArticul,
-    ProgressBar,
+    ProgressBarWidget,
+    SnackbarWidget,
     Users,
     CollectionPaginations,
     routing: routerReducer

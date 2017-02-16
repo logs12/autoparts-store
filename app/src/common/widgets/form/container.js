@@ -5,6 +5,7 @@ import FormComponent from './component';
 import * as actions from './actions';
 
 
+
 /**
  * Подключение к reduxStore
  */

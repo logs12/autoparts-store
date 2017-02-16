@@ -7,7 +7,7 @@ import {
 const initialTimeState = {};
 
 export default function SearchForArticul(state = initialTimeState, action) {
-    console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
+
     switch (action.type) {
         case GET_PRODUCTS_REQUEST: {
             return {

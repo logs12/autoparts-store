@@ -7,16 +7,7 @@ import TableActionsHeader from './TableActionsHeader';
 import TablePaging from './TablePaging';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
-//import { connect } from 'react-redux';
-//import { push } from 'react-router-redux';
-import IconButton from 'react-mdl/lib/IconButton';
-import Menu, { MenuItem } from 'react-mdl/lib/Menu';
 import TableRowMenuActions from './TableRowMenuActions';
-import {
-    USER_VIEW_ROUTE,
-    USER_UPDATE_ROUTE,
-    USER_DELETE_ROUTE,
-} from '../../constants';
 
 const propTypes = {
     className: PropTypes.string,
@@ -37,8 +28,6 @@ const propTypes = {
     rowMenuActions: PropTypes.object,
 };
 
-
-//@connect()
 class Table extends React.Component {
 
     /**
@@ -55,31 +44,6 @@ class Table extends React.Component {
                 {column.cellFormatter ? column.cellFormatter(row[column.name], row, idx) : row[column.name]}
             </td>
         );
-    }
-
-    renderRowMenuActions(rowMenuActions, row) {
-        debugger;
-        let menuItemComponents = [];
-        let menuItemKey = 0;
-        for(let rowMenuAction in rowMenuActions) {
-            if (!rowMenuActions.hasOwnProperty(rowMenuAction)) continue;
-            switch (rowMenuAction) {
-                case 'actionView': {
-                    menuItemComponents.push(
-                        <MenuItem key={menuItemKey} onClick={() => this.props.dispatch(push(USER_VIEW_ROUTE(row['id'])))}>
-                            {rowMenuActions[rowMenuAction]}
-                        </MenuItem>);
-                }
-            }
-            menuItemKey++;
-        }
-        let menuId = `menu-lower-right${row['id']}`;
-        return  <td>
-                    <IconButton name="more_vert" id={menuId} />
-                    <Menu target={menuId} align="right">
-                        {menuItemComponents}
-                    </Menu>
-                </td>;
     }
 
     /**
@@ -105,7 +69,6 @@ class Table extends React.Component {
                     >
                         {columnChildren.map((child) => this.renderCell(child.props, row, idx))}
                         <TableRowMenuActions rowMenuActions={rowMenuActions} row={row} />
-                        {/*{this.renderRowMenuActions(rowMenuActions, row)}*/}
                     </tr>
                 );
             })

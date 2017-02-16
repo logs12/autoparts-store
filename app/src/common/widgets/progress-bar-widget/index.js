@@ -6,7 +6,7 @@ import ProgressBarMdl from 'react-mdl/lib/ProgressBar';
 
 const ProgressBarWidget = props => {
     return (
-        (props.progressBar.status === 'enabled') ?
+        (props.ProgressBarWidget.status === 'enabled') ?
             <ProgressBarMdl indeterminate className="progress-bar"/>
         : null
     )
@@ -14,7 +14,7 @@ const ProgressBarWidget = props => {
 
 function mapStateToProps (state) {
     return {
-        progressBar: state.ProgressBar
+        ProgressBarWidget: state.ProgressBarWidget
     }
 }
 

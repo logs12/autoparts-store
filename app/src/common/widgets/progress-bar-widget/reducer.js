@@ -7,7 +7,7 @@ let initialState = {
     status: 'disabled'
 };
 
-export default function ProgressBar(state = initialState, action) {
+export default function ProgressBarWidget(state = initialState, action) {
     switch (action.type) {
         case PROGRESS_BAR_WIDGET_START: {
             return {

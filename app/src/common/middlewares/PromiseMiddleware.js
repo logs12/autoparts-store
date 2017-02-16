@@ -1,4 +1,5 @@
 export default function PromiseMiddleware() {
+
     return (next) => (dispatch, getState, action) => {
 
         const { promise, types, ...rest } = action;

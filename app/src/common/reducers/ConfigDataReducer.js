@@ -26,7 +26,7 @@ const checkAuthenticated = (user) => {
 };
 
 export default function ConfigData(state = initialState, action) {
-    console.log( 'SearchForArticul редуктор вызван с состоянием', state, 'и действием', action );
+
     switch (action.type) {
         case LOGIN_SUCCESS: {
             let isAuthenticated = checkAuthenticated(action.payload.configData.user);

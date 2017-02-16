@@ -5,7 +5,12 @@ import * as _ from 'lodash';
 import TableWidget from '../../../../common/widgets/table-widget';
 
 import * as actions from '../../../actions/UserAction';
-import { USER_CREATE_ROUTE } from '../../../../common/constants';
+import {
+    USER_CREATE_ROUTE,
+    USER_VIEW_ROUTE,
+    USER_UPDATE_ROUTE,
+    USER_DELETE_ROUTE,
+} from '../../../../common/constants';
 
 @connect(
     (state) => ({
@@ -34,9 +39,18 @@ export default class UsersPage extends Component{
                         ]}
 
                         rowMenuActions = {{
-                                actionView: 'View',
-                                actionUpdate: 'Edit',
-                                actionDelete: 'Delete',
+                                actionView: {
+                                    title: 'View',
+                                    url: USER_VIEW_ROUTE,
+                                },
+                                actionUpdate: {
+                                    title: 'Edit',
+                                    url: USER_UPDATE_ROUTE,
+                                },
+                                actionDelete: {
+                                    title: 'Delete',
+                                    dispatchAction: this.props.userActions.UserDeleteAction,
+                                },
                         }}
 
                         attributes={
