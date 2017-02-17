@@ -88,12 +88,14 @@ class BaseActiveController extends ActiveController
     public function getQuery()
     {
         $chunkStringOfModelClass = explode('\\', $this->modelClass);
-        $modelClass = 'app\models\search\\' . $chunkStringOfModelClass[2];
+        /** @var BaseActiveRecord $modelClass */
+        $modelClass = 'app\models\search\\' . $chunkStringOfModelClass[2] . 'Search';
 
         $modelSearch = new $modelClass;
 
         /** @var BaseQuery $query */
         $query = $modelSearch->search(Yii::$app->request->get());
+
 
         return $query;
     }
