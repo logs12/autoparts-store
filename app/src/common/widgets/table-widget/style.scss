@@ -1,15 +1,15 @@
 @import '../../../../css/mixins';
 
-.widget-table{
+.table-widget{
 	padding: 15px 0;
 
-	.widget-table__actions {
+	.table-widget__actions {
 		padding: 0 10px;
 		min-height: 36px;
 		@include flex(row);
 
-		.widget-table__links{
-			.widget-table__action-button{
+		.table-widget__links{
+			.table-widget__action-button{
 				background: 0 0;
 				box-shadow: none;
 				&:hover {
@@ -18,7 +18,7 @@
 			}
 		}
 	}
-	.widget-table__table{
+	.table-widget__table{
 		overflow-x: auto;
 		overflow-y: inherit;
 		box-shadow: none;
@@ -26,41 +26,6 @@
 
 			border-right: 0 solid #000;
 			border-left: 0 solid #000;
-		}
-	}
-
-	/** Pagination **/
-	.widget-table__paging {
-		display: flex;
-		font-size: 13px;
-		opacity: .54;
-		padding-top: 15px;
-
-		.widget-table__paging {
-			display: -webkit-flex;
-			display: -ms-flexbox;
-			display: flex;
-			font-size: 13px;
-			opacity: .54;
-		}
-		.widget-table__pager-text,
-		.widget-table__pager-per-page,
-		.widget-table__pager-navigation {
-			padding: 0 15px 0 5px;
-		}
-		.widget-table__pager-text--narrow {
-			padding: 0 5px 0 5px;
-		}
-
-		.mdl-button {
-			background: 0 0;
-			box-shadow: none;
-			&:hover {
-				background-color: hsla(0,0%,62%,.4);
-			}
-			&:active {
-				background-color: hsla(0,0%,62%,.8);
-			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
 import TableActionsHeader from './TableActionsHeader';
-import TablePaging from './TablePaging';
+import PaginationWidget from '../pagination-widget';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
 import TableRowMenuActions from './TableRowMenuActions';
@@ -102,9 +102,9 @@ class Table extends React.Component {
                 </TableHeader>
             );
         return (
-            <div className="widget-table wide mdl-card mdl-shadow--2dp">
+            <div className="table-widget wide mdl-card mdl-shadow--2dp">
                     <TableActionsHeader actions={actionsTableHeader} />
-                    <div className="widget-table__table">
+                    <div className="table-widget__table">
                         <table className={classes} {...otherProps}>
                             <thead>
                                 <tr>
@@ -117,7 +117,9 @@ class Table extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    <TablePaging />
+                    <div className="table-widget__pagination">
+                        <PaginationWidget />
+                    </div>
             </div>
         );
     }

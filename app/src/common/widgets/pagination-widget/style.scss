@@ -1,0 +1,34 @@
+/** Pagination **/
+.pagination-widget {
+    display: flex;
+    font-size: 13px;
+    opacity: .54;
+    padding-top: 15px;
+
+    .pagination-widget__paging {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 13px;
+        opacity: .54;
+    }
+    .pagination-widget__pager-text,
+    .pagination-widget__pager-per-page,
+    .pagination-widget__pager-navigation {
+        padding: 0 15px 0 5px;
+    }
+    .pagination-widget__pager-text--narrow {
+        padding: 0 5px 0 5px;
+    }
+
+    .mdl-button {
+        background: 0 0;
+        box-shadow: none;
+        &:hover {
+            background-color: hsla(0, 0%, 62%, .4);
+        }
+        &:active {
+            background-color: hsla(0, 0%, 62%, .8);
+        }
+    }
+}

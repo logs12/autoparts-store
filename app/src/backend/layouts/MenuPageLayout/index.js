@@ -9,17 +9,14 @@ import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
 import DrawnerMenu from '../../components/DrawerMenu';
 import SnackbarWidget from '../../../common/widgets/snackbar-widget';
 
+import HeaderMenu from '../../components/HeaderMenu';
+
 const MenuPageLayout = props => {
     return (
         <Layout fixedHeader className="menu-page-layout">
             <Header title={<span><span style={{ color: '#ddd' }}>
                 Area / </span><strong>The Title</strong></span>}>
-                <Navigation>
-                    <a href="">Link</a>
-                    <a href="">Link</a>
-                    <a href="">Link</a>
-                    <a href="">Link</a>
-                </Navigation>
+                <HeaderMenu />
             </Header>
             <ProgressBarWidget />
             <section className="breadcrumbs"></section>

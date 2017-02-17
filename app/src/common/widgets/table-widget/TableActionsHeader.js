@@ -28,7 +28,7 @@ export default class TableActionsHeader extends Component {
             this.props.actions.forEach((action, index) => {
                 actionComponents.push(
                     <Tooltip key={index} label={action.title}>
-                        <FABButton mini className="widget-table__action-button">
+                        <FABButton mini className="table-widget__action-button">
                             <Icon name={action.iconName} onClick = {() => {this.props.dispatch(push(action.link))}} />
                         </FABButton>
                     </Tooltip>
@@ -40,14 +40,14 @@ export default class TableActionsHeader extends Component {
 
     render() {
         return(
-            <div className="widget-table__actions">
-                <div className="widget-table__links">
+            <div className="table-widget__actions">
+                <div className="table-widget__links">
                     {this.renderActionButton()}
                 </div>
 
                 <div className="mdl-layout-spacer"></div>
 
-                <div className="widget-table__tools">
+                <div className="table-widget__tools">
                     <Tooltip label="Search">
                         <Textfield
                             onChange={() => {}}

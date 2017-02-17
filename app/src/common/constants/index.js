@@ -33,6 +33,8 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const CONFIG_DATA_GET = 'CONFIG_DATA_GET';
 
+
+
 //========== /Constants Pagination ==========//
 export const PAGINATION_GET = 'PAGINATION_GET';
 
@@ -43,6 +45,9 @@ export const USER_VIEW = 'USER_VIEW';
 export const USER_CREATE = 'USER_CREATE';
 export const USER_UPDATE = 'USER_UPDATE';
 export const USER_DELETE = 'DELETE';
+export const USER_WIDGET_FORM_REQUEST = 'USER_WIDGET_FORM_REQUEST';
+export const USER_WIDGET_FORM_SUCCESS = 'USER_WIDGET_FORM_SUCCESS';
+export const USER_WIDGET_FORM_ERROR = 'USER_WIDGET_FORM_ERROR';
 
 
 //========== /Constants react-redux-router app ==========//
@@ -54,9 +59,6 @@ export const USER_CREATE_ROUTE = '/admin/users-roles/user/create';
 export const USER_VIEW_ROUTE = id => `/admin/users-roles/user/${id}`;
 export const USER_UPDATE_ROUTE = id => `/admin/users-roles/user/update/${id}`;
 export const USER_DELETE_ROUTE = id => `/admin/users-roles/user/delete/${id}`;
-export const USER_WIDGET_FORM_REQUEST = 'USER_WIDGET_FORM_REQUEST';
-export const USER_WIDGET_FORM_SUCCESS = 'USER_WIDGET_FORM_SUCCESS';
-export const USER_WIDGET_FORM_ERROR = 'USER_WIDGET_FORM_ERROR';
 
 export const LOGIN_ROUTE = '/login';
 export const ERROR_ROUTE = '/error';

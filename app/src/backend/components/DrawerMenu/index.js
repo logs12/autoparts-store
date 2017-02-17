@@ -22,7 +22,12 @@ const DrawerMenu = () => {
             <NavLink
                 to={USERS_ROLES_ROUTE}
                 className="drawer-menu__nav-link">
-                <Icon name="people" />Users and Roles
+                <Icon name="location_city" />Our Buildings
+            </NavLink>
+            <NavLink
+                to={USERS_ROLES_ROUTE}
+                className="drawer-menu__nav-link">
+                <Icon name="people" />Administration
             </NavLink>
         </Navigation>
     );
