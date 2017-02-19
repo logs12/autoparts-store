@@ -74,7 +74,7 @@ class BaseService
     {
         $config = [
             'user' => $authenticatedUser,
-            'environment' => YII_ENV,
+            'environment' => Yii::$app->params['environment'],
             'info' => [
                 'usersCount' => (int) User::find()->count(),
             ],
@@ -90,6 +90,7 @@ class BaseService
 
         return $config;
     }
+
 
     public static function handleResponse()
     {
