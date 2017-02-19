@@ -1,20 +1,31 @@
 import React, {Component, PropTypes} from 'react';
 import InputTextComponent from "./component";
 
+import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 
 import * as actions from './actions';
 
 import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
 
+
+
+const mapStateToProps = state => {
+    return ({
+        FormWidgets: state.FormWidget
+    });
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+};
+
 /**
  * Подключение к reduxStore
  */
-@connect(
-    (state) => ({
-        FormWidgets: state.FormWidget
-    }),
-)
+@connect(mapStateToProps, mapDispatchToProps)
 
 /**
  * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer
@@ -74,10 +85,7 @@ export class InputText extends Component {
     constructor(props, context) {
         super(props, context);
 
-        let inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
-        if (inputTextValue) {
-            this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
-        }
+        this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
     }
 
     /**
@@ -86,11 +94,7 @@ export class InputText extends Component {
      */
     componentWillReceiveProps(nextProps) {
         this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
-
-        let inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
-        if (inputTextValue) {
-            this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
-        }
+        this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
     }
 
     /**
@@ -100,15 +104,13 @@ export class InputText extends Component {
         event.preventDefault();
 
         // Передаем в редьюсер значение поля
-        this.props.dispatch(
-            actions.updateInputText(
-                this.props.actionName,
-                {
-                    formName: this.context.formName,
-                    inputName: this.props.name,
-                    value: event.target.value
-                },
-            )
+        this.props.actions.updateInputText(
+            this.props.actionName,
+            {
+                formName: this.context.formName,
+                inputName: this.props.name,
+                value: event.target.value
+            },
         );
     }
 
