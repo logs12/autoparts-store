@@ -11,7 +11,7 @@ import ButtonLoadingComponent from './component';
  */
 @connect(
     (state) => ({
-        FormWidgets: state.FormWidget
+        formWidgets: state.common.formWidget
     })
 )
 
@@ -36,7 +36,7 @@ export default class ButtonLoading extends Component{
      * @type {{}}
      */
     static defaultProps = {
-        reducerName: 'FormWidgets',
+        reducerName: 'formWidgets',
         label: 'Submit',
         className: ''
     };

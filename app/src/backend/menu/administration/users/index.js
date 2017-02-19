@@ -14,7 +14,7 @@ import {
 
 @connect(
     (state) => ({
-        users: state.Users
+        users: state.backend.Users.collection
     }),
     (dispatch) => ({ // mapDispatchToProps
         userActions: bindActionCreators(actions, dispatch)

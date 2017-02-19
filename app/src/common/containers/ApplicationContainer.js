@@ -10,15 +10,15 @@ import ErrorPage from "../pages/ErrorPage";
  * Контейнер обертка для проверки компонентов на права
  * @param Component
  * @param isRequireAuthentication - флаг делать ли проверку на аутентификацию компонента
- * @returns {AuthenticatedComponent}
+ * @returns {ApplicationComponent}
  * @constructor
  */
 export default function ApplicationContainer(Component, isRequireAuthentication = true) {
 
     @connect(
         (state) => ({ // mapStateToProps
-            configData: state.ConfigData,
-            systemError: state.SystemError,
+            configData: state.common.configData,
+            systemError: state.common.systemError,
             routing: state.routing,
         })
     )

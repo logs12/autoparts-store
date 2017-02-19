@@ -53,12 +53,12 @@ export const USER_WIDGET_FORM_ERROR = 'USER_WIDGET_FORM_ERROR';
 //========== /Constants react-redux-router app ==========//
 export const ADMIN_ROUTE = '/admin';
 export const DASHBOARD_ROUTE = '/admin/dashboard';
-export const USERS_ROLES_ROUTE = '/admin/users-roles';
-export const USERS_ROUTE = '/admin/users-roles/users';
-export const USER_CREATE_ROUTE = '/admin/users-roles/user/create';
-export const USER_VIEW_ROUTE = id => `/admin/users-roles/user/${id}`;
-export const USER_UPDATE_ROUTE = id => `/admin/users-roles/user/update/${id}`;
-export const USER_DELETE_ROUTE = id => `/admin/users-roles/user/delete/${id}`;
+export const ADMINISTRATION_ROUTE = '/admin/administration';
+export const USERS_ROUTE = '/admin/administration/users';
+export const USER_CREATE_ROUTE = '/admin/administration/user/create';
+export const USER_VIEW_ROUTE = id => `/admin/administration/user/${id}`;
+export const USER_UPDATE_ROUTE = id => `/admin/administration/user/update/${id}`;
+export const USER_DELETE_ROUTE = id => `/admin/administration/user/delete/${id}`;
 
 export const LOGIN_ROUTE = '/login';
 export const ERROR_ROUTE = '/error';

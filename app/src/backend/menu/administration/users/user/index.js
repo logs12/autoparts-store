@@ -7,8 +7,8 @@ import Article from '../../../../../common/widgets/article/component';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        users: state.Users,
-        user: _.find(state.Users, {id: Number(ownProps.params.id)}),
+        users: state.backend.Users.collection,
+        user: _.find(state.backend.Users.collection, {id: Number(ownProps.params.id)}),
     }
 };
 

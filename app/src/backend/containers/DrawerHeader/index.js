@@ -9,7 +9,7 @@ import { logOutAction } from '../../../common/actions/AuthAction';
 
 @connect(
     (state) => ({ // mapStateToProps
-        configData: state.ConfigData,
+        configData: state.common.configData,
     }),
     dispatch => ({ // mapDispatchToProps
         actions: bindActionCreators({ logOutAction }, dispatch),

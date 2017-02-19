@@ -6,27 +6,26 @@ import { Navigation } from 'react-mdl/lib/Layout';
 import NavLink from '../../../common/widgets/nav-link/component';
 
 import {
-    USERS_ROLES_ROUTE,
+    ADMINISTRATION_ROUTE,
     ADMIN_ROUTE
 } from '../../../common/constants';
 
 
-const DrawerMenu = () => {
+const DrawerMenu = props => {
     return (
         <Navigation className="drawer-menu mdl-color--blue-grey-800">
             <NavLink
                 to={ADMIN_ROUTE}
-                className="drawer-menu__nav-link">
+                className="drawer-menu__nav-link"
+                onClick={props.onClick}
+            >
                 <Icon name="home" />Home
             </NavLink>
             <NavLink
-                to={USERS_ROLES_ROUTE}
-                className="drawer-menu__nav-link">
-                <Icon name="location_city" />Our Buildings
-            </NavLink>
-            <NavLink
-                to={USERS_ROLES_ROUTE}
-                className="drawer-menu__nav-link">
+                to={ADMINISTRATION_ROUTE}
+                className="drawer-menu__nav-link"
+                onClick={props.onClick}
+            >
                 <Icon name="people" />Administration
             </NavLink>
         </Navigation>

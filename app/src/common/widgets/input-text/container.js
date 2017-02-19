@@ -12,7 +12,7 @@ import { WIDGET_INPUT_TEXT_ACTION_NAME } from '../../constants';
 
 const mapStateToProps = state => {
     return ({
-        FormWidgets: state.FormWidget
+        formWidget: state.common.formWidget
     });
 };
 
@@ -58,7 +58,7 @@ export class InputText extends Component {
      * @type {{actionName: string}}
      */
     static defaultProps = {
-        reducerName: 'FormWidgets',
+        reducerName: 'formWidget',
         actionName: WIDGET_INPUT_TEXT_ACTION_NAME,
         urlSubmit: '/',
         className: 'input-text-widget',
@@ -82,10 +82,16 @@ export class InputText extends Component {
 
     inputTextValue = '';
 
+    setInputTextValue(inputTextValue) {
+        return (inputTextValue) ? inputTextValue : ''
+    }
+
     constructor(props, context) {
         super(props, context);
 
-        this.inputTextValue = this.props[this.props.reducerName][this.context.formName].values[this.props.name];
+        this.inputTextValue = this.setInputTextValue(
+            this.props[this.props.reducerName][this.context.formName].values[this.props.name]
+        );
     }
 
     /**
@@ -94,7 +100,9 @@ export class InputText extends Component {
      */
     componentWillReceiveProps(nextProps) {
         this.error = nextProps[this.props.reducerName][this.context.formName].errors[this.props.name];
-        this.inputTextValue = nextProps[this.props.reducerName][this.context.formName].values[this.props.name];
+        this.inputTextValue = this.setInputTextValue(
+            nextProps[this.props.reducerName][this.context.formName].values[this.props.name]
+        );
     }
 
     /**
@@ -102,7 +110,7 @@ export class InputText extends Component {
      */
     onChange(event) {
         event.preventDefault();
-
+        this.inputTextValue = event.target.value;
         // Передаем в редьюсер значение поля
         this.props.actions.updateInputText(
             this.props.actionName,

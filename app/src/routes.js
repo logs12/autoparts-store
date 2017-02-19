@@ -15,10 +15,10 @@ import DashboardLayout from './backend/layouts/DashboardLayout';
 
 // Backend components
 import DashboardPage from './backend/pages/DashboardPage';
-import UsersRolePage from './backend/menu/users-roles';
-import UsersPage from './backend/menu/users-roles/users';
-import UserViewPage from './backend/menu/users-roles/users/user';
-import UserFormPage from './backend/menu/users-roles/users/user-form';
+import AdministrationPage from './backend/menu/administration';
+import UsersPage from './backend/menu/administration/users';
+import UserViewPage from './backend/menu/administration/users/user';
+import UserFormPage from './backend/menu/administration/users/user-form';
 
 // Common components
 import LoginPage from './common/pages/LoginPage';
@@ -30,7 +30,7 @@ import ApplicationContainer from './common/containers/ApplicationContainer';
 // constants react-redux-router app
 import {
     ADMIN_ROUTE,
-    USERS_ROLES_ROUTE,
+    ADMINISTRATION_ROUTE,
     USERS_ROUTE,
     USER_VIEW_ROUTE,
     USER_CREATE_ROUTE,
@@ -48,12 +48,9 @@ export const routes = (
         </Route>
 
         {/*Backend*/}
-        <Route path={ADMIN_ROUTE} component={ApplicationContainer(DashboardLayout)}>
+        <Route path={ADMIN_ROUTE} component={ApplicationContainer(MenuPageLayout)}>
             <IndexRoute component={DashboardPage}/>
-        </Route>
-
-        <Route path={USERS_ROLES_ROUTE} component={ApplicationContainer(MenuPageLayout)}>
-            <IndexRoute component={UsersRolePage}/>
+            <Route path={ADMINISTRATION_ROUTE} component={AdministrationPage}/>
             <Route path={USERS_ROUTE} component={UsersPage}/>
             <Route path={USER_CREATE_ROUTE} component={UserFormPage}/>
             <Route path={USER_VIEW_ROUTE(':id')} component={UserViewPage}/>

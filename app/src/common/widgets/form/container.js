@@ -15,7 +15,7 @@ import * as actions from './actions';
      * @param state
      */
     (state) => ({ // mapStateToProps
-        forms: state.FormWidget
+        forms: state.common.formWidget
     }),
 
     /**

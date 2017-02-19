@@ -6,7 +6,7 @@ import * as actions from './actions';
 
 const mapStateToProps = state => {
     return ({
-        snackbarWidgetState: state.SnackbarWidget,
+        snackbarWidget: state.common.snackbarWidget,
     });
 };
 
@@ -25,18 +25,18 @@ export default class SnackbarWidget extends Component {
     };
 
     componentWillMount() {
-        this.setState({ isSnackbarActive: this.props.snackbarWidgetState.isSnackbarActive });
+        this.setState({ isSnackbarActive: this.props.snackbarWidget.isSnackbarActive });
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ isSnackbarActive: nextProps.snackbarWidgetState.isSnackbarActive });
+        this.setState({ isSnackbarActive: nextProps.snackbarWidget.isSnackbarActive });
     }
 
     /**
      * Handle event time out snackbar
      */
     handleTimeoutSnackbar() {
-        this.props.snackbarWidgetState.actionTimeoutSnackbar();
+        this.props.snackbarWidget.actionTimeoutSnackbar();
         this.props.actions.SnackbarWidgetInactiveAction();
 
     }
@@ -48,7 +48,7 @@ export default class SnackbarWidget extends Component {
     render() {
 
         const { isSnackbarActive } = this.state;
-        const { messageSnackbar, actionTitle } = this.props.snackbarWidgetState;
+        const { messageSnackbar, actionTitle } = this.props.snackbarWidget;
 
         return (
             <div>

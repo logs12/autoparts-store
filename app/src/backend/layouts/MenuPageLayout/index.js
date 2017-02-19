@@ -1,33 +1,100 @@
 import './style.scss';
 
 import React, { Component } from 'react';
-import { Layout, Header, Content, Drawer, Navigation } from 'react-mdl/lib/Layout';
+import { connect } from 'react-redux';
+import { Layout, Header, Content, Drawer, Navigation } from '../../../common/widgets/layout-widget';
 
 import DrawerHeader from '../../containers/DrawerHeader';
-import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
-
 import DrawnerMenu from '../../components/DrawerMenu';
+
+import NavLink from '../../../common/widgets/nav-link/component';
+import ProgressBarWidget from '../../../common/widgets/progress-bar-widget';
 import SnackbarWidget from '../../../common/widgets/snackbar-widget';
 
-import HeaderMenu from '../../components/HeaderMenu';
+import {
+    USERS_ROUTE
+} from '../../../common/constants';
 
-const MenuPageLayout = props => {
-    return (
-        <Layout fixedHeader className="menu-page-layout">
-            <Header title={<span><span style={{ color: '#ddd' }}>
-                Area / </span><strong>The Title</strong></span>}>
-                <HeaderMenu />
-            </Header>
-            <ProgressBarWidget />
-            <section className="breadcrumbs"></section>
-            <Drawer className="mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-                <DrawerHeader />
-                <DrawnerMenu />
-            </Drawer>
-            <Content >{props.children}</Content>
-            <SnackbarWidget />
-        </Layout>
-    );
+const mapStateToProps = state => {
+    return {
+        pathname: state.routing.locationBeforeTransitions.pathname,
+    };
 };
 
-export default MenuPageLayout;
+@connect(mapStateToProps)
+
+export default class MenuPageLayout extends Component {
+
+    state = {
+        navLinks: [],
+        title: null,
+        fixedDrawer: false,
+    };
+
+    onClickNavLick(event) {
+        this.drawer;
+        debugger;
+        /*
+        this.setState({
+            fixedDrawer:false,
+        });*/
+    }
+
+    renderSubComponentFromPathname(pathname) {
+        if (pathname.indexOf("administration") !== -1) {
+            this.setState({
+                navLinks: [
+                    <NavLink
+                        key="users"
+                        to={USERS_ROUTE}
+                        className="drawer-menu__nav-link"
+                    >
+                        Users
+                    </NavLink>
+                ],
+                title: 'Administration',
+                fixedDrawer: false,
+            });
+
+        } else {
+            this.setState({
+                navLinks: [],
+                fixedDrawer:true,
+                title: 'Home',
+            });
+        }
+    }
+
+    componentWillMount() {
+        this.renderSubComponentFromPathname(this.props.pathname);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.renderSubComponentFromPathname(nextProps.pathname);
+    }
+
+    render() {
+        return (
+            <div>
+                <Layout fixedHeader fixedDrawer={this.state.fixedDrawer} className="menu-page-layout"   >
+                    <Header title={<span><span style={{ color: '#ddd' }}>
+                    {this.state.title} </span><strong></strong></span>}>
+
+                        <Navigation className="header-menu mdl-color--blue-grey-800">
+                            {this.state.navLinks}
+                        </Navigation>
+                    </Header>
+                    <ProgressBarWidget />
+                    <section className="breadcrumbs"></section>
+                    <Drawer className="mdl-color--blue-grey-900 mdl-color-text--blue-grey-50" ref={(drawer) => { this.drawer = drawer; }}>
+                        <DrawerHeader />
+                        <DrawnerMenu onClick={::this.onClickNavLick} />
+                    </Drawer>
+                    <Content >{this.props.children}</Content>
+                    <SnackbarWidget />
+                </Layout>
+            </div>
+        );
+    }
+};
+

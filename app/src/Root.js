@@ -7,12 +7,12 @@ import DevTools from './DevTools'
 
 const Root = ({ store, history }) => {
 
-    const configData = store.getState().ConfigData;
+    const configData = store.getState().common.configData;
     return (
         <Provider store={store}>
             <div>
                 <Router history={history} routes={routes} />
-                {(configData.environment === 'develop') ? <DevTools /> : null}
+                {(configData.environment === 'dev') ? <DevTools /> : null}
             </div>
         </Provider>
 

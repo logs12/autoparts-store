@@ -11,14 +11,22 @@ import Users from '../../backend/reducers/UserReducer'
 
 import { routerReducer } from 'react-router-redux';
 
-export default combineReducers({
-    FormWidget,
-    SystemError,
-    ConfigData,
-    SearchForArticul,
-    ProgressBarWidget,
-    SnackbarWidget,
-    Users,
-    CollectionPaginations,
-    routing: routerReducer
-})
+const createReducer = () => {
+    return combineReducers({
+        backend: combineReducers({
+             Users: combineReducers({
+                 collection: Users,
+             }),
+             //drawerMenu: drawerMenuReducer,
+        }),
+        common: combineReducers({
+            formWidget: FormWidget,
+            snackbarWidget: SnackbarWidget,
+            progressBarWidget: ProgressBarWidget,
+            configData: ConfigData,
+            systemError: SystemError,
+        }),
+        routing: routerReducer,
+    })
+};
+export default createReducer();
