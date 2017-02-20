@@ -14,7 +14,9 @@ import {
 
 @connect(
     (state) => ({
-        users: state.backend.Users.collection
+        userCollection: state.Users.collection,
+        userPagination: state.Users.pagination,
+
     }),
     (dispatch) => ({ // mapDispatchToProps
         userActions: bindActionCreators(actions, dispatch)
@@ -28,7 +30,7 @@ export default class UsersPage extends Component{
     render() {
         return (
             <div className="users-page">
-                {(!_.isEmpty(this.props.users)) ?
+                {(!_.isEmpty(this.props.userCollection)) ?
                     <TableWidget
                         actionsTableHeader={[
                             {
@@ -88,7 +90,11 @@ export default class UsersPage extends Component{
                                 },
                             }
                         }
-                        collection = {this.props.users}
+                        collection = {this.props.userCollection}
+
+                        entityName="User"
+                        actionName="UsersGetAction"
+
                         shadow={0}
                         className="wide"
                     >

@@ -13,8 +13,8 @@ import { USER_URL_REQUEST } from "../../../../../common/constants";
 const mapToStateProps = (state, ownProps) => {
     return {
         userId: Number(ownProps.params.id),
-        users: state.backend.Users.collection,
-        user: _.find(state.backend.Users.collection, {id: Number(ownProps.params.id)}),
+        users: state.Users.collection,
+        user: _.find(state.Users.collection, {id: Number(ownProps.params.id)}),
     }
 };
 

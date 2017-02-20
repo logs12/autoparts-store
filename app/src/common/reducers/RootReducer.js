@@ -13,11 +13,9 @@ import { routerReducer } from 'react-router-redux';
 
 const createReducer = () => {
     return combineReducers({
-        backend: combineReducers({
-             Users: combineReducers({
-                 collection: Users,
-             }),
-             //drawerMenu: drawerMenuReducer,
+        Users: combineReducers({
+            collection: Users,
+            pagination: CollectionPaginations,
         }),
         common: combineReducers({
             formWidget: FormWidget,

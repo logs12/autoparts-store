@@ -6,10 +6,19 @@ import {
     WIDGET_CLIENT_ERROR,
     ERROR_ROUTE,
     SNACKBAR_WIDGET_ACTIVE,
+    PAGINATION_GET,
 } from '../constants';
 import { push } from 'react-router-redux';
 import * as actionsSnackbarWidget from '../widgets/snackbar-widget/actions';
 
+
+const getPaginationData = (response) => {
+    return {
+        total: response.headers.get('X-Pagination-Total-Count'),
+        current: response.headers.get('X-Pagination-Current-Page'),
+        perPage: response.headers.get('X-Pagination-Per-Page'),
+    };
+};
 
 const BaseFetch = {};
 
@@ -52,6 +61,11 @@ BaseFetch.fetch = options => {
             switch (response.status) {
                 // status code for success get
                 case 200: {
+                    let headerPagination = getPaginationData(response);
+                    dispatch({
+                        type: PAGINATION_GET,
+                        payload: headerPagination,
+                    });
                     response.json().then((object) => {
                         // Stop ProgressBar
                         dispatch({type: PROGRESS_BAR_WIDGET_STOP});

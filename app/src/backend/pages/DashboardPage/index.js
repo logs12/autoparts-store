@@ -8,7 +8,7 @@ export default class DashboardPage extends Component{
 
         return (
             <div className="dashboard-page" >
-                <Article>!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</Article>
+                <Article>Proper Team Management</Article>
             </div>
         )
     }

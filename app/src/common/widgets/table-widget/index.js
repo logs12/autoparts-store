@@ -11,7 +11,7 @@ export default class TableWidget extends Component {
             PropTypes.object
         ),
         rowMenuActions: PropTypes.object,
-        attributes:PropTypes.object.isRequired
+        attributes: PropTypes.object.isRequired,
     };
 
     renderTableHeader(attributes) {
@@ -31,12 +31,14 @@ export default class TableWidget extends Component {
     }
 
     render() {
-        const { actionsTableHeader, rowMenuActions, attributes, collection, ...otherProperties } = this.props;
+        const { actionsTableHeader, rowMenuActions, attributes, collection, entityName, actionName, ...otherProperties } = this.props;
         return(
             <Table
                 actionsTableHeader={actionsTableHeader}
                 rowMenuActions={rowMenuActions}
                 rows = {collection}
+                entityName = {entityName}
+                actionName = {actionName}
                 { ...otherProperties }
             >
                 {this.renderTableHeader(attributes)}

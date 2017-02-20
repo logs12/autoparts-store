@@ -4,7 +4,7 @@ import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
 import TableActionsHeader from './TableActionsHeader';
-import PaginationWidget from '../pagination-widget';
+import { PaginationWidget } from '../pagination-widget';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
 import TableRowMenuActions from './TableRowMenuActions';
@@ -78,7 +78,7 @@ class Table extends React.Component {
 
     render() {
         const {actionsTableHeader, rowMenuActions, rows, className, columns, shadow, children,
-            rowKeyColumn, data, ...otherProps } = this.props;
+            rowKeyColumn, data, entityName, actionName, ...otherProps } = this.props;
         const realRows = rows || data;
 
         const hasShadow = typeof shadow !== 'undefined';
@@ -118,7 +118,7 @@ class Table extends React.Component {
                         </table>
                     </div>
                     <div className="table-widget__pagination">
-                        <PaginationWidget />
+                        {PaginationWidget(entityName, actionName).render()}
                     </div>
             </div>
         );

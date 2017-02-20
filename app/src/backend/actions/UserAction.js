@@ -10,14 +10,6 @@ import {
     PAGINATION_GET,
 } from '../../common/constants';
 
-const getPaginationData = (response) => {
-    return {
-        total: response.headers.get('X-Pagination-Total-Count'),
-        current: response.headers.get('X-Pagination-Current-Page'),
-        perPage: response.headers.get('X-Pagination-Per-Page'),
-    };
-};
-
 export function UsersGetAction(userId = null) {
 
     return (dispatch, getState) => {

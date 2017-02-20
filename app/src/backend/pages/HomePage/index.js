@@ -8,7 +8,7 @@ export default class HomePage extends Component{
 
         return (
             <div id="test" >
-                <Article>!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</Article>
+                <Article>Proper Team Management</Article>
             </div>
         )
     }
