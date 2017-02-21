@@ -92,7 +92,7 @@ export default class UsersPage extends Component{
                         }
                         collection = {this.props.userCollection}
 
-                        entityName="User"
+                        entityName="Users"
                         actionName="UsersGetAction"
 
                         shadow={0}

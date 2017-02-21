@@ -1,13 +1,15 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component, ReactDOM } from 'react';
 import classNames from 'classnames';
 import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
 import TableActionsHeader from './TableActionsHeader';
-import { PaginationWidget } from '../pagination-widget';
+import PaginationWidget  from '../pagination-widget';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
 import TableRowMenuActions from './TableRowMenuActions';
+
+import ErrorWidget from '../../widgets/error/container';
 
 const propTypes = {
     className: PropTypes.string,
@@ -101,6 +103,7 @@ class Table extends React.Component {
                     {column.label}
                 </TableHeader>
             );
+
         return (
             <div className="table-widget wide mdl-card mdl-shadow--2dp">
                     <TableActionsHeader actions={actionsTableHeader} />
@@ -118,7 +121,7 @@ class Table extends React.Component {
                         </table>
                     </div>
                     <div className="table-widget__pagination">
-                        {PaginationWidget(entityName, actionName).render()}
+                        <PaginationWidget entityName={entityName} actionName={actionName} />
                     </div>
             </div>
         );

@@ -1,6 +1,6 @@
 import './style.scss';
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 
@@ -9,40 +9,32 @@ import * as actions from './actions';
 import Icon from 'react-mdl/lib/Icon';
 import Button from 'react-mdl/lib/Button';
 
+const mapStateToProps = state => {
+    return ({
+        state,
+    });
+};
 
-const PaginationWidget = (entityName, actionName) => {
+@connect(mapStateToProps)
+export default class PaginationWidget extends Component {
 
-    const mapStateToProps = state => {
-        return ({
-            pagination: state[entityName].pagination,
-        });
-    };
-
-    const mapDispathToProps = dispath => {
-        return ({
-            action: bindActionCreators(actions, dispath),
-        });
-    };
-
-    @connect(mapStateToProps, mapDispathToProps)
-    class PaginationComponent extends React.Component {
-
-     /*   componentWillMount() {
+        componentWillMount() {
+            this.props;
             debugger;
             this.setState({
-                total: this.props.total,
-                current: this.props.current,
-                perPage: this.props.perPage,
+                total: this.props.state[this.props.entityName].pagination.total,
+                current: this.props.state[this.props.entityName].pagination.current,
+                perPage: this.props.state[this.props.entityName].pagination.perPage,
             });
         }
 
         componentWillReceiveProps(nextProps) {
             this.setState({
-                total: nextProps.total,
-                current: nextProps.current,
-                perPage: nextProps.perPage,
+                total: nextProps.state[this.props.entityName].pagination.total,
+                current: nextProps.state[this.props.entityName].pagination.current,
+                perPage: nextProps.state[this.props.entityName].pagination.perPage,
             });
-        }*/
+        }
 
         render() {
 
@@ -67,11 +59,9 @@ const PaginationWidget = (entityName, actionName) => {
                 </div>
             )
         }
-    }
-
-    return new PaginationComponent;
 };
-module.exports.PaginationWidget = PaginationWidget;
+
+//module.exports.PaginationWidget = PaginationWidget;
 
 /*export default function PaginationWidget(entityName, actionName) {
 
