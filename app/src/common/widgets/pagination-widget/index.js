@@ -9,7 +9,7 @@ import * as actions from './actions';
 import Icon from 'react-mdl/lib/Icon';
 import Button from 'react-mdl/lib/Button';
 
-const mapStateToProps = state => {
+/*const mapStateToProps = state => {
     return ({
         state,
     });
@@ -59,11 +59,11 @@ export default class PaginationWidget extends Component {
                 </div>
             )
         }
-};
+};*/
 
 //module.exports.PaginationWidget = PaginationWidget;
 
-/*export default function PaginationWidget(entityName, actionName) {
+export default function PaginationWidget(entityName, actionName) {
 
     const mapStateToProps = state => {
         return ({
@@ -114,12 +114,12 @@ export default class PaginationWidget extends Component {
                     <div className="mdl-layout-spacer"></div>
                     <div className="pagination-widget__pager">
                         <span>Lines per page:</span>
-                        <span className="pagination-widget__pager-per-page">{this.state.perPage}</span>
-                        <span className="pagination-widget__pager-start">{this.state.current}</span>
+                        <span className="pagination-widget__pager-per-page">{/*{this.state.perPage}*/}</span>
+                        <span className="pagination-widget__pager-start">{/*{this.state.current}*/}</span>
                         <span>-</span>
                         <span className="pagination-widget__pager-end">20</span>
                         <span className="pagination-widget__pager-text widget-table__pager-text--narrow">of</span>
-                        <span className="pagination-widget__pager-total">{this.state.total}</span>
+                        <span className="pagination-widget__pager-total">{/*{this.state.total}*/}</span>
                         <span className="pagination-widget__pager-navigation">
                         <Button raised className="pagination-widget__pager-previous" onClick={this.handleArrowLeft}><Icon name="keyboard_arrow_left"/></Button>
                         <Button raised className="pagination-widget__pager-next" onClick={this.handleArrowRight}><Icon name="keyboard_arrow_right"/></Button>
@@ -129,6 +129,6 @@ export default class PaginationWidget extends Component {
             )
         }
     }
-    return new PaginationComponent();
-}*/
-
+    return PaginationComponent;
+}
+module.exports.PaginationWidget = PaginationWidget;
