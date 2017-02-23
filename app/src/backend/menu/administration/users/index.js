@@ -6,6 +6,7 @@ import TableWidget from '../../../../common/widgets/table-widget';
 
 import * as actions from '../../../actions/UserAction';
 import {
+    USERS_ROUTE,
     USER_CREATE_ROUTE,
     USER_VIEW_ROUTE,
     USER_UPDATE_ROUTE,
@@ -15,7 +16,6 @@ import {
 @connect(
     (state) => ({
         userCollection: state.Users.collection,
-        userPagination: state.Users.pagination,
 
     }),
     (dispatch) => ({ // mapDispatchToProps
@@ -92,8 +92,11 @@ export default class UsersPage extends Component{
                         }
                         collection = {this.props.userCollection}
 
-                        entityName="Users"
-                        actionName="UsersGetAction"
+                        paginationOptions ={{
+                            entityName: "Users",
+                            actionName:"UsersGetAction",
+                            paginationUrl: USERS_ROUTE,
+                        }}
 
                         shadow={0}
                         className="wide"

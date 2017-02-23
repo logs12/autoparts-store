@@ -2,7 +2,7 @@ import './style.scss';
 
 import React, { Component } from 'react';
 
-import ErrorWidget from '../../widgets/error/container';
+import ErrorWidget from '../../widgets/error-widget/container';
 
 const ErrorPage = () => {
 

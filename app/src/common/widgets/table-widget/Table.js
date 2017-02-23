@@ -1,4 +1,4 @@
-import React, { PropTypes, Component, ReactDOM } from 'react';
+import React, { PropTypes, Component, createElement } from 'react';
 import classNames from 'classnames';
 import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
@@ -80,11 +80,16 @@ class Table extends React.Component {
 
     render() {
         const {actionsTableHeader, rowMenuActions, rows, className, columns, shadow, children,
-            rowKeyColumn, data, entityName, actionName, ...otherProps } = this.props;
+            rowKeyColumn, data, paginationOptions, ...otherProps } = this.props;
         const realRows = rows || data;
 
         const hasShadow = typeof shadow !== 'undefined';
         const shadowLevel = clamp(shadow || 0, 0, shadows.length - 1);
+
+        // Pagination options
+        const entityName = paginationOptions && paginationOptions.hasOwnProperty('entityName') ? paginationOptions.entityName : null;
+        const actionName = paginationOptions && paginationOptions.hasOwnProperty('actionName') ? paginationOptions.actionName : null;
+        const paginationUrl = paginationOptions && paginationOptions.hasOwnProperty('paginationUrl') ? paginationOptions.paginationUrl : null;
 
         const classes = classNames('mdl-data-table', {
             [shadows[shadowLevel]]: hasShadow
@@ -121,7 +126,7 @@ class Table extends React.Component {
                         </table>
                     </div>
                     <div className="table-widget__pagination">
-                        <PaginationWidget entityName={entityName} actionName={actionName} />
+                        {createElement(PaginationWidget(entityName, actionName, paginationUrl))}
                     </div>
             </div>
         );

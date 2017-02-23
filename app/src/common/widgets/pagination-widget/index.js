@@ -3,126 +3,95 @@ import './style.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
+import { push } from "react-router-redux";
 
-import * as actions from './actions';
+import { paginationAction } from './actions';
 
 import Icon from 'react-mdl/lib/Icon';
 import Button from 'react-mdl/lib/Button';
 
-/*const mapStateToProps = state => {
-    return ({
-        state,
-    });
-};
+import configureStore from '../../store/ConfigureStore';
+const store = configureStore();
 
-@connect(mapStateToProps)
-export default class PaginationWidget extends Component {
+export default function PaginationWidget(entityName, actionName, paginationUrl) {
+    
+    const mapStateToProps = (state) => {
+        return ({
+            pagination: state[entityName].pagination,
+            routing: state.routing,
+        });
+    };
+
+    const mapDispatchToProps = dispatch => {
+        return ({
+            paginationAction: bindActionCreators(paginationAction, dispatch),
+            push: bindActionCreators(push, dispatch),
+        });
+    };
+
+    @connect(mapStateToProps, mapDispatchToProps)
+
+    class PaginationComponent extends Component {
+
+        state = {
+            total: this.props.pagination.total,
+            current: this.props.pagination.current,
+            perPage: this.props.pagination.perPage,
+            pagerButtonPrevious: '',
+            pagerButtonNextState: 'disabled',
+        };
 
         componentWillMount() {
             this.props;
-            debugger;
-            this.setState({
-                total: this.props.state[this.props.entityName].pagination.total,
-                current: this.props.state[this.props.entityName].pagination.current,
-                perPage: this.props.state[this.props.entityName].pagination.perPage,
-            });
+            /*this.setState({
+                total: this.props.pagination.total,
+                current: this.props.pagination.current,
+                perPage: this.props.pagination.perPage,
+
+            });*/
         }
 
         componentWillReceiveProps(nextProps) {
             this.setState({
-                total: nextProps.state[this.props.entityName].pagination.total,
-                current: nextProps.state[this.props.entityName].pagination.current,
-                perPage: nextProps.state[this.props.entityName].pagination.perPage,
-            });
-        }
-
-        render() {
-
-            debugger;
-            return (
-                <div className="pagination-widget">
-                    <div className="mdl-layout-spacer"></div>
-                    <div className="pagination-widget__pager">
-                        <span>Lines per page:</span>
-                        <span className="pagination-widget__pager-per-page"></span>
-                        <span className="pagination-widget__pager-start"></span>
-                        <span>-</span>
-                        <span className="pagination-widget__pager-end">20</span>
-                        <span className="pagination-widget__pager-text widget-table__pager-text--narrow">of</span>
-                        <span className="pagination-widget__pager-total"></span>
-                        <span className="pagination-widget__pager-navigation">
-                        <Button raised className="pagination-widget__pager-previous"><Icon
-                            name="keyboard_arrow_left"/></Button>
-                        <Button raised className="pagination-widget__pager-next"><Icon name="keyboard_arrow_right"/></Button>
-                    </span>
-                    </div>
-                </div>
-            )
-        }
-};*/
-
-//module.exports.PaginationWidget = PaginationWidget;
-
-export default function PaginationWidget(entityName, actionName) {
-
-    const mapStateToProps = state => {
-        return ({
-            pagination: state[entityName].pagination,
-        });
-    };
-
-    const mapDispathToProps = dispath => {
-        return ({
-            action: bindActionCreators(actions, dispath),
-        });
-    };
-
-    @connect(mapStateToProps, mapDispathToProps)
-
-    class PaginationComponent extends React.Component {
-
-        componentWillMount() {
-            debugger;
-            this.setState({
-                total: this.props.total,
-                current: this.props.current,
-                perPage: this.props.perPage,
-            });
-        }
-
-        componentWillReceiveProps(nextProps) {
-            this.setState({
-                total: nextProps.total,
-                current: nextProps.current,
-                perPage: nextProps.perPage,
+                total: nextProps.pagination.total,
+                current: nextProps.pagination.current,
+                perPage: nextProps.pagination.perPage,
             });
         }
 
         handleArrowLeft() {
-            this.props.action.paginationAction(actionName, 'dsfsdfsdf');
+            debugger;
+            this.props.push(`${paginationUrl}?page=2`);
+            //this.props.paginationAction(actionName, 'sdf');
         }
 
         handleArrowRight() {
-            this.props.action.paginationAction(actionName, 'dsfsdfsdf');
+            this.props.paginationAction(actionName, 'dsfsdfsdf');
         }
 
         render() {
-
-            debugger;
             return(
                 <div className="pagination-widget">
                     <div className="mdl-layout-spacer"></div>
                     <div className="pagination-widget__pager">
                         <span>Lines per page:</span>
-                        <span className="pagination-widget__pager-per-page">{/*{this.state.perPage}*/}</span>
-                        <span className="pagination-widget__pager-start">{/*{this.state.current}*/}</span>
-                        <span>-</span>
+                        <span className="pagination-widget__pager-per-page">{this.state.perPage}</span>
+                        <span className="pagination-widget__pager-start">{this.state.current}</span>
+                        <span> - </span>
                         <span className="pagination-widget__pager-end">20</span>
                         <span className="pagination-widget__pager-text widget-table__pager-text--narrow">of</span>
-                        <span className="pagination-widget__pager-total">{/*{this.state.total}*/}</span>
+                        <span className="pagination-widget__pager-total">{this.state.total}</span>
                         <span className="pagination-widget__pager-navigation">
-                        <Button raised className="pagination-widget__pager-previous" onClick={this.handleArrowLeft}><Icon name="keyboard_arrow_left"/></Button>
-                        <Button raised className="pagination-widget__pager-next" onClick={this.handleArrowRight}><Icon name="keyboard_arrow_right"/></Button>
+                        <Button raised
+                                className="pagination-widget__pager-previous" onClick={::this.handleArrowLeft}
+                                disabled={this.state.pagerButtonPrevious}>
+                            <Icon name="keyboard_arrow_left"/>
+                        </Button>
+                        <Button raised
+                                className="pagination-widget__pager-next" onClick={::this.handleArrowRight}
+                                disabled={this.state.pagerButtonNextState}>
+                            <Icon name="keyboard_arrow_right"/>
+                        </Button>
                     </span>
                     </div>
                 </div>
@@ -131,4 +100,3 @@ export default function PaginationWidget(entityName, actionName) {
     }
     return PaginationComponent;
 }
-module.exports.PaginationWidget = PaginationWidget;

@@ -15,7 +15,7 @@
     .pagination-widget__pager-text,
     .pagination-widget__pager-per-page,
     .pagination-widget__pager-navigation {
-        padding: 0 15px 0 5px;
+        padding: 0 10px 0 10px;
     }
     .pagination-widget__pager-text--narrow {
         padding: 0 5px 0 5px;
@@ -24,6 +24,12 @@
     .mdl-button {
         background: 0 0;
         box-shadow: none;
+        &:disabled{
+            background-color: transparent;
+            &:hover{
+                background-color: transparent;
+            }
+        }
         &:hover {
             background-color: hsla(0, 0%, 62%, .4);
         }
