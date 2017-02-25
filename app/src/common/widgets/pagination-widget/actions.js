@@ -10,6 +10,5 @@ import ActionsFactory from '../../services/ActionsFactory';
  * @returns {{types: *[], promise: (function())}}
  */
 export function paginationAction(actionName, data) {
-    debugger;
     return ActionsFactory(actionName, data);
 }

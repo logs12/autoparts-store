@@ -10,11 +10,15 @@ import {
     PAGINATION_GET,
 } from '../../common/constants';
 
-export function UsersGetAction(userId = null) {
+export function UsersGetAction(options) {
 
     return (dispatch, getState) => {
+
+        const userId = options && options.hasOwnProperty('userId') ? options.userId : null;
+        const condition = options && options.hasOwnProperty('condition') ? options.condition : '';
+
         return BaseFetch.get({
-            url: USER_URL_REQUEST(userId),
+            url: `${USER_URL_REQUEST(userId)}${condition}`,
             dispatch: dispatch,
             success: object => {
                 dispatch({

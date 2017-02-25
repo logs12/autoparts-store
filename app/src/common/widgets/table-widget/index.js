@@ -11,7 +11,7 @@ export default class TableWidget extends Component {
             PropTypes.object
         ),
         rowMenuActions: PropTypes.object,
-        attributes: PropTypes.object.isRequired,
+        attributes:PropTypes.object.isRequired
     };
 
     renderTableHeader(attributes) {

@@ -13,7 +13,7 @@ const ErrorWidget = props => {
 };
 
 function mapStateToProps(state) {
-    return { errors: state.SystemError }
+    return { errors: state.common.systemError }
 }
 
 export default connect(mapStateToProps)(ErrorWidget);

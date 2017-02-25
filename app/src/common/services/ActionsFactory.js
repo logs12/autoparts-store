@@ -1,5 +1,11 @@
 import { loginAction, logOutAction } from '../../common/actions/AuthAction';
-import { UserCreateAction, UserUpdateAction } from '../../backend/actions/UserAction';
+import {
+    UsersGetAction,
+    UserCreateAction,
+    UserUpdateAction,
+} from '../../backend/actions/UserAction';
+
+import { WIDGET_CLIENT_ERROR } from '../constants';
 
 /**
  * Список action
@@ -8,6 +14,7 @@ import { UserCreateAction, UserUpdateAction } from '../../backend/actions/UserAc
 const ListActions = {
     loginAction: loginAction,
     logOutAction: logOutAction,
+    UsersGetAction: UsersGetAction,
     UserCreateAction: UserCreateAction,
     UserUpdateAction: UserUpdateAction,
 };
@@ -22,5 +29,10 @@ const ListActions = {
 export default function action(nameAction, data, options) {
     if (ListActions[nameAction] != undefined) {
         return ListActions[nameAction](data, options);
+    } else {
+        return {
+            type: WIDGET_CLIENT_ERROR,
+            payload: { messageError: `Action "${nameAction}" not found in ActionFactory` }
+        }
     }
 }

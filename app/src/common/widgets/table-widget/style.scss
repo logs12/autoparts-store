@@ -2,7 +2,7 @@
 
 .table-widget{
 	padding: 15px 0;
-
+	overflow: inherit;
 	.table-widget__actions {
 		padding: 0 10px;
 		min-height: 36px;
@@ -19,13 +19,26 @@
 		}
 	}
 	.table-widget__table{
-		overflow-x: auto;
-		overflow-y: inherit;
+		/*overflow-x: auto;
+		overflow-y: inherit;	*/
 		box-shadow: none;
 		.mdl-data-table{
 
 			border-right: 0 solid #000;
 			border-left: 0 solid #000;
+			border-bottom: 0 solid #000;
+			box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+			.mdl-data-table__cell--cursor-pointer{
+				cursor: pointer;
+			}
+			.table-widget__action-cell{
+				@include flex(row);
+				justify-content: flex-end;
+				.material-icons{
+					opacity: 0.8;
+				}
+			}
 		}
 	}
 }

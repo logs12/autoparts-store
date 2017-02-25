@@ -32,6 +32,7 @@ export default class UsersPage extends Component{
             <div className="users-page">
                 {(!_.isEmpty(this.props.userCollection)) ?
                     <TableWidget
+
                         actionsTableHeader={[
                             {
                                 title: 'Add',
@@ -44,14 +45,23 @@ export default class UsersPage extends Component{
                                 actionView: {
                                     title: 'View',
                                     url: USER_VIEW_ROUTE,
+                                    settings: {
+                                        clickRow: true,
+                                    },
                                 },
                                 actionUpdate: {
                                     title: 'Edit',
                                     url: USER_UPDATE_ROUTE,
+                                    settings: {
+                                        nameIconButton: 'edit',
+                                    },
                                 },
                                 actionDelete: {
                                     title: 'Delete',
                                     dispatchAction: this.props.userActions.UserDeleteAction,
+                                    settings: {
+                                        nameIconButton: 'delete',
+                                    },
                                 },
                         }}
 

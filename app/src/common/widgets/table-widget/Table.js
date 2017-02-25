@@ -4,12 +4,10 @@ import clamp from 'clamp';
 import shadows from 'react-mdl/lib/utils/shadows';
 import TableHeader from './TableHeader';
 import TableActionsHeader from './TableActionsHeader';
-import PaginationWidget  from '../pagination-widget';
+import PaginationWidget from '../pagination-widget/container';
 import makeSelectable from './Selectable';
 import makeSortable from './Sortable';
-import TableRowMenuActions from './TableRowMenuActions';
-
-import ErrorWidget from '../../widgets/error/container';
+import TableRow from './TableRow';
 
 const propTypes = {
     className: PropTypes.string,
@@ -30,53 +28,8 @@ const propTypes = {
     rowMenuActions: PropTypes.object,
 };
 
-class Table extends React.Component {
+class Table extends Component {
 
-    /**
-     *
-     * @param column
-     * @param row
-     * @param idx
-     * @returns {XML}
-     */
-    renderCell(column, row, idx) {
-        const className = !column.numeric ? 'mdl-data-table__cell--non-numeric' : '';
-        return (
-            <td key={column.name} className={className}>
-                {column.cellFormatter ? column.cellFormatter(row[column.name], row, idx) : row[column.name]}
-            </td>
-        );
-    }
-
-    /**
-     * Rendering rows
-     * @param realRows
-     * @param columnChildren
-     * @param rowKeyColumn
-     * @param rowMenuActions - actions table body
-     * @returns {Array}
-     */
-    renderRows(realRows, columnChildren, rowKeyColumn, rowMenuActions) {
-
-        let trComponent = [];
-        trComponent.push(
-            realRows.map((row, idx) => {
-                const { className: mdlRowPropsClassName, ...remainingMdlRowProps } = row.mdlRowProps || {};
-
-                return (
-                    <tr
-                        key={row[rowKeyColumn] || row.key || idx}
-                        className={classNames(row.className, mdlRowPropsClassName)}
-                        {...remainingMdlRowProps}
-                    >
-                        {columnChildren.map((child) => this.renderCell(child.props, row, idx))}
-                        <TableRowMenuActions rowMenuActions={rowMenuActions} row={row} />
-                    </tr>
-                );
-            })
-        );
-        return trComponent;
-    }
 
     render() {
         const {actionsTableHeader, rowMenuActions, rows, className, columns, shadow, children,
@@ -108,7 +61,6 @@ class Table extends React.Component {
                     {column.label}
                 </TableHeader>
             );
-
         return (
             <div className="table-widget wide mdl-card mdl-shadow--2dp">
                     <TableActionsHeader actions={actionsTableHeader} />
@@ -121,7 +73,18 @@ class Table extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderRows(realRows, columnChildren, rowKeyColumn, rowMenuActions)}
+                                {
+                                    realRows.map((row, idx) => {
+                                        return <TableRow
+                                            columnChildren={columnChildren}
+                                            rowKeyColumn={rowKeyColumn}
+                                            rowMenuActions={rowMenuActions}
+                                            row={row}
+                                            idx={idx}
+                                            key={idx}
+                                        />
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
