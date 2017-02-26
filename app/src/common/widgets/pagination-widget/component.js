@@ -3,7 +3,6 @@ import './style.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import { push } from "react-router-redux";
 
 
 import Icon from 'react-mdl/lib/Icon';
@@ -14,37 +13,30 @@ export default class PaginationComponent extends Component {
 
     startValue = 0;
     endValue = 0;
-    current = parseInt(this.props.pagination.current);
-    pagerButtonPrevious = 'disabled';
+    current = 0;
+    pagerButtonPrevious = '';
     pagerButtonNextState = '';
 
     componentWillMount() {
-
-        debugger;
-
+        this.current = parseInt(this.props.pagination.current);
         this.calculationPaging(this.props.pagination);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        debugger;
-        //this.calculationPaging(nextProps.pagination);
     }
 
     handleArrowLeft() {
         this.current = --this.current;
-        this.props.push(`${this.props.paginationUrl}?page=${this.current}`);
-        this.props.paginationAction(this.props.actionName, {condition: `?page=${this.current}`});
+        if (this.current === 1) {
+            this.props.push(`${this.props.paginationUrl}`);
+        } else {
+            this.props.push(`${this.props.paginationUrl}?page=${this.current}`);
+        }
     }
 
     handleArrowRight() {
         this.current = ++this.current;
         this.props.push(`${this.props.paginationUrl}?page=${this.current}`);
-        this.props.paginationAction(this.props.actionName, {condition: `?page=${this.current}`});
     }
 
     calculationPaging(pagination) {
-
-        debugger;
 
         // Расчет начального состояния
         this.startValue = pagination.perPage * (this.current - 1);
@@ -53,7 +45,6 @@ export default class PaginationComponent extends Component {
         } else {
             this.startValue = 0;
         }
-
 
         // Расчёт конечного значения
         this.endValue = pagination.perPage * this.current;
@@ -74,13 +65,13 @@ export default class PaginationComponent extends Component {
     }
 
     render() {
-        const {perPage,total} = this.props.pagination;
+        const {perPage, total} = this.props.pagination;
 
         return(
             <div className="pagination-widget">
                 <div className="mdl-layout-spacer"></div>
                 <div className="pagination-widget__pager">
-                    <span>Lines per page:</span>
+                    <span>{this.props.entityName} per page:</span>
                     <span className="pagination-widget__pager-per-page">{perPage}</span>
                     <span className="pagination-widget__pager-start">{this.startValue}</span>
                     <span> - </span>

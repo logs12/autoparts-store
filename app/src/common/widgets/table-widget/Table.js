@@ -89,7 +89,7 @@ class Table extends Component {
                         </table>
                     </div>
                     <div className="table-widget__pagination">
-                        {createElement(PaginationWidget(entityName, actionName, paginationUrl))}
+                        {createElement(PaginationWidget(entityName, paginationUrl))}
                     </div>
             </div>
         );

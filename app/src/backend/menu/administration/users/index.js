@@ -13,10 +13,16 @@ import {
     USER_DELETE_ROUTE,
 } from '../../../../common/constants';
 
-@connect(
-    (state) => ({
-        userCollection: state.Users.collection,
 
+const mapStateToProps = (state, ownProps) => {
+    const condition =  ownProps.location.search;
+
+    return {  condition };
+};
+@connect(
+    (state, ownProps) => ({
+        userCollection: state.Users.collection,
+        condition: ownProps.location.search,
     }),
     (dispatch) => ({ // mapDispatchToProps
         userActions: bindActionCreators(actions, dispatch)
@@ -25,8 +31,18 @@ import {
 export default class UsersPage extends Component{
 
     componentWillMount() {
-        this.props.userActions.UsersGetAction();
+
+        //debugger;
+        this.props.userActions.UsersGetAction({condition: this.props.condition});
     }
+
+    componentWillReceiveProps(nextProps) {
+        //debugger;
+        if (this.props.condition != nextProps.condition) {
+            this.props.userActions.UsersGetAction({condition: nextProps.condition});
+        }
+    }
+
     render() {
         return (
             <div className="users-page">
