@@ -120,19 +120,21 @@ export default class Form extends Component {
     getInputNames(children, model) {
         if (children.length) {
             for (var child of children) {
-                if (typeof child.type !== 'function') {
-                    this.getInputNames(child.props.children, model);
-                }
-                if (!child.props.name) {
-                    continue;
-                }
-                if (model) {
-                    this.modelForm['id'] = model['id'];
-                    this.modelForm[child.props.name] = model[child.props.name];
-                    this.modelFormError[child.props.name] = null;
-                } else {
-                    this.modelForm[child.props.name] = null;
-                    this.modelFormError[child.props.name] = null;
+                if (child) {
+                    if (typeof child.type !== 'function') {
+                        this.getInputNames(child.props.children, model);
+                    }
+                    if (!child.props.name) {
+                        continue;
+                    }
+                    if (model) {
+                        this.modelForm['id'] = model['id'];
+                        this.modelForm[child.props.name] = model[child.props.name];
+                        this.modelFormError[child.props.name] = null;
+                    } else {
+                        this.modelForm[child.props.name] = null;
+                        this.modelFormError[child.props.name] = null;
+                    }
                 }
             }
         }
@@ -151,10 +153,10 @@ export default class Form extends Component {
         // Запускаем submit формы
         this.props.formActions.submitFormAction(
             this.props.actionName, {
-            formName: this.props.formName,
-            values: values,
-            url: this.props.url,
-        });
+                formName: this.props.formName,
+                values: values,
+                url: this.props.url,
+            });
 
 
         event.preventDefault();
@@ -170,4 +172,3 @@ export default class Form extends Component {
         )
     }
 }
-

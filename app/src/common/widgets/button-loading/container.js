@@ -1,19 +1,38 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import {bindActionCreators} from "redux";
 
-import { WIDGET_FORM_INIT } from '../../constants';
-
 import ButtonLoadingComponent from './component';
+import Spinner from 'react-mdl/lib/Spinner';
+import { reset } from '../form/actions';
+
+import {
+    WIDGET_FORM_INIT,
+    WIDGET_FORM_REQUEST,
+    WIDGET_FORM_SUCCESS,
+    WIDGET_FORM_ERROR
+} from '../../constants';
+
+
+
+const mapStateToProps = (state) => {
+    return ({
+        FormWidgets: state.FormWidget
+    });
+};
+
+const mapDispatchToProps = dispatch => {
+    return ({
+        resetForm: bindActionCreators(reset, dispatch),
+        dispatch: dispatch
+    });
+};
 
 /**
  * Подключение к reduxStore
  */
-@connect(
-    (state) => ({
-        formWidgets: state.common.formWidget
-    })
-)
+@connect(mapStateToProps, mapDispatchToProps)
 
 /**
  * Виджет можно использовать независимо от формы, но в таком случае необходимо явно прописывать название reducer
@@ -27,8 +46,12 @@ import ButtonLoadingComponent from './component';
 export default class ButtonLoading extends Component{
 
     static propTypes = {
-        className: React.PropTypes.string,
-        label: React.PropTypes.string
+        className: PropTypes.string,
+        label: PropTypes.string,
+        backToListUrl: PropTypes.string,
+        //saveAndBackToList: PropTypes.string,
+        //saveAndMore: PropTypes.string,
+        type: PropTypes.string,
     };
 
     /**
@@ -36,19 +59,22 @@ export default class ButtonLoading extends Component{
      * @type {{}}
      */
     static defaultProps = {
-        reducerName: 'formWidgets',
+        reducerName: 'FormWidgets',
         label: 'Submit',
-        className: ''
+        className: '',
+        backToListUrl: '/',
+        type: 'default',
     };
 
     /**
      * Свойство выключения кнопки
-     * @type {{disabled: boolean, isPending: boolean, isSuccess: boolean}}
+     * @type {{disabled: boolean, isPending: boolean, buttonState, typeButton: null}}
      */
     state = {
         disabled: true,
         isPending: false,
         buttonState: WIDGET_FORM_INIT,
+        typeButton: null,
     };
 
     /**
@@ -58,6 +84,16 @@ export default class ButtonLoading extends Component{
     static contextTypes = {
         formName: React.PropTypes.string.isRequired,
     };
+
+    successElement = <div className="widget-button-loading__success-text widget-button-loading__success-text--icon mdl-color-text--green-600">
+        <i className="material-icons">done</i>
+    </div>;
+
+    errorElement = <div className="widget-button-loading__error-text widget-button-loading__error-text--icon mdl-color-text--red-600">
+        <i className="material-icons">error</i>
+    </div>;
+
+    stateElement = null;
 
     /**
      *
@@ -71,6 +107,92 @@ export default class ButtonLoading extends Component{
         // Состояния кнопки
         this.state.buttonState = nextProps[this.props.reducerName][this.context.formName].stateForm;
 
+        this.stateButton(this.state.buttonState);
+    }
+
+
+
+    /**
+     * Визуализация состояния кнопки
+     * @returns {*}
+     */
+    stateButton(buttonState) {
+
+        switch (buttonState) {
+            case WIDGET_FORM_REQUEST: {
+
+                switch (this.state.typeButton) {
+                    case 'saveAndBackToList': {
+                        this.stateElement = <Spinner />;
+                        break;
+                    }
+                    case 'saveAndMore': {
+                        this.stateElement = <Spinner />;
+                        break;
+                    }
+                    case 'default': {
+                        this.stateElement = <Spinner />;
+                        break;
+                    }
+                }
+                break;
+            }
+            case WIDGET_FORM_SUCCESS: {
+                switch (this.state.typeButton) {
+                    case 'saveAndBackToList': {
+                        this.props.dispatch(push(this.props.backToListUrl));
+                        this.stateElement = null;
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                    case 'saveAndMore': {
+                        this.props.resetForm(
+                            this.context.formName,
+                            this.props.FormWidgets[this.context.formName]
+                        );
+                        this.props.dispatch(push(this.props.backToListUrl));
+                        this.stateElement = this.successElement;
+
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                    case 'default': {
+                        this.stateElement = this.successElement;
+
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                }
+                break;
+            }
+            case WIDGET_FORM_ERROR: {
+                switch (this.state.typeButton) {
+                    case 'saveAndBackToList': {
+                        this.stateElement = this.errorElement;
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                    case 'saveAndMore': {
+                        this.stateElement = this.errorElement;
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                    case 'default': {
+                        this.stateElement = this.errorElement;
+                        this.setState({typeButton: null});
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+    }
+
+    handleClickButton() {
+        this.setState({
+            typeButton: this.props.type,
+        });
     }
 
     render () {
@@ -79,7 +201,9 @@ export default class ButtonLoading extends Component{
                 className={this.props.className}
                 label={this.props.label}
                 disabled={this.state.disabled}
-                buttonState={this.state.buttonState}
+                stateElement={this.stateElement}
+                type={this.props.type}
+                handleClickButton={::this.handleClickButton}
             >
             </ButtonLoadingComponent>
         )

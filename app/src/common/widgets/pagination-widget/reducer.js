@@ -1,10 +1,6 @@
-import { PAGINATION_GET } from '../../../common/constants';
+import { PAGINATION_GET } from '../../constants';
 
-const initialState = {
-
-};
-
-export default function PaginationWidget(state = {}, action) {
+export default function CollectionPaginations(state = {}, action) {
     switch(action.type) {
         case PAGINATION_GET: {
             return {

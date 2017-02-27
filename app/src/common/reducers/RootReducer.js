@@ -5,7 +5,7 @@ import SystemError from '../widgets/error-widget/reducers';
 import ConfigData from './ConfigDataReducer';
 import ProgressBarWidget from '../widgets/progress-bar-widget/reducer';
 import SnackbarWidget from '../widgets/snackbar-widget/reducer';
-import CollectionPaginations from '../../backend/reducers/CollectionPaginations';
+import PaginationWidget from '../../common/widgets/pagination-widget/reducer';
 
 import Users from '../../backend/reducers/UserReducer'
 
@@ -15,7 +15,7 @@ const createReducer = () => {
     return combineReducers({
         Users: combineReducers({
             collection: Users,
-            pagination: CollectionPaginations,
+            pagination: PaginationWidget,
         }),
         common: combineReducers({
             formWidget: FormWidget,
